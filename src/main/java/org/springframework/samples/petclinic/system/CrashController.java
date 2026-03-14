@@ -17,6 +17,7 @@ package org.springframework.samples.petclinic.system;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Controller used to showcase what happens when an exception is thrown
@@ -29,9 +30,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 class CrashController {
 
 	@GetMapping("/oups")
-	public String triggerException() {
-		throw new RuntimeException(
-				"Expected: controller used to showcase what " + "happens when an exception is thrown");
+	public String triggerException(@RequestParam(required = false, defaultValue = "50") int min,
+			@RequestParam(required = false, defaultValue = "50") int max) {
+		throw new RuntimeException("Expected: controller used to showcase what happens when an exception is thrown"
+				+ " [min=" + min + ", max=" + max + "]");
 	}
 
 }
