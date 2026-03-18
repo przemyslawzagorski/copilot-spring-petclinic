@@ -47,6 +47,7 @@ out/
 .mvn/
 .adk/
 .venv/
+szkol_referencja/copilot_training_self_paced/mcp_jira_wiki/.env
 
 ### Local OS and temp ###
 .DS_Store

@@ -1,0 +1,10 @@
+{
+  "servers": {
+    "publiczne-api": {
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/szkol_referencja/copilot_training_self_paced/mcp_ex_api/api_sever.py"
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "python3 scripts/hooks/block-dangerous.py",
+        "windows": "python scripts\\hooks\\block-dangerous.py",
+        "timeout": 10
+      }
+    ]
+  }
+}

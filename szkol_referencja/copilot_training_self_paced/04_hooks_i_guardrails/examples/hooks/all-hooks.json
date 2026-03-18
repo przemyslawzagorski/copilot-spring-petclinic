@@ -1,0 +1,74 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "python3 scripts/hooks/session-info.py",
+        "windows": "python scripts\\hooks\\session-info.py",
+        "timeout": 10
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "type": "command",
+        "command": "python3 scripts/hooks/audit-prompt.py",
+        "windows": "python scripts\\hooks\\audit-prompt.py",
+        "timeout": 5
+      }
+    ],
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "python3 scripts/hooks/block-sensitive.py",
+        "windows": "python scripts\\hooks\\block-sensitive.py",
+        "timeout": 10
+      },
+      {
+        "type": "command",
+        "command": "python3 scripts/hooks/block-dangerous.py",
+        "windows": "python scripts\\hooks\\block-dangerous.py",
+        "timeout": 10
+      }
+    ],
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "python3 scripts/hooks/motivator.py",
+        "windows": "python scripts\\hooks\\motivator.py",
+        "timeout": 5
+      }
+    ],
+    "PreCompact": [
+      {
+        "type": "command",
+        "command": "python3 scripts/hooks/precompact-save.py",
+        "windows": "python scripts\\hooks\\precompact-save.py",
+        "timeout": 5
+      }
+    ],
+    "Stop": [
+      {
+        "type": "command",
+        "command": "python3 scripts/hooks/stop-reminder.py",
+        "windows": "python scripts\\hooks\\stop-reminder.py",
+        "timeout": 10
+      }
+    ],
+    "SubagentStart": [
+      {
+        "type": "command",
+        "command": "python3 scripts/hooks/subagent-log.py",
+        "windows": "python scripts\\hooks\\subagent-log.py",
+        "timeout": 5
+      }
+    ],
+    "SubagentStop": [
+      {
+        "type": "command",
+        "command": "python3 scripts/hooks/subagent-log.py",
+        "windows": "python scripts\\hooks\\subagent-log.py",
+        "timeout": 5
+      }
+    ]
+  }
+}

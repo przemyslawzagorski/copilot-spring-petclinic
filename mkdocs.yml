@@ -1,0 +1,52 @@
+site_name: Spring PetClinic Documentation
+site_url: https://github.com/spring-projects/spring-petclinic
+repo_name: spring-petclinic
+repo_url: https://github.com/spring-projects/spring-petclinic
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.expand
+    - search.highlight
+  language: en
+
+nav:
+  - Home: index.md
+  - Introduction: introduction/introduction.md
+  - Configuration: configuration/configuration.md
+  - Architecture: architecture/architecture.md
+  - API Documentation: api/api.md
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - attr_list
+  - footnotes
+  - admonition
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+plugins:
+  - search

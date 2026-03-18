@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "type": "command",
+        "command": "python3 scripts/hooks/stop-reminder.py",
+        "windows": "python scripts\\hooks\\stop-reminder.py",
+        "timeout": 10
+      }
+    ]
+  }
+}

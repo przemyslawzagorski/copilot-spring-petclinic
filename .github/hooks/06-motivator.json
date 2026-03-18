@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "python3 scripts/hooks/motivator.py",
+        "windows": "python scripts\\hooks\\motivator.py",
+        "timeout": 5
+      }
+    ]
+  }
+}

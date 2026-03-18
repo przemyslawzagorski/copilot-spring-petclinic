@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "python3 scripts/hooks/session-info.py",
+        "windows": "python scripts\\hooks\\session-info.py",
+        "timeout": 10
+      }
+    ]
+  }
+}
