@@ -42,6 +42,19 @@ out/
 ### VS Code ###
 .vscode/
 
+### Local tooling and env ###
+.copilot/
+.mvn/
+.adk/
+.venv/
+
+### Local OS and temp ###
+.DS_Store
+Thumbs.db
+Desktop.ini
+.history/
+*.log
+
 ### CSS ###
 _site/
 *.css
