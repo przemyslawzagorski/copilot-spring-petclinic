@@ -172,6 +172,11 @@ python agent.py
 → MCP wywołuje: search-hotels-by-price-range(300, 400)
 ```
 
+    "database-local-http": {
+      "url": "http://127.0.0.1:5000/mcp"
+    },
+
+
 ---
 
 ## 📂 Struktura plików

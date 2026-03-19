@@ -60,3 +60,9 @@ Desktop.ini
 _site/
 *.css
 !petclinic.css
+
+# Large MCP toolbox binary
+szkolenie_referencja/**/toolbox
+szkolenie_referencja/**/toolbox.exe
+**/mcp_for_databases/toolbox
+**/mcp_for_databases/toolbox.exe
