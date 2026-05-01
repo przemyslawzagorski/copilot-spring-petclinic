@@ -22,7 +22,7 @@ Co wiesz o moich preferencjach i tym projekcie? Wymień zapamiętane fakty.
 Wpisz:
 
 ```
-Zapamiętaj: w tym projekcie używamy Java 17, Spring Boot 3.x, JUnit 5 z Mockito. Testy nazywamy should_X_when_Y. Javadoc piszemy po polsku. Commits w formacie conventional commits.
+Zapamiętaj: w tym projekcie używamy Java 17, Spring Boot 4.0.3, JUnit 5 z Mockito. Testy nazywamy should_X_when_Y. Javadoc piszemy po polsku. Commits w formacie conventional commits.
 ```
 
 Copilot powinien potwierdzić zapisanie.

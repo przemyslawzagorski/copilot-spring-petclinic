@@ -26,7 +26,7 @@ applyTo: "**/test/**/*.java"
 - Używaj JUnit 5 (@Test, @BeforeEach, @DisplayName).
 - Nazwy testów: should_OczekiwanyWynik_when_Warunek.
 - Każdy test ma sekcje: // given, // when, // then.
-- Mockuj zależności przez @MockBean lub Mockito.
+- Mockuj zależności przez @MockitoBean (Spring Boot 4.x; pakiet `org.springframework.test.context.bean.override.mockito`).
 ```
 
 3. Przetestuj — otwórz plik testowy i w inline chat (Ctrl+I) wpisz:

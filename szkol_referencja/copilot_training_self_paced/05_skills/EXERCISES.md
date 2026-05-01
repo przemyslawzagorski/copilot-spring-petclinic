@@ -1,4 +1,4 @@
-# Ćwiczenia: Moduł 04 (Agent Skills)
+# Ćwiczenia: Moduł 05 (Agent Skills)
 
 > Źródło: https://code.visualstudio.com/docs/copilot/customization/agent-skills
 
@@ -68,7 +68,7 @@ Jakie wersje Java i Spring Boot używa ten projekt?
 
 ### Oczekiwany rezultat
 - Copilot auto-loaduje skill `project-versions` (bo description pasuje do pytania).
-- Wynik: tabela Markdown z Java 17, Spring Boot 3.x i zależnościami.
+- Wynik: tabela Markdown z Java 17, Spring Boot 4.0.3 i zależnościami.
 
 ### Jak zweryfikować
 1. **Auto-load:** Zadaj pytanie naturalnym językiem (bez `/`). Copilot powinien sam znaleźć skill.
@@ -143,7 +143,7 @@ argument-hint: "[nazwa kontrolera] [opcjonalnie: metoda]"
 ## Konwencje projektu
 - Klasa: `{Controller}MockMvcTest`
 - Metoda: `test{Endpoint}_{scenariusz}`
-- Adnotacje: `@WebMvcTest` + `@MockBean`
+- Adnotacje: `@WebMvcTest` + `@MockitoBean` (Spring Boot 4.x)
 - Asercje: AssertJ + MockMvc matchers
 
 ## Przykład
@@ -158,7 +158,7 @@ package org.springframework.samples.petclinic.PAKIET;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.bean.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -171,7 +171,7 @@ class KONTROLERMockMvcTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @MockitoBean
     private SERWIS serwis;
 
     @Test
@@ -191,7 +191,7 @@ package org.springframework.samples.petclinic.owner;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.bean.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -203,7 +203,7 @@ class OwnerControllerMockMvcTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @MockitoBean
     private OwnerRepository owners;
 
     @Test
@@ -431,7 +431,7 @@ Zobaczyć **różnicę w działaniu** między prompt file a skill na identycznym
 description: "Wygeneruj test MockMvc dla kontrolera Spring"
 ---
 Wygeneruj test integracyjny MockMvc dla wskazanego kontrolera.
-Użyj @WebMvcTest, @MockBean, JUnit 5.
+Użyj @WebMvcTest, @MockitoBean (Spring Boot 4.x), JUnit 5.
 Klasa testowa: {Kontroler}MockMvcTest.
 Przetestuj happy path i walidację.
 ```

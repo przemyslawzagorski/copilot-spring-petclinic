@@ -6,7 +6,7 @@
 
 ## Co zrobić
 
-1. Otwórz Copilot Chat (Ctrl+Shift+I)
+1. Otwórz Copilot Chat (Ctrl+Alt+I)
 2. Wpisz:
 
 ```

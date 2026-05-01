@@ -227,7 +227,7 @@ argument-hint: "[klasa kontrolera] [opcjonalnie: konkretna metoda]"
 ## Konwencje
 - Klasa testowa: `{Controller}IntegrationTest`
 - Metoda testowa: `test{Endpoint}_{scenariusz}`
-- Użyj `@WebMvcTest` + `@MockBean` dla zależności
+- Użyj `@WebMvcTest` + `@MockitoBean` dla zależności (Spring Boot 4.x — `@MockBean` jest usunięte)
 
 ## Przykład
 Zobacz [controller-test-example.java](./examples/controller-test-example.java)

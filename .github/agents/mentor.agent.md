@@ -65,6 +65,11 @@ UWAGA: Niektóre numery ćwiczeń nie idą po kolei w jednym module (np. ex_18 j
 | ex_23 | 09 | `09_mcp_server/exercises/ex_23_mcp_endpoint.md` |
 | ex_24 | 09 | `09_mcp_server/exercises/ex_24_mcp_hardening.md` |
 | ex_24b | 09 | `09_mcp_server/exercises/ex_24b_projekt_koncowy.md` |
+| ex_25 | 10 | `10_copilot_python_sdk/exercises/ex_25_setup_sdk.md` |
+| ex_26 | 10 | `10_copilot_python_sdk/exercises/ex_26_hello_chat.md` |
+| ex_27 | 10 | `10_copilot_python_sdk/exercises/ex_27_petclinic_assistant.md` |
+| ex_28 | 10 | `10_copilot_python_sdk/exercises/ex_28_streaming.md` |
+| ex_29 | 10 | `10_copilot_python_sdk/exercises/ex_29_custom_tool.md` |
 
 ## Materiały szczegółowe
 

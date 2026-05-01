@@ -12,7 +12,7 @@ argument-hint: "Podaj nazwę kontrolera do przetestowania, np. OwnerController"
 ## Krok 1 — Analiza kontrolera
 Przeczytaj wskazany kontroler i zidentyfikuj:
 - Endpointy (metody HTTP + ścieżki)
-- Zależności do zamockowania (@MockBean)
+- Zależności do zamockowania (@MockitoBean dla Spring Boot 4.x; `org.springframework.test.context.bean.override.mockito.MockitoBean`)
 - Modele danych przekazywane do widoków
 
 ## Krok 2 — Wygeneruj test

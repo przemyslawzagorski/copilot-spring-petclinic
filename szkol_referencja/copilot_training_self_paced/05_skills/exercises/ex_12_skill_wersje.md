@@ -96,6 +96,6 @@ Wpisz `/skills` w chat → otwiera się menu → skill `project-versions` powini
 | Plik SKILL.md nie wykryty | Zła lokalizacja | Musi być w `.github/skills/<nazwa>/SKILL.md` |
 | Frontmatter nie parsowany | Brak `---` na początku i końcu | Sprawdź delimitery YAML |
 
-**Spodziewany wynik:** Tabela z Java 17, Spring Boot 3.x i głównymi zależnościami — wygenerowana przez skill, nie przez prompt file.
+**Spodziewany wynik:** Tabela z Java 17, Spring Boot 4.0.3 i głównymi zależnościami — wygenerowana przez skill, nie przez prompt file.
 
 **Więcej:** `05_skills/EXERCISES.md`

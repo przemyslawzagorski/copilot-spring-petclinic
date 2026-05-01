@@ -18,7 +18,7 @@ Dla podanej encji stwórz:
 3. Metody: findAll, findById, save, deleteById
 4. Test jednostkowy z Mockito dla każdej metody
 
-Użyj konwencji tego projektu (Spring Boot 3.x, JUnit 5).
+Użyj konwencji tego projektu (Spring Boot 4.0.3, JUnit 5).
 ```
 
 2. Teraz wywołaj go — w Copilot Chat kliknij ikonę załącznika (spinacz) lub wpisz `/` i wybierz swój prompt.

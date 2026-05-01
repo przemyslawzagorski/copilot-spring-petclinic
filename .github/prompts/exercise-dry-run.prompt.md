@@ -1,12 +1,14 @@
 ---
 agent: "agent"
-argument-hint: "Numer modułu (01-08) do przetestowania"
+argument-hint: "Numer modułu (01-08, 10) do przetestowania"
 description: "Dry-run ćwiczeń z wybranego modułu — wykonuje kluczowe kroki i raportuje pass/fail"
 ---
 
 ## Cel
 
 Wykonaj dry-run ćwiczeń z modułu **${input:module}** w `szkol_referencja/copilot_training_self_paced/`.
+
+Obsługiwane moduły: 01, 02, 03, 04, 05, 06, 07, 08, 10. Moduł 09 (MCP) i `mkdocs_doc/` mają specyficzne wymagania środowiskowe — pomiń jeśli user nie poprosi wprost.
 
 ## Instrukcje
 
@@ -32,6 +34,9 @@ Wykonaj dry-run ćwiczeń z modułu **${input:module}** w `szkol_referencja/copi
 - **Kompilowalne** (generują kod/testy): ex_02, ex_06, ex_07, ex_13, ex_14, ex_15 → wygeneruj, skompiluj, uruchom test
 - **Subiektywne** (odpowiedzi tekstowe): ex_01, ex_05, ex_16 → SKIP z adnotacją
 - **Konfiguracyjne** (ustawienia VS Code): ex_03b, ex_08b, ex_10b → SKIP (wymagają interakcji z UI)
+- **Python SDK (moduł 10)** — wymagają osobnego `.venv` w katalogu modułu i zainstalowanego `github-copilot-sdk`:
+  - ex_25 → **Konfiguracyjne** — sprawdź czy `pip install` przechodzi i `smoke_test.py` drukuje listę modeli (SKIP jeśli brak Pythona 3.11+)
+  - ex_26, ex_27, ex_28, ex_29 → **Kompilowalne** — uruchom skrypt, sprawdź exit code 0 i obecność spodziewanych artefaktów (np. `petclinic_domain_report.md` po ex_27). SKIP jeśli brak autoryzacji Copilot.
 
 ## Format raportu
 

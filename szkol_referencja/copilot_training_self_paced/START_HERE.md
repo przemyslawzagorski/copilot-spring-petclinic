@@ -8,7 +8,7 @@
 
 ---
 
-## 9 modułów
+## 10 modułów
 
 Każdy moduł ma README (teoria), EXERCISES.md (index ćwiczeń) i folder `exercises/` z plikami ćwiczeń.
 
@@ -23,8 +23,9 @@ Każdy moduł ma README (teoria), EXERCISES.md (index ćwiczeń) i folder `exerc
 | 07 | [Bezpieczeństwo](07_bezpieczenstwo/) | ex_16 – ex_21b | ~50 min |
 | 08 | [Custom Agenty](08_custom_agenty/) | ex_18b – ex_21c | ~95 min |
 | 09 | [MCP Server](09_mcp_server/) | ex_22 – ex_24b | ~80 min |
+| 10 | [Copilot Python SDK](10_copilot_python_sdk/) | ex_25 – ex_29 | ~95 min |
 
-**Łącznie:** 41 ćwiczeń (~500 min, w tym bonusy).
+**Łącznie:** 46 ćwiczeń (~595 min, w tym bonusy).
 
 ---
 
