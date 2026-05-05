@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'ai')}">
+
+<body>
+
+  <h2>
+    <span class="fa fa-robot" aria-hidden="true"></span>
+    AI Asystent Weterynaryjny
+  </h2>
+  <p class="text-muted">
+    Opisz objawy swojego pupila — AI sprawdzi dostępnych specjalistów w naszej klinice
+    i zaproponuje odpowiedniego weterynarza.
+  </p>
+
+  <!-- ── Interfejs czatu ──────────────────────────────────────────────── -->
+  <div class="row">
+    <div class="col-md-8">
+
+      <!-- Historia wiadomości -->
+      <div id="chat-history"
+           style="min-height:220px; max-height:450px; overflow-y:auto;
+                  border:1px solid #dee2e6; border-radius:8px; padding:16px;
+                  background:#f8f9fa; margin-bottom:16px;">
+        <div class="ai-bubble ai-bubble--assistant">
+          <strong>AI Asystent:</strong>
+          Cześć! Opisz mi objawy swojego zwierzęcia, a dopasujemy odpowiedniego
+          specjalistę z naszego zespołu. Możesz też podać swoje nazwisko, jeśli
+          chcesz zobaczyć historię wizyt.
+        </div>
+      </div>
+
+      <!-- Formularz -->
+      <form id="chat-form" autocomplete="off">
+        <div class="input-group">
+          <input id="user-input"
+                 type="text"
+                 class="form-control"
+                 placeholder="np. Mój kot ma ból zęba i nie je od dwóch dni…"
+                 maxlength="500"
+                 required
+                 aria-label="Wiadomość do AI Asystenta"/>
+          <button id="send-btn" type="submit" class="btn btn-primary">
+            <span id="send-icon" class="fa fa-paper-plane" aria-hidden="true"></span>
+            <span id="send-label">Zapytaj</span>
+          </button>
+        </div>
+        <small class="text-muted">Maks. 500 znaków.</small>
+      </form>
+
+      <!-- Pasek narzędzi (ukryty domyślnie) -->
+      <div id="tools-info" class="mt-2" style="display:none;">
+        <small class="text-success">
+          <span class="fa fa-cogs" aria-hidden="true"></span>
+          Narzędzia AI wywołane: <span id="tools-list"></span>
+        </small>
+      </div>
+    </div>
+
+    <!-- ── Panel boczny — info o integracji ──────────────────────────── -->
+    <div class="col-md-4">
+      <div class="card border-primary">
+        <div class="card-header bg-primary text-white">
+          <span class="fa fa-plug" aria-hidden="true"></span>
+          Jak to działa?
+        </div>
+        <div class="card-body" style="font-size:0.88rem;">
+          <p>
+            Ta zakładka to <strong>żywa integracja</strong> Spring PetClinic
+            z&nbsp;<strong>GitHub Copilot SDK</strong> (Python).
+          </p>
+          <ol class="ps-3 mb-2">
+            <li>Twoje pytanie trafia do <strong>Spring</strong> (:8080).</li>
+            <li>Spring proxy przekazuje je do <strong>Python FastAPI</strong> (:8081).</li>
+            <li>Mikroserwis uruchamia <strong>Copilot SDK</strong> z&nbsp;custom tools.</li>
+            <li>AI wywołuje narzędzie <code>get_available_vets</code>, które
+                odpytuje <strong>żywy endpoint <code>/vets</code></strong>
+                tej aplikacji.</li>
+            <li>AI analizuje dane i odpowiada po polsku.</li>
+          </ol>
+          <div class="alert alert-warning p-2 mb-0" style="font-size:0.82rem;">
+            <strong>Demo:</strong> Wymagany uruchomiony serwis Python.<br/>
+            <code>uvicorn ai_server:app --port 8081</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Style inline ─────────────────────────────────────────────────── -->
+  <style>
+    .ai-bubble {
+      padding: 10px 14px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      max-width: 95%;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+    .ai-bubble--user {
+      background: #0d6efd;
+      color: #fff;
+      margin-left: auto;
+      text-align: right;
+    }
+    .ai-bubble--assistant {
+      background: #fff;
+      border: 1px solid #dee2e6;
+    }
+    .ai-bubble--error {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+    }
+    .ai-bubble--thinking {
+      background: #e9ecef;
+      font-style: italic;
+      color: #6c757d;
+    }
+  </style>
+
+  <!-- ── JavaScript ───────────────────────────────────────────────────── -->
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+    (function () {
+      'use strict';
+
+      const form      = document.getElementById('chat-form');
+      const input     = document.getElementById('user-input');
+      const history   = document.getElementById('chat-history');
+      const sendBtn   = document.getElementById('send-btn');
+      const sendLabel = document.getElementById('send-label');
+      const sendIcon  = document.getElementById('send-icon');
+      const toolsInfo = document.getElementById('tools-info');
+      const toolsList = document.getElementById('tools-list');
+
+      function appendBubble(text, type) {
+        const div = document.createElement('div');
+        div.className = 'ai-bubble ai-bubble--' + type;
+        if (type === 'user') {
+          div.innerHTML = '<strong>Ty:</strong> ' + escapeHtml(text);
+        } else if (type === 'assistant') {
+          div.innerHTML = '<strong>AI Asystent:</strong> ' + escapeHtml(text);
+        } else if (type === 'thinking') {
+          div.innerHTML = '<span class="fa fa-spinner fa-spin"></span> ' + escapeHtml(text);
+        } else {
+          div.innerHTML = '<strong>⚠️</strong> ' + escapeHtml(text);
+        }
+        history.appendChild(div);
+        history.scrollTop = history.scrollHeight;
+        return div;
+      }
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function setBusy(busy) {
+        sendBtn.disabled = busy;
+        input.disabled   = busy;
+        sendLabel.textContent = busy ? 'Myślę…' : 'Zapytaj';
+        sendIcon.className = busy ? 'fa fa-spinner fa-spin' : 'fa fa-paper-plane';
+      }
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const message = input.value.trim();
+        if (!message) return;
+
+        toolsInfo.style.display = 'none';
+        appendBubble(message, 'user');
+        input.value = '';
+        setBusy(true);
+
+        const thinkingBubble = appendBubble('Analizuję dane weterynarzy…', 'thinking');
+
+        try {
+          const resp = await fetch('/api/ai/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: message })
+          });
+
+          const data = await resp.json();
+          thinkingBubble.remove();
+
+          if (!resp.ok) {
+            appendBubble(data.reply || 'Błąd serwera.', 'error');
+          } else {
+            appendBubble(data.reply, 'assistant');
+            if (data.toolsCalled && data.toolsCalled.length > 0) {
+              toolsList.textContent = data.toolsCalled.join(', ');
+              toolsInfo.style.display = 'block';
+            }
+          }
+        } catch (err) {
+          thinkingBubble.remove();
+          appendBubble('Nie można połączyć z serwisem AI. Sprawdź czy mikroserwis Python jest uruchomiony.', 'error');
+        } finally {
+          setBusy(false);
+          input.focus();
+        }
+      });
+    })();
+    /*]]>*/
+  </script>
+
+</body>
+</html>
