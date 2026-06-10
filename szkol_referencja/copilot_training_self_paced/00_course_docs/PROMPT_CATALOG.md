@@ -1,5 +1,16 @@
 # Prompt Catalog (kursanci + trener)
 
+> **Uwaga:** Ten plik pochodzi ze starszej wersji szkolenia (numeracja modułów 06–13).
+> Aktualnie repo ma następujące prompt files w `.github/prompts/`:
+> - `refiner.prompt.md`
+> - `prompt-refiner.prompt.md`
+> - `method-deep-dive.prompt.md`
+> - `exercise-dry-run.prompt.md`
+>
+> Poniżej zachowany katalog archiwalny dla ciągłości dokumentacji.
+
+---
+
 ## Module 06
 - `.github/prompts/create_custom_instruction_pack.md`
 - `.github/prompts/create_file_scoped_instruction.md`

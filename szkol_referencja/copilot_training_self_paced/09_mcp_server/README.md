@@ -54,7 +54,6 @@ W workspace są gotowe implementacje MCP do nauki i eksperymentów:
 | `mcp_ex_api/` | **Benchmark** — MCP server FastAPI z publicznym API |
 | `mcp_jira_wiki/` | MCP łączący się z Jira/Wiki |
 | `mcp_for_databases/` | MCP do baz danych |
-| `mcp_local_postgres/` | MCP z lokalnym PostgreSQL |
 | `mcp_agent/` | Agent wykorzystujący MCP |
 
 **Zacznij od `mcp_ex_api/`** — to wzorcowa implementacja.

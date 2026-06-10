@@ -7,6 +7,7 @@ site_name: Application Name
 site_url: https://gitlab.czk.comarch/toss/inv/application-path
 repo_name: toss/inv/application-path
 repo_url: https://gitlab.czk.comarch/toss/inv/application-path
+theme:
   name: material
   palette:
     - scheme: default

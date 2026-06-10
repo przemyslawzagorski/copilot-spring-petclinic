@@ -8,12 +8,14 @@
 | 20 | Handoff między agentami | [ex_20](exercises/ex_20_handoff.md) | ~15 min |
 | 21 | Triada agentów — Planner / Executor / Reviewer | [ex_21](exercises/ex_21_triada_agentow.md) | ~20 min |
 | 21c | Feature Builder — agent koordynujący subagentów | [ex_21c](exercises/ex_21c_feature_builder_orchestration.md) | ~20 min |
+| **31** | **Autonomiczny agent na zadaniu** (Copilot: Coding Agent \| CC: Workflows) | [ex_31 Copilot](exercises/ex_31_coding_agent.md) · [ex_31 CC](exercises/ex_31_workflows_cc.md) | ~20 min |
 
-**ex_18b, ex_18c i ex_21c są bonusowe.**
+**ex_18b, ex_18c, ex_21c i ex_31 są bonusowe.**
 
 ## Kolejność
 
 ex_19 → ex_20 → ex_21 → (bonusy w dowolnej kolejności)
+Dla ex_31 (Coding Agent): wymaga GitHub repo z Copilot Enterprise/Team plan.
 
 ## Żywe przykłady agentów w repo
 

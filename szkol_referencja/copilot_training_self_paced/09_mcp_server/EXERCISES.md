@@ -18,4 +18,3 @@ ex_22 → ex_23 → ex_24 → ex_24b (projekt końcowy)
 - `mcp_ex_api/` — **wzorcowa implementacja** (zacznij od niej)
 - `mcp_jira_wiki/` — MCP łączący z Jira/Wiki
 - `mcp_for_databases/` — MCP do baz danych
-- `mcp_local_postgres/` — MCP z PostgreSQL

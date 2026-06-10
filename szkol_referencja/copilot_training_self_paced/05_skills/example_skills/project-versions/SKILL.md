@@ -30,5 +30,5 @@ Wygeneruj tabelę:
 | Technologia | Wersja w projekcie | Najnowsza stabilna | Status |
 |---|---|---|---|
 | Java | ? | 21 | ✅/⚠️ |
-| Spring Boot | ? | 3.4.x | ✅/⚠️ |
+| Spring Boot | ? | 4.0.3 | ✅/⚠️ |
 | ... | ... | ... | ... |

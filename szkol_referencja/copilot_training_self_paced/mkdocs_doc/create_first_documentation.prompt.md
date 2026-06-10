@@ -1,5 +1,5 @@
 ---
-mode: 'agent'
+agent: 'agent'
 ---
 
 # Instruction
@@ -55,4 +55,4 @@ docs/
 - Act as a software developer and include detailed API documentation.
 
 # Next Steps
-- generate mkdocs.yml file based on example (mkdosc-example)[../instructions/mkdocs-example.md]
+- generate mkdocs.yml file based on example [mkdocs-example](./mkdocs-example.instructions.md)

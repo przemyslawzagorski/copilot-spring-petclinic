@@ -78,7 +78,7 @@ Wpisz `/skills` w chat → otwiera się menu → skill `project-versions` powini
 
 - Porównaj tabelę z zawartością `pom.xml`
 - Java powinna być 17
-- Spring Boot powinien być 3.x
+- Spring Boot powinien być 4.0.3
 - Zależności powinny mieć poprawne wersje
 
 ## Kluczowe zasady (zapamiętaj!)
