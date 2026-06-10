@@ -62,7 +62,13 @@ _site/
 !petclinic.css
 
 # Large MCP toolbox binary
-szkolenie_referencja/**/toolbox
-szkolenie_referencja/**/toolbox.exe
+szkol_referencja/**/toolbox
+szkol_referencja/**/toolbox.exe
 **/mcp_for_databases/toolbox
 **/mcp_for_databases/toolbox.exe
+
+### Local artefacts (keep off repo) ###
+petclinic-dotnet/
+docs/
+mkdocs.yml
+site/
