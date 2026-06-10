@@ -24,8 +24,11 @@ Każdy moduł ma README (teoria), EXERCISES.md (index ćwiczeń) i folder `exerc
 | 08 | [Custom Agenty](08_custom_agenty/) | ex_18b – ex_21c | ~95 min |
 | 09 | [MCP Server](09_mcp_server/) | ex_22 – ex_24b | ~80 min |
 | 10 | [Copilot Python SDK](10_copilot_python_sdk/) | ex_25 – ex_29 | ~95 min |
+| 🎁 11 | [BONUS — Agentic AI: tokeny, pętla, multi-tool](11_bonus_agentic_ai/) | ex_32 – ex_35 | ~95 min |
 
-**Łącznie:** 46 ćwiczeń (~595 min, w tym bonusy).
+**Łącznie:** 50 ćwiczeń (~690 min, w tym bonusy).
+
+> 🎁 **Moduł 11** jest przekrojowy — rób go po przejściu modułów 01–10. Spina całość w 3 recepty: na pętlę agenta, na tokeny i na multinarzędziowość (stan: maj/czerwiec 2026).
 
 ---
 

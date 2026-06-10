@@ -60,12 +60,21 @@ class VetController {
 		return "vets/vetList";
 	}
 
+	/**
+	 * Retrieves a paginated list of veterinarians.
+	 * @param page the page number (1-indexed)
+	 * @return a page of veterinarian objects
+	 */
 	private Page<Vet> findPaginated(int page) {
 		int pageSize = 5;
 		Pageable pageable = PageRequest.of(page - 1, pageSize);
 		return vetRepository.findAll(pageable);
 	}
 
+	/**
+	 * Returns all veterinarians as a REST resource in JSON format.
+	 * @return a Vets object containing all veterinarian records
+	 */
 	@GetMapping({ "/vets" })
 	public @ResponseBody Vets showResourcesVetList() {
 		// Here we are returning an object of type 'Vets' rather than a collection of Vet

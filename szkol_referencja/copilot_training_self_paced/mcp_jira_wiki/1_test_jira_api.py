@@ -79,9 +79,12 @@ def main():
             print(f"\n✅ Ticket details:")
             print(f"   Key: {ticket.get('key', 'N/A')}")
             print(f"   Summary: {ticket.get('fields', {}).get('summary', 'N/A')}")
-            print(f"   Status: {ticket.get('fields', {}).get('status', {}).get('name', 'N/A')}")
-            print(f"   Assignee: {ticket.get('fields', {}).get('assignee', {}).get('displayName', 'Unassigned')}")
-            print(f"   Priority: {ticket.get('fields', {}).get('priority', {}).get('name', 'N/A')}")
+            status = ticket.get('fields', {}).get('status') or {}
+            assignee = ticket.get('fields', {}).get('assignee') or {}
+            priority = ticket.get('fields', {}).get('priority') or {}
+            print(f"   Status: {status.get('name', 'N/A')}")
+            print(f"   Assignee: {assignee.get('displayName', 'Unassigned')}")
+            print(f"   Priority: {priority.get('name', 'N/A')}")
         else:
             print(f"\n❌ Error: {ticket.get('error')}")
     

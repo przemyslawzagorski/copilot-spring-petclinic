@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "publiczne-api": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["szkol_referencja/copilot_training_self_paced/mcp_ex_api/api_sever.py"],
+      "description": "Publiczne API: kursy walut NBP, Pokemon stats, losowe żarty"
+    },
+    "jira-wiki": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["szkol_referencja/copilot_training_self_paced/mcp_jira_wiki/jira_wiki_mcpserver.py"],
+      "env": {
+        "JIRA_BASE_URL": "${JIRA_BASE_URL}",
+        "ENABLE_WIKI_INTEGRATION": "false"
+      },
+      "description": "Jira & Confluence Wiki integration (wymaga .env z JIRA_BASE_URL)"
+    }
+  }
+}

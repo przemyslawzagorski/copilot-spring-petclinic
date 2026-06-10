@@ -1,0 +1,39 @@
+# Ignorowane przez Claude Code (analogicznie do .copilotignore)
+
+# Dane środowiskowe i sekrety
+.env
+.env.*
+*.env
+secrets/
+credentials/
+
+# Foldery build
+target/
+build/
+.gradle/
+.mvn/wrapper/maven-wrapper.jar
+
+# Wygenerowane pliki dokumentacji
+site/
+
+# Cache narzędzi AI
+.adk/
+.copilot/
+
+# Logi
+*.log
+logs/
+
+# Systemy IDE
+.idea/
+*.iml
+.vscode/settings.json
+
+# Node modules (dla projektów MCP)
+node_modules/
+
+# Python cache
+__pycache__/
+*.pyc
+.venv/
+venv/

@@ -1,0 +1,43 @@
+---
+name: controller-testing
+description: >
+  Generuje testy integracyjne dla kontrolerów Spring MVC
+  z użyciem MockMvc, @WebMvcTest i szablonów z folderu zasobów.
+  Zawiera gotowy szablon testu i przykłady asercji.
+argument-hint: "Podaj nazwę kontrolera do przetestowania, np. OwnerController"
+---
+
+# Procedura tworzenia testu kontrolera
+
+## Krok 1 — Analiza kontrolera
+Przeczytaj wskazany kontroler i zidentyfikuj:
+- Endpointy (metody HTTP + ścieżki)
+- Zależności do zamockowania (@MockBean)
+- Modele danych przekazywane do widoków
+
+## Krok 2 — Wygeneruj test
+Użyj szablonu z `test-template.java` w tym folderze.
+ZAWSZE użyj szablonu z [test-template.java](./test-template.java) jako punktu startowego.
+Dla każdego endpointu utwórz minimum:
+- Test happy path (status 200/302)
+- Test walidacji (niepoprawne dane → errors)
+
+## Krok 3 — Asercje
+Wzoruj się na przykładach w `examples/`:
+- `get-endpoint.java` — GET + model attributes
+- `post-with-validation.java` — POST + BindingResult
+
+## Krok 4 — Uruchom testy
+```bash
+./mvnw test -pl spring-petclinic -Dtest=<NazwaTestu>
+```
+
+## Kiedy NIE użyć
+- Test jednostkowy serwisu/repozytorium — to nie ten skill
+- Test E2E z prawdziwą bazą — użyj @SpringBootTest zamiast @WebMvcTest
+
+## Konwencje projektu
+- Klasa: `{Controller}MockMvcTest`
+- Metoda: `should_{co}_{kiedy}` (konwencja projektu)
+- Adnotacje: `@WebMvcTest` + `@MockBean`
+- Asercje: AssertJ + MockMvc matchers

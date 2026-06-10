@@ -21,14 +21,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Version;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 /**
- * Simple JavaBean domain object with an id property. Used as a base class for objects
- * needing this property.
+ * Bazowa klasa domenowa zawierająca pole identyfikatora (id). Służy jako klasa nadrzędna
+ * dla encji wymagających automatycznie generowanego klucza głównego.
  *
  * @author Ken Krebs
  * @author Juergen Hoeller
  */
+
 @MappedSuperclass
 public class BaseEntity implements Serializable {
 
@@ -36,14 +40,27 @@ public class BaseEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	/**
+	 * Zwraca identyfikator encji.
+	 * @return identyfikator lub {@code null}, jeśli encja nie została jeszcze zapisana
+	 */
 	public Integer getId() {
 		return id;
 	}
 
+	/**
+	 * Ustawia identyfikator encji.
+	 * @param id identyfikator do ustawienia
+	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	 * Sprawdza, czy encja jest nowa (nie ma jeszcze przypisanego identyfikatora).
+	 * @return {@code true} jeśli identyfikator jest {@code null}, {@code false} w
+	 * przeciwnym razie
+	 */
 	public boolean isNew() {
 		return this.id == null;
 	}
