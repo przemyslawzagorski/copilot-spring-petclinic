@@ -1,5 +1,5 @@
 ---
-description: "Use when writing, editing, or reviewing Java Spring Boot code in this repository. Enforces Java 17+, Spring Boot 3.x, JUnit 5 + Mockito, naming conventions, and secure input handling."
+description: "Use when writing, editing, or reviewing Java Spring Boot code in this repository. Enforces Java 17+, Spring Boot 4.0.3, JUnit 5 + Mockito, naming conventions, and secure input handling."
 name: "Java Spring Workspace Rules"
 applyTo: "src/main/java/**/*.java,src/test/java/**/*.java"
 ---

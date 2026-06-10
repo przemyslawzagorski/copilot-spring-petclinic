@@ -44,7 +44,7 @@ Twoim zadaniem jest przeprowadzić bezpieczną, iteracyjną zmianę istniejąceg
 7. Podsumuj wynik: co zmieniono, co zostało bez zmian, jakie ryzyka pozostały.
 
 ## Wymagania techniczne projektu
-- Java 17+, Spring Boot 3.x.
+- Java 17+, Spring Boot 4.0.3.
 - Testy: JUnit 5 + Mockito (bez JUnit 4).
 - Nazewnictwo testów: `should_X_when_Y`.
 - Zachowaj istniejące konwencje projektu i minimalny zakres zmian.

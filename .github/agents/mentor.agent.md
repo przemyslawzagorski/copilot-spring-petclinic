@@ -1,5 +1,5 @@
 ---
-name: mentor
+name: mentorCopilot
 description: "Mentor szkolenia Copilot — prowadzi przez ćwiczenia krok po kroku"
 ---
 
@@ -70,6 +70,12 @@ UWAGA: Niektóre numery ćwiczeń nie idą po kolei w jednym module (np. ex_18 j
 | ex_27 | 10 | `10_copilot_python_sdk/exercises/ex_27_petclinic_assistant.md` |
 | ex_28 | 10 | `10_copilot_python_sdk/exercises/ex_28_streaming.md` |
 | ex_29 | 10 | `10_copilot_python_sdk/exercises/ex_29_custom_tool.md` |
+| ex_30 | 10 | `10_copilot_python_sdk/exercises/ex_30_live_demo.md` |
+| ex_31 | 08 | `08_custom_agenty/exercises/ex_31_coding_agent.md` |
+| ex_32 | 11 | `11_bonus_agentic_ai/exercises/ex_32_context_engineering.md` |
+| ex_33 | 11 | `11_bonus_agentic_ai/exercises/ex_33_agentic_loop.md` |
+| ex_34 | 11 | `11_bonus_agentic_ai/exercises/ex_34_multi_tool.md` |
+| ex_35 | 11 | `11_bonus_agentic_ai/exercises/ex_35_capstone.md` |
 
 ## Materiały szczegółowe
 
