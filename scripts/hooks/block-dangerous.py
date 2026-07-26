@@ -18,15 +18,18 @@ patterns = (
     r"\bRemove-Item\b.*\s-Recurse\b.*\s-Force\b",
 )
 denied = any(re.search(pattern, command, re.IGNORECASE) for pattern in patterns)
-decision = "deny" if denied else "allow"
-output = {
-    "hookSpecificOutput": {
-        "hookEventName": "PreToolUse",
-        "permissionDecision": decision,
-    }
-}
 if denied:
-    output["hookSpecificOutput"]["permissionDecisionReason"] = (
-        "ZABLOKOWANO: polecenie pasuje do destrukcyjnego wzorca."
+    print(
+        json.dumps(
+            {
+                "hookSpecificOutput": {
+                    "hookEventName": "PreToolUse",
+                    "permissionDecision": "deny",
+                    "permissionDecisionReason": (
+                        "ZABLOKOWANO: polecenie pasuje do destrukcyjnego wzorca."
+                    ),
+                }
+            },
+            ensure_ascii=False,
+        )
     )
-print(json.dumps(output, ensure_ascii=False))

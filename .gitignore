@@ -52,6 +52,9 @@ out/
 .venv/
 __pycache__/
 *.py[cod]
+.augment/settings.local.json
+.augment/logs/
+.augment/cache/
 szkol_referencja/copilot_training_self_paced/mcp_jira_wiki/.env
 
 ### Local OS and temp ###

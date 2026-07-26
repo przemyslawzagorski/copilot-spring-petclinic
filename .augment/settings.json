@@ -1,0 +1,57 @@
+{
+  "toolPermissions": [
+    {
+      "toolName": "terminal",
+      "shellInputRegex": "(\\brm\\s+-rf\\b|\\bgit\\s+reset\\s+--hard\\b|\\bDROP\\s+(TABLE|DATABASE)\\b|\\bRemove-Item\\b.*-Recurse.*-Force)",
+      "permission": {
+        "type": "deny"
+      }
+    }
+  ],
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .augment/hooks/session-info.sh",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "launch-process",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .augment/hooks/block-dangerous.sh",
+            "timeout": 5000
+          }
+        ]
+      },
+      {
+        "matcher": "str-replace-editor|save-file|remove-files",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .augment/hooks/block-sensitive.sh",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .augment/hooks/stop-reminder.sh",
+            "timeout": 5000
+          }
+        ]
+      }
+    ]
+  }
+}

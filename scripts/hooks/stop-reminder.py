@@ -8,10 +8,7 @@ json.load(sys.stdin)
 print(
     json.dumps(
         {
-            "hookSpecificOutput": {
-                "hookEventName": "Stop",
-                "additionalContext": "Przed przekazaniem zmian potwierdź wynik testów.",
-            }
+            "systemMessage": "Przed przekazaniem zmian potwierdź wynik testów."
         },
         ensure_ascii=False,
     )

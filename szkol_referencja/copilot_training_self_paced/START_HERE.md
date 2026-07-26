@@ -3,12 +3,15 @@
 ## Szybki start
 
 1. Otwórz folder `copilot-spring-petclinic` w VS Code.
-2. W Copilot Chat wybierz agenta **mentor** i wpisz: `ćwiczenie 1`.
+2. Wybierz ścieżkę narzędzia:
+	- **GitHub Copilot:** wybierz agenta `mentor` i wpisz `ćwiczenie 1`.
+	- **Claude Code:** przeczytaj [przewodnik Claude Code](../claude_code_guide/README.md).
+	- **Augment/Auggie:** przeczytaj [przewodnik Augment](../augment_guide/README.md), uruchom `auggie` w WSL i wpisz `/training:exercise 1`.
 3. Rób ćwiczenia po kolei — każde ćwiczenie jest w folderze swojego modułu.
 
 ---
 
-## 10 modułów
+## 11 modułów
 
 Każdy moduł ma README (teoria), EXERCISES.md (index ćwiczeń) i folder `exercises/` z plikami ćwiczeń.
 
@@ -42,11 +45,16 @@ Każdy moduł ma README (teoria), EXERCISES.md (index ćwiczeń) i folder `exerc
 
 W Copilot Chat wybierz agenta `mentor` i wpisz np. `ćwiczenie 5` — poprowadzi Cię krok po kroku.
 
+W Auggie użyj `/training:exercise 5` albo poproś o delegację do subagenta
+`mentor`. Adaptacje narzędziowe znajdują się w plikach `CLAUDE_CODE.md` i
+`AUGMENT.md` w odpowiednich modułach.
+
 ---
 
 ## Żywe przykłady w repozytorium
 
-Repo zawiera działające przykłady konfiguracji Copilot w `.github/`:
+Repo zawiera działające przykłady konfiguracji Copilot w `.github/`, Claude Code
+w `.claude/` i Augmenta w `.augment/`:
 
 | Plik | Czego uczy |
 |------|-----------|
@@ -55,6 +63,12 @@ Repo zawiera działające przykłady konfiguracji Copilot w `.github/`:
 | `.github/prompts/*.prompt.md` | Prompt files z frontmatter (moduł 03) |
 | `.github/hooks/*.json` | Lifecycle hooks (moduł 04) |
 | `.github/agents/*.agent.md` | Custom agenty (moduł 08) |
+| `CLAUDE.md`, `.claude/skills/` | Współdzielone zasady i Agent Skills |
+| `.augment/rules/*.md` | Kontekstowe rules Augmenta (moduł 03) |
+| `.augment/hooks/*.sh` | Hooki Auggie CLI dla WSL (moduł 04) |
+| `.augment/skills/*/SKILL.md` | Natywne Agent Skills (moduł 05) |
+| `.augment/agents/*.md` | Subagenty Augmenta (moduł 08) |
+| `.augment/commands/**/*.md` | Custom commands Augmenta |
 
 ---
 

@@ -19,15 +19,18 @@ patterns = (
     r"\.(pem|key|pfx|p12)$",
 )
 denied = any(re.search(pattern, file_path, re.IGNORECASE) for pattern in patterns)
-decision = "deny" if denied else "allow"
-output = {
-    "hookSpecificOutput": {
-        "hookEventName": "PreToolUse",
-        "permissionDecision": decision,
-    }
-}
 if denied:
-    output["hookSpecificOutput"]["permissionDecisionReason"] = (
-        f"ZABLOKOWANO: operacja na chronionej ścieżce '{file_path}'."
+    print(
+        json.dumps(
+            {
+                "hookSpecificOutput": {
+                    "hookEventName": "PreToolUse",
+                    "permissionDecision": "deny",
+                    "permissionDecisionReason": (
+                        f"ZABLOKOWANO: operacja na chronionej ścieżce '{file_path}'."
+                    ),
+                }
+            },
+            ensure_ascii=False,
+        )
     )
-print(json.dumps(output, ensure_ascii=False))

@@ -1,0 +1,23 @@
+# Build outputs and generated documentation
+target/
+build/
+site/
+_site/
+
+# Local environments and caches
+.venv/
+__pycache__/
+*.pyc
+.augment/settings.local.json
+.augment/logs/
+.augment/cache/
+
+# Secrets and local integration configuration
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+**/toolbox.local.yaml
+szkol_referencja/copilot_training_self_paced/mcp_jira_wiki/.env

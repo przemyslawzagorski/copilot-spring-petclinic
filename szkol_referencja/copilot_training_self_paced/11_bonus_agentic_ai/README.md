@@ -1,7 +1,8 @@
 # Moduł 11 (BONUS) — Agentic AI: tokeny, pętla agenta i multinarzędziowość
 
 > Moduł bonusowy, przekrojowy. Spina wiedzę z modułów 01–10 w trzy **recepty na codzienną pracę** z agentami AI w 2026 r.
-> Działa zarówno dla GitHub Copilot, jak i Claude Code (mapowanie różnic: [CLAUDE_CODE.md](CLAUDE_CODE.md)).
+> Działa dla GitHub Copilot, Claude Code i Augmenta (mapowanie różnic:
+> [CLAUDE_CODE.md](CLAUDE_CODE.md) oraz [AUGMENT.md](AUGMENT.md)).
 
 ---
 
