@@ -1,5 +1,5 @@
 ---
-name: mentorCopilot
+name: mentor
 description: "Mentor szkolenia Copilot — prowadzi przez ćwiczenia krok po kroku"
 ---
 

@@ -32,7 +32,7 @@ Copilot powinien potwierdzić zapisanie.
 Zamknij chat. Otwórz nowy. Wpisz:
 
 ```
-Wygeneruj test dla metody findByLastName w OwnerRepository.
+Wygeneruj test dla metody findByLastNameStartingWith w OwnerRepository.
 ```
 
 **Spodziewany wynik:** Test z nazewnictwem `should_X_when_Y`, JUnit 5, Mockito — **bez przypominania** w prompcie.

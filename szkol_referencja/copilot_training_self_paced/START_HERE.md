@@ -14,19 +14,19 @@ Każdy moduł ma README (teoria), EXERCISES.md (index ćwiczeń) i folder `exerc
 
 | # | Moduł | Ćwiczenia | Czas |
 |---|-------|-----------|------|
-| 01 | [Podstawy Copilot Chat](01_podstawy_copilot_chat/) | ex_01 – ex_04 | ~45 min |
-| 02 | [Kontekst i Prompty](02_kontekst_i_prompty/) | ex_05 – ex_07 | ~65 min |
-| 03 | [Konfiguracja zespołowa](03_konfiguracja_zespolowa/) | ex_08 – ex_10b | ~50 min |
-| 04 | [Hooks i Guardrails](04_hooks_i_guardrails/) | ex_11, ex_18, ex_21d | ~40 min |
-| 05 | [Skills](05_skills/) | ex_12, ex_12b | ~35 min |
-| 06 | [TDD z Copilotem](06_tdd_z_copilotem/) | ex_13 – ex_15b | ~40 min |
-| 07 | [Bezpieczeństwo](07_bezpieczenstwo/) | ex_16 – ex_21b | ~50 min |
-| 08 | [Custom Agenty](08_custom_agenty/) | ex_18b – ex_21c | ~95 min |
+| 01 | [Podstawy Copilot Chat](01_podstawy_copilot_chat/) | ex_01 – ex_04 | ~33 min |
+| 02 | [Kontekst i Prompty](02_kontekst_i_prompty/) | ex_05 – ex_07 | ~48 min |
+| 03 | [Konfiguracja zespołowa](03_konfiguracja_zespolowa/) | ex_08 – ex_10b | ~42 min |
+| 04 | [Hooks i Guardrails](04_hooks_i_guardrails/) | ex_11, ex_18, ex_21d | ~33 min |
+| 05 | [Skills](05_skills/) | ex_12, ex_12b | ~20 min |
+| 06 | [TDD z Copilotem](06_tdd_z_copilotem/) | ex_13 – ex_15b | ~36 min |
+| 07 | [Bezpieczeństwo](07_bezpieczenstwo/) | ex_16, ex_16b, ex_17, ex_21b | ~26 min |
+| 08 | [Custom Agenty](08_custom_agenty/) | ex_18b, ex_18c, ex_19, ex_20, ex_21, ex_21c, ex_31 | ~96 min |
 | 09 | [MCP Server](09_mcp_server/) | ex_22 – ex_24b | ~80 min |
-| 10 | [Copilot Python SDK](10_copilot_python_sdk/) | ex_25 – ex_29 | ~95 min |
+| 10 | [Copilot Python SDK](10_copilot_python_sdk/) | ex_25 – ex_30 | ~125 min |
 | 🎁 11 | [BONUS — Agentic AI: tokeny, pętla, multi-tool](11_bonus_agentic_ai/) | ex_32 – ex_35 | ~95 min |
 
-**Łącznie:** 50 ćwiczeń (~690 min, w tym bonusy).
+**Łącznie:** 51 ćwiczeń (~634 min, w tym bonusy).
 
 > 🎁 **Moduł 11** jest przekrojowy — rób go po przejściu modułów 01–10. Spina całość w 3 recepty: na pętlę agenta, na tokeny i na multinarzędziowość (stan: maj/czerwiec 2026).
 

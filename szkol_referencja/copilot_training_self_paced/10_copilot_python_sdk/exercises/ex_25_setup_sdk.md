@@ -2,7 +2,7 @@
 
 > Faza 8 · ~15 min · Moduł 10
 
-**Po co:** Zanim napiszesz pierwszy skrypt, musisz mieć działające środowisko: Python 3.11+, pakiet `github-copilot-sdk`, autoryzację. SDK ma **bundled CLI** — nie instalujesz `copilot` osobno.
+**Po co:** Zanim napiszesz pierwszy skrypt, musisz mieć działające środowisko: Python 3.11+, pakiet `github-copilot-sdk`, runtime i autoryzację.
 
 ## Wymagania
 - Python 3.11+ (sprawdź: `python --version`)
@@ -34,15 +34,22 @@ Sprawdź wersję:
 pip show github-copilot-sdk
 ```
 
-Spodziewasz się wersji `0.3.x` lub nowszej. Pakiet ściąga też zależność `@github/copilot` (CLI binarne) — nie musisz nic dodatkowo instalować.
+Spodziewasz się wersji `1.x`. Przygotuj zgodny runtime CLI:
+
+```powershell
+python -m copilot download-runtime
+```
+
+SDK pobierze runtime automatycznie przy pierwszym użyciu, ale jawne polecenie daje
+czytelniejszą diagnostykę przed szkoleniem.
 
 ### 3. Skonfiguruj autoryzację
 
 **Opcja A (najprostsza — zalogowany user CLI):**
 
-Jeśli już używasz `copilot` CLI w terminalu i jesteś zalogowany — SDK użyje istniejących poświadczeń i nic nie musisz robić.
+Jeśli używasz standalone Copilot CLI i jesteś zalogowany — SDK użyje istniejących poświadczeń.
 
-**Opcja B (token jawnie):**
+**Opcja B (zmienna środowiskowa):**
 
 Wygeneruj **fine-grained personal access token** z uprawnieniami Copilot:
 <https://github.com/settings/tokens>
@@ -50,7 +57,7 @@ Wygeneruj **fine-grained personal access token** z uprawnieniami Copilot:
 Ustaw zmienną środowiskową na czas sesji:
 
 ```powershell
-$env:GITHUB_TOKEN = "ghp_..."   # tylko bieżąca sesja PowerShell
+$env:COPILOT_GITHUB_TOKEN = "..."   # tylko bieżąca sesja PowerShell
 ```
 
 > **Nie commituj tokena.** Trzymaj w zmiennych środowiskowych albo w `.env` dodanym do `.gitignore`.
@@ -91,7 +98,7 @@ python smoke_test.py
 |---------|-----------|-------------|
 | `ModuleNotFoundError: No module named 'copilot'` | Niewłaściwe `.venv` | `Activate.ps1` jeszcze raz; potwierdź `(venv)` w prompt |
 | `Python 3.10` ostrzeżenie / błąd | SDK wymaga 3.11+ | Zainstaluj nowszy Python lub `pyenv install 3.11.9` |
-| `401 Unauthorized` | Brak tokena / brak Copilot | Sprawdź `gh auth status` lub `$env:GITHUB_TOKEN` |
+| `401 Unauthorized` | Brak tokena / brak Copilot | Zaloguj CLI lub ustaw `$env:COPILOT_GITHUB_TOKEN` |
 | CLI nie startuje na Windows | Antivirus blokuje binarkę | Wyklucz katalog `.venv\Lib\site-packages\copilot\bin` |
 
 **Spodziewany wynik:** `pip show` pokazuje pakiet, `smoke_test.py` drukuje modele bez wyjątku.

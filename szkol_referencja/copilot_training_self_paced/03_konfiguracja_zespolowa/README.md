@@ -95,7 +95,7 @@ Przeprowadź dogłębną analizę metody wskazanej przez użytkownika...
 | `agent` | Wymuszony tryb (`"agent"`, `"ask"`) |
 | `tools` | Lista narzędzi dostępnych dla promptu |
 
-> **Żywy przykład:** Porównaj 3 prompt files w `.github/prompts/`:
+> **Żywy przykład:** Porównaj prompt files w `.github/prompts/`, między innymi:
 > - `refiner.prompt.md` — minimalistyczny, bez frontmatter
 > - `prompt-refiner.prompt.md` — z `agent: "ask"` i `argument-hint`
 > - `method-deep-dive.prompt.md` — pełny: rola, sekcje, diagram Mermaid
@@ -123,11 +123,11 @@ secrets/
 
 | # | Ćwiczenie | Czas |
 |---|-----------|------|
-| ex_08 | Twój pierwszy `copilot-instructions.md` | ~10 min |
+| ex_08 | Twój pierwszy `copilot-instructions.md` | ~8 min |
 | 🅱️ ex_08b | Copilot Memory — AI zapamiętuje preferencje | ~5 min |
-| ex_09 | Instrukcje per ścieżka (`applyTo`) | ~10 min |
+| ex_09 | Instrukcje per ścieżka (`applyTo`) | ~8 min |
 | 🅱️ ex_09b | Exclude files — `.copilotignore` | ~5 min |
-| ex_10 | Reużywalny plik promptu (`.prompt.md`) | ~10 min |
+| ex_10 | Reużywalny plik promptu (`.prompt.md`) | ~8 min |
 | 🅱️ ex_10b | Wybór modelu AI — porównanie GPT / Claude / Gemini | ~8 min |
 
 Pliki ćwiczeń: `exercises/`

@@ -3,11 +3,11 @@
 | # | Ćwiczenie | Plik | Czas |
 |---|-----------|------|------|
 | 18b | Migracja między językami — Java → Python | [ex_18b](exercises/ex_18b_migracja_jezyka.md) | ~15 min |
-| 18c | Refaktoring architektury z AI | [ex_18c](exercises/ex_18c_migracja_architektury.md) | ~15 min |
+| 18c | Refaktoring architektury z AI | [ex_18c](exercises/ex_18c_migracja_architektury.md) | ~12 min |
 | 19 | Twój pierwszy custom agent | [ex_19](exercises/ex_19_custom_agent.md) | ~10 min |
-| 20 | Handoff między agentami | [ex_20](exercises/ex_20_handoff.md) | ~15 min |
-| 21 | Triada agentów — Planner / Executor / Reviewer | [ex_21](exercises/ex_21_triada_agentow.md) | ~20 min |
-| 21c | Feature Builder — agent koordynujący subagentów | [ex_21c](exercises/ex_21c_feature_builder_orchestration.md) | ~20 min |
+| 20 | Handoff między agentami | [ex_20](exercises/ex_20_handoff.md) | ~12 min |
+| 21 | Triada agentów — Planner / Executor / Reviewer | [ex_21](exercises/ex_21_triada_agentow.md) | ~15 min |
+| 21c | Feature Builder — agent koordynujący subagentów | [ex_21c](exercises/ex_21c_feature_builder_orchestration.md) | ~12 min |
 | **31** | **Autonomiczny agent na zadaniu** (Copilot: Coding Agent \| CC: Workflows) | [ex_31 Copilot](exercises/ex_31_coding_agent.md) · [ex_31 CC](exercises/ex_31_workflows_cc.md) | ~20 min |
 
 **ex_18b, ex_18c, ex_21c i ex_31 są bonusowe.**

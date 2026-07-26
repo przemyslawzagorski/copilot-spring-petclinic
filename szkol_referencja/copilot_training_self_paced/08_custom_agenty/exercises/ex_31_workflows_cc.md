@@ -1,10 +1,9 @@
-# Ex 31 (CC): Dynamic Workflows — autonomiczny agent w Claude Code
+# Ex 31: Dynamic Workflows — autonomiczny agent w Claude Code
 
-> Odpowiednik ex_31_coding_agent.md dla Claude Code
+> Bonus · ~20 min · Odpowiednik ex_31_coding_agent.md dla Claude Code
 
 **Po co:** Claude Code Workflows (2025) to orkiestracja dziesiątek równoległych subagentów realizujących jedno złożone zadanie. Tam gdzie Copilot Coding Agent przypisuje się do issue, Claude Code uruchamia całą flotę agentów.
 
----
 
 ## Teoria: subagent vs workflow vs /goal
 
@@ -14,7 +13,6 @@
 | `/goal` | Długotrwały cel przez wiele tur | `/goal [cel]` — Claude nie odpuszcza |
 | Workflow (ultracode) | Równoległe zadania na dużą skalę | Słowo `ultracode` w prompcie |
 
----
 
 ## Krok 1: /goal — agent nie odpuszcza
 
@@ -26,16 +24,11 @@ Nie kończ dopóki ./mvnw test nie przechodzi.
 ```
 
 `/goal` sprawia, że Claude Code:
-- Tworzy wewnętrzny plan (nie pyta Cię o potwierdzenie każdego kroku)
-- Monitoruje postęp między turami
-- Wraca do pracy jeśli coś nie wychodzi
-- Kończy gdy cel jest osiągnięty
 
 Możesz na bieżąco obserwować co robi — albo zająć się czymś innym i wrócić za 10 minut.
 
 **Różnica vs zwykły prompt:** `claude` bez `/goal` pyta Cię o potwierdzenie po każdym bloku zmian. `/goal` działa aż skończy.
 
----
 
 ## Krok 2: ultracode — orkiestracja równoległa
 
@@ -47,19 +40,11 @@ Sprawdź każdy pakiet osobno, zidentyfikuj problemy, zaproponuj fixes.
 ```
 
 Co się dzieje:
-- Claude Code pisze workflow script
-- Uruchamia ~5-20 równoległych agentów (jeden per pakiet/aspekt)
-- Zbiera wyniki, deduplikuje, weryfikuje
-- Zwraca ustrukturyzowany raport
 
 Możesz śledzić postęp: `/workflows`
 
 **Kiedy ultracode jest wart kosztu:**
-- Zadania powtarzalne na wielu plikach (migracja, audit)
-- Potrzebujesz wielu niezależnych perspektyw (review z 3 różnych ról)
-- Zadanie trwałoby >30 min w zwykłej sesji
 
----
 
 ## Krok 3: Porównanie z Copilot Coding Agent
 
@@ -72,7 +57,6 @@ Możesz śledzić postęp: `/workflows`
 | Skala | Jedno zadanie | Dziesiątki równoległych agentów |
 | Dobra analogia | Senior dev working on a ticket | Engineering team sprint |
 
----
 
 ## Ćwiczenie: własny workflow
 
@@ -109,7 +93,6 @@ const results = await pipeline(
 
 Wywołaj: `ultracode /workflows tdd-sprint`
 
----
 
 ## /claude agents — dashboard
 
@@ -119,7 +102,6 @@ claude agents
 ```
 Widzisz wszystkie aktywne i zakończone sesje agentów — jak GitHub Actions dla Twojego lokalnego AI.
 
----
 
 ## Checklist walidacji
 

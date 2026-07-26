@@ -1,6 +1,7 @@
 # Copilot Python SDK
 
-> **Public Preview.** API może się zmienić w niekompatybilny sposób. Materiał aktualny na grudzień 2025 (`github-copilot-sdk` ~0.3.x, `@github/copilot` 1.0.40-3).
+> Materiał zaktualizowany dla stabilnej linii `github-copilot-sdk` 1.x
+> (zweryfikowany z wersją 1.0.8 w lipcu 2026).
 
 ## 🎯 Cele modułu
 
@@ -26,7 +27,8 @@
 └──────────────────┘                       └────────────────────┘
 ```
 
-- SDK uruchamia w tle proces `copilot` (CLI jest **bundled** z pakietem PyPI — nie trzeba instalować osobno).
+- SDK pobiera i uruchamia zgodny runtime Copilot CLI. Możesz przygotować go wcześniej
+	poleceniem `python -m copilot download-runtime`; osobna instalacja npm nie jest wymagana.
 - Komunikacja przez **JSON-RPC** po stdio.
 - Wszystkie zdarzenia (`AssistantMessageData`, `SessionIdleData`, `AssistantMessageDeltaData`, ...) dostajesz w handlerze `session.on(...)`.
 
@@ -61,7 +63,7 @@ Typowe zastosowania:
 
 SDK próbuje kolejno:
 
-1. `github_token` jawnie podany w `SubprocessConfig`.
+1. `github_token` jawnie podany w `CopilotClient`.
 2. Zmienne środowiskowe: `COPILOT_GITHUB_TOKEN`, `GH_TOKEN`, `GITHUB_TOKEN`.
 3. Zalogowany użytkownik z `copilot` CLI (token zapisany lokalnie).
 4. **BYOK** (Bring Your Own Key) — dowolny endpoint OpenAI-compatible (Azure OpenAI, Ollama, Anthropic).
@@ -92,10 +94,11 @@ Najczęściej używane: `gpt-5`, `claude-sonnet-4.5`. Pełną listę dostarczy `
 | ex_27 | PetClinic assistant — automatyzacja w repo | ~25 min |
 | 🅱️ ex_28 | Bonus: streaming odpowiedzi | ~15 min |
 | 🅱️ ex_29 | Bonus: własne narzędzie (custom tool) | ~25 min |
+| 🅱️ ex_30 | Live demo: Spring + FastAPI + Copilot SDK | ~30 min |
 
 Pliki: [exercises/](exercises/). Index: [EXERCISES.md](EXERCISES.md).
 
-**Kolejność:** ex_25 → ex_26 → ex_27 → (ex_28) → (ex_29).
+**Kolejność:** ex_25 → ex_26 → ex_27 → (ex_28) → (ex_29) → (ex_30).
 
 ---
 

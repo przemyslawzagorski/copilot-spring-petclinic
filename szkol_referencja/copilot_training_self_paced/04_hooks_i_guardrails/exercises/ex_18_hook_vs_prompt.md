@@ -1,6 +1,6 @@
 # Ex 18: Hook vs Prompt — kiedy co
 
-> Faza 5 · ~10 min · Źródło: moduł 12
+> Faza 5 · ~10 min · Moduł 04
 
 **Po co:** Najważniejsza decyzja architektoniczna w customizacji: co wymuszać hookiem (plik JSON + skrypt), a co sugerować promptem/instrukcją (tekst dla modelu).
 
@@ -15,7 +15,8 @@ Hook to **nie** reguła w `copilot-instructions.md`. To plik JSON w `.github/hoo
   "hooks": {
     "PreToolUse": [{
       "type": "command",
-      "command": "python3 scripts/hooks/block-sensitive.py"
+      "command": "python3 scripts/hooks/block-sensitive.py",
+      "windows": "python scripts\\hooks\\block-sensitive.py"
     }]
   }
 }

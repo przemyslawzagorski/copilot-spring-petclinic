@@ -72,7 +72,7 @@ docs/
 
 ## 🔗 Żywy przykład z tego repo
 
-W `.github/prompts/` masz 3 prompt files o różnym poziomie złożoności:
+W `.github/prompts/` masz kilka prompt files o różnym poziomie złożoności, między innymi:
 - `refiner.prompt.md` — prosty, bez YAML frontmatter
 - `prompt-refiner.prompt.md` — z frontmatter: `agent: "ask"`, `argument-hint`
 - `method-deep-dive.prompt.md` — rozbudowany: `agent: "agent"`, sekcje analizy, diagram Mermaid
@@ -85,7 +85,7 @@ Porównaj je — zobaczysz jak format i precyzja promptu wpływają na jakość 
 
 | # | Ćwiczenie | Czas |
 |---|-----------|------|
-| ex_05 | `@workspace` vs `#file` — kiedy co | ~10 min |
+| ex_05 | `@workspace` vs `#file` — kiedy co | ~8 min |
 | ex_06 | Iteracja promptu v1 → v2 → v3 | ~10 min |
 | 🅱️ ex_06b | Few-shot / CoT / Role — techniki promptowania | ~10 min |
 | 🅱️ ex_06c | Characterization Test — bezpieczny refaktor legacy | ~10 min |

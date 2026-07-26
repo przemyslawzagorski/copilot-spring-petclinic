@@ -19,7 +19,8 @@ Użyj MockMvc, JUnit 5. Nazwij klasę OwnerControllerCharacterizationTest.
 ```
 
 3. Skopiuj wygenerowany test do `src/test/java/.../owner/OwnerControllerCharacterizationTest.java`
-4. Uruchom: `.\mvnw.cmd test -Dtest=OwnerControllerCharacterizationTest`
+4. Uruchom: `.\mvnw.cmd test -Dtest=OwnerControllerCharacterizationTest` (Windows)
+	lub `./mvnw test -Dtest=OwnerControllerCharacterizationTest` (Linux/macOS)
 
 **Spodziewany wynik:** Wszystkie testy PRZECHODZĄ — bo testują to, co metoda faktycznie robi, nie to co "powinna".
 

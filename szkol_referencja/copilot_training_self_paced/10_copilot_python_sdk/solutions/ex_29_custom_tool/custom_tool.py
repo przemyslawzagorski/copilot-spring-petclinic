@@ -16,17 +16,11 @@ Uruchomienie: `python custom_tool.py`
 from __future__ import annotations
 
 import asyncio
-import sys
-from pathlib import Path
-
 from pydantic import BaseModel, Field
 
 from copilot import CopilotClient, define_tool
-from copilot.generated.session_events import AssistantMessageData, SessionIdleData
+from copilot.session_events import AssistantMessageData, SessionIdleData
 from copilot.session import PermissionHandler
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from _common import ensure_copilot_cli_on_path  # noqa: E402
 
 
 # Symulowana baza weterynarzy. W realu szlibysmy tu do REST/DB.
@@ -49,10 +43,9 @@ class GetVetParams(BaseModel):
         "Zwraca dostepnosc i specjalizacje weterynarza ze Spring PetClinic "
         "na podstawie jego identyfikatora liczbowego."
     ),
-    params_type=GetVetParams,
     skip_permission=True,
 )
-async def get_vet_status(params: GetVetParams, _invocation) -> str:
+async def get_vet_status(params: GetVetParams) -> str:
     vet = _VET_DB.get(params.vet_id)
     if vet is None:
         return f"Brak weterynarza o id={params.vet_id}."
@@ -68,8 +61,6 @@ PROMPT = (
 
 
 async def main() -> int:
-    ensure_copilot_cli_on_path()
-
     async with CopilotClient() as client:
         async with await client.create_session(
             on_permission_request=PermissionHandler.approve_all,

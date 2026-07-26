@@ -23,7 +23,7 @@ from pathlib import Path
 import pytest
 
 from copilot import CopilotClient, define_tool
-from copilot.generated.session_events import (
+from copilot.session_events import (
     AssistantMessageData,
     AssistantMessageDeltaData,
     SessionIdleData,
@@ -33,7 +33,7 @@ from pydantic import BaseModel, Field
 
 SOLUTIONS_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(SOLUTIONS_DIR))
-from _common import ensure_copilot_cli_on_path, repo_root  # noqa: E402
+from _common import repo_root  # noqa: E402
 
 
 pytestmark = [pytest.mark.live, pytest.mark.asyncio]
@@ -44,7 +44,6 @@ pytestmark = [pytest.mark.live, pytest.mark.asyncio]
 # ---------------------------------------------------------------------------
 @pytest.mark.asyncio
 async def test_ex25_list_models_nonempty() -> None:
-    ensure_copilot_cli_on_path()
     async with CopilotClient() as client:
         models = await client.list_models()
         assert len(models) > 0, "Lista modeli powinna byc niepusta po zalogowaniu"
@@ -58,7 +57,6 @@ async def test_ex25_list_models_nonempty() -> None:
 # ---------------------------------------------------------------------------
 @pytest.mark.asyncio
 async def test_ex26_hello_chat_returns_answer() -> None:
-    ensure_copilot_cli_on_path()
     async with CopilotClient() as client:
         async with await client.create_session(
             on_permission_request=PermissionHandler.approve_all,
@@ -114,7 +112,6 @@ async def test_ex27_assistant_writes_report(tmp_workdir: Path, repo_root_dir: Pa
 # ---------------------------------------------------------------------------
 @pytest.mark.asyncio
 async def test_ex28_streaming_emits_deltas() -> None:
-    ensure_copilot_cli_on_path()
     async with CopilotClient() as client:
         async with await client.create_session(
             on_permission_request=PermissionHandler.approve_all,
@@ -154,17 +151,14 @@ class _VetParams(BaseModel):
 
 @pytest.mark.asyncio
 async def test_ex29_custom_tool_invoked() -> None:
-    ensure_copilot_cli_on_path()
-
     call_log: list[int] = []
 
     @define_tool(
         name="get_vet_status_test",
         description="Zwraca status weterynarza dla testow integracyjnych.",
-        params_type=_VetParams,
         skip_permission=True,
     )
-    async def get_vet_status_test(params: _VetParams, _invocation) -> str:
+    async def get_vet_status_test(params: _VetParams) -> str:
         call_log.append(params.vet_id)
         # zwracamy wartownika, ktory MUSI pojawic sie w odpowiedzi modelu,
         # gdyby ten ja zacytowal — to dowod, ze model widzial wynik narzedzia

@@ -92,13 +92,25 @@ psql "your-connection-string" -f setup_db.sql
 
 ### Krok 3: Skonfiguruj Toolbox
 
-Edytuj `toolbox.yaml` i wklej swój connection string:
+Skopiuj `toolbox.yaml` do lokalnego pliku `toolbox.local.yaml` i uzupełnij dane
+połączenia. Plik lokalny jest ignorowany przez Git i nie wolno commitować w nim
+hasła:
+
+```bash
+cp toolbox.yaml toolbox.local.yaml
+```
+
+Edytuj `toolbox.local.yaml`:
 
 ```yaml
 sources:
   hotels-database:
     kind: "postgres"
-    connection_string: "postgresql://user:pass@host:5432/db"  # ← TUTAJ!
+    host: "YOUR_POSTGRES_HOST"
+    port: 5432
+    database: "YOUR_DATABASE"
+    user: "YOUR_DATABASE_USER"
+    password: "YOUR_DATABASE_PASSWORD"
 ```
 
 ---
@@ -110,21 +122,21 @@ sources:
 # W WSL2
 curl -L -o toolbox https://storage.googleapis.com/genai-toolbox/v0.20.0/linux/amd64/toolbox
 chmod +x toolbox
-./toolbox --tools-file toolbox.yaml
+./toolbox --tools-file toolbox.local.yaml
 ```
 
 **Linux:**
 ```bash
 curl -L -o toolbox https://storage.googleapis.com/genai-toolbox/v0.20.0/linux/amd64/toolbox
 chmod +x toolbox
-./toolbox --tools-file toolbox.yaml
+./toolbox --tools-file toolbox.local.yaml
 ```
 
 **macOS:**
 ```bash
 curl -L -o toolbox https://storage.googleapis.com/genai-toolbox/v0.20.0/darwin/amd64/toolbox
 chmod +x toolbox
-./toolbox --tools-file toolbox.yaml
+./toolbox --tools-file toolbox.local.yaml
 ```
 
 **Output:**

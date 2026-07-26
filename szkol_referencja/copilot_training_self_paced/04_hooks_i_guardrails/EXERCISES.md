@@ -4,7 +4,7 @@
 |---|-----------|------|------|
 | 11 | PreToolUse hook — strażnik sekretów | [ex_11](exercises/ex_11_prerun_hook.md) | ~15 min |
 | 18 | Hook vs Prompt — kiedy co | [ex_18](exercises/ex_18_hook_vs_prompt.md) | ~10 min |
-| 21d | Scoped Hooks (Preview) — Strict Formatter Agent | [ex_21d](exercises/ex_21d_scoped_hooks_preview.md) | ~15 min |
+| 21d | Scoped Hooks (Preview) — Strict Formatter Agent | [ex_21d](exercises/ex_21d_scoped_hooks_preview.md) | ~8 min |
 
 ## Kolejność
 

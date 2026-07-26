@@ -21,18 +21,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.Version;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 
 /**
- * Bazowa klasa domenowa zawierająca pole identyfikatora (id). Służy jako klasa nadrzędna
- * dla encji wymagających automatycznie generowanego klucza głównego.
+ * Bazowa klasa domenowa stanowiąca fundament dla wszystkich encji persystentnych. Zawiera
+ * pole identyfikatora (id) z automatycznym generowaniem wartości przez bazę danych. Klasa
+ * ta powinna być dziedziczona przez wszystkie encje wymagające unikatowego klucza
+ * głównego.
  *
  * @author Ken Krebs
  * @author Juergen Hoeller
  */
-
 @MappedSuperclass
 public class BaseEntity implements Serializable {
 

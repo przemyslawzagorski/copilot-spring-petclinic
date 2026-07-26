@@ -12,7 +12,7 @@ argument-hint: "Podaj nazwę kontrolera do przetestowania, np. OwnerController"
 ## Krok 1 — Analiza kontrolera
 Przeczytaj wskazany kontroler i zidentyfikuj:
 - Endpointy (metody HTTP + ścieżki)
-- Zależności do zamockowania (@MockBean)
+- Zależności do zamockowania (`@MockitoBean` w Spring Boot 4.x)
 - Modele danych przekazywane do widoków
 
 ## Krok 2 — Wygeneruj test
@@ -29,7 +29,11 @@ Wzoruj się na przykładach w `examples/`:
 
 ## Krok 4 — Uruchom testy
 ```bash
-./mvnw test -pl spring-petclinic -Dtest=<NazwaTestu>
+# Windows PowerShell
+.\mvnw.cmd test "-Dtest=NazwaTestu"
+
+# Linux/macOS
+./mvnw test -Dtest=NazwaTestu
 ```
 
 ## Kiedy NIE użyć
@@ -39,5 +43,5 @@ Wzoruj się na przykładach w `examples/`:
 ## Konwencje projektu
 - Klasa: `{Controller}MockMvcTest`
 - Metoda: `should_{co}_{kiedy}` (konwencja projektu)
-- Adnotacje: `@WebMvcTest` + `@MockBean`
+- Adnotacje: `@WebMvcTest` + `@MockitoBean`
 - Asercje: AssertJ + MockMvc matchers

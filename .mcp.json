@@ -10,11 +10,17 @@
       "type": "stdio",
       "command": "python",
       "args": ["szkol_referencja/copilot_training_self_paced/mcp_jira_wiki/jira_wiki_mcpserver.py"],
-      "env": {
-        "JIRA_BASE_URL": "${JIRA_BASE_URL}",
-        "ENABLE_WIKI_INTEGRATION": "false"
-      },
-      "description": "Jira & Confluence Wiki integration (wymaga .env z JIRA_BASE_URL)"
+      "description": "Jira & Confluence Wiki — pełna konfiguracja i sekrety ładowane z mcp_jira_wiki/.env (load_dotenv)"
+    },
+    "Zewnetrzny_Pirat_Agent": {
+      "type": "http",
+      "url": "https://pirate-navigator-993991990648.us-central1.run.app/mcp",
+      "description": "Zewnętrzny zdalny agent MCP (Cloud Run)"
+    },
+    "database-local-http": {
+      "type": "http",
+      "url": "http://127.0.0.1:5000/mcp",
+      "description": "Lokalny serwer MCP bazy danych — wymaga ręcznego uruchomienia serwera na porcie 5000"
     }
   }
 }

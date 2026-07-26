@@ -49,7 +49,9 @@ mcpServers:                   # MCP serwery dostępne tylko dla tego agenta
 
 **Odpowiednik ex_19_custom_agent.md**
 
-Ten projekt już ma 7 subagentów w `.claude/agents/` (mentor, reviewer, tdd-expert, security-expert, feature-builder, mkdocs-documentation, exercise-validator) — przejrzyj je jako wzorce.
+Ten projekt ma kilka subagentów w `.claude/agents/`, między innymi mentor,
+reviewer, tdd-expert, security-expert, feature-builder, mkdocs-documentation i
+exercise-validator. Przejrzyj aktualną zawartość katalogu jako źródło wzorców.
 
 **Ćwiczenie:** Stwórz subagenta do analizy wydajności:
 
@@ -80,6 +82,26 @@ Zawsze sprawdzaj klasy w `src/main/java/` i konfigurację JPA.
 ```
 
 Wywołaj: `@"performance-analyst (agent)" przeanalizuj klasy Owner i Visit`
+
+## Ex 18b (CC): Migracja Java → Python
+
+**Odpowiednik ex_18b_migracja_jezyka.md**
+
+Zamiast składni `#file` wskaż ścieżkę bezpośrednio:
+```
+Przeczytaj src/main/java/org/springframework/samples/petclinic/owner/Owner.java
+i przekonwertuj encję na SQLAlchemy + Pydantic zgodnie z krokami ex_18b.
+```
+
+## Ex 18c (CC): Refaktoring architektury
+
+**Odpowiednik ex_18c_migracja_architektury.md**
+
+Claude Code automatycznie widzi workspace. Użyj promptu:
+```
+Przeanalizuj architekturę tego repo zgodnie z checklistą ex_18c. Najpierw zwróć
+wyłącznie plan refaktoryzacji, bez edycji plików.
+```
 
 ---
 
@@ -134,6 +156,11 @@ Claude sam zdecyduje kiedy delegować.
 Wymaga ustawienia zmiennej środowiskowej:
 ```bash
 export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
+```
+
+Windows PowerShell:
+```powershell
+$env:CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1"
 ```
 
 Potem możesz pisać zadania z wieloma agentami działającymi równolegle — ale to funkcja eksperymentalna i API może się zmienić.
@@ -194,9 +221,11 @@ Skrót kluczowych konceptów:
 
 W Copilot możesz zdefiniować:
 ```yaml
-handoff:
-  - agent: reviewer
-    when: "after implementation"
+handoffs:
+  - label: Przekaż do reviewera
+    agent: reviewer
+    prompt: "Przejrzyj wdrożenie z poprzedniego kroku."
+    send: false
 ```
 
 **W Claude Code tego nie ma.** Zamiast tego:

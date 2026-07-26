@@ -15,20 +15,13 @@ Uruchomienie: `python streaming_chat.py`
 from __future__ import annotations
 
 import asyncio
-import sys
-from pathlib import Path
-
 from copilot import CopilotClient
-from copilot.generated.session_events import (
+from copilot.session_events import (
     AssistantMessageData,
     AssistantMessageDeltaData,
     SessionIdleData,
 )
 from copilot.session import PermissionHandler
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from _common import ensure_copilot_cli_on_path  # noqa: E402
-
 
 PROMPT = (
     "Po polsku, w 4-5 krotkich punktach, opisz typowy przeplyw zadania "
@@ -37,8 +30,6 @@ PROMPT = (
 
 
 async def main() -> int:
-    ensure_copilot_cli_on_path()
-
     async with CopilotClient() as client:
         async with await client.create_session(
             on_permission_request=PermissionHandler.approve_all,

@@ -1,6 +1,6 @@
 # Ex 19: Twój pierwszy custom agent
 
-> Faza 6 · ~10 min · Źródło: moduł 07
+> Faza 6 · ~10 min · Moduł 08
 
 **Po co:** Agent to "persona" Copilota z jasnym zakresem i ograniczeniami. Zamiast ogólnego asystenta — specjalista.
 

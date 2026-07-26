@@ -1,6 +1,6 @@
 # Ex 11: PreToolUse hook — strażnik sekretów
 
-> Faza 3 · ~15 min · Źródło: moduł 12
+> Faza 3 · ~15 min · Moduł 04
 
 **Po co:** Agent hook to plik JSON w `.github/hooks/` + skrypt shell/Python uruchamiany automatycznie PRZED lub PO akcji agenta. W odróżnieniu od instrukcji (copilot-instructions.md), hook **gwarantuje wykonanie kodu** — model nie może go zignorować.
 

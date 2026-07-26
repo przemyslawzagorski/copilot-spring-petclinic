@@ -1,6 +1,6 @@
 # Ex 16: Security review pliku
 
-> Faza 5 · ~8 min · Źródło: moduł 10
+> Faza 5 · ~8 min · Moduł 07
 
 **Po co:** Copilot potrafi znaleźć luki bezpieczeństwa w kodzie. Wystarczy zapytać.
 

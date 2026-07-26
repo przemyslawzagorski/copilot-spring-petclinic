@@ -13,7 +13,7 @@ Architektura:
                         └─► Copilot SDK + custom tools
                                 ├─ get_available_vets  → GET :8080/vets
                                 ├─ get_visit_load      → symulowane dane
-                                └─ search_pet_owners   → GET :8080/owners?lastName=...
+                                └─ search_pet_owners   → GET :8080/api/owners?lastName=...
 
 Uruchomienie:
     pip install fastapi "uvicorn[standard]" httpx
@@ -32,8 +32,6 @@ import asyncio
 import json
 import logging
 import os
-import sys
-from pathlib import Path
 from typing import Any
 
 import httpx
@@ -41,12 +39,8 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
-# ─── Lokalizacja _common.py (2 poziomy wyżej: solutions/) ───────────────────
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from _common import ensure_copilot_cli_on_path  # noqa: E402
-
-from copilot import CopilotClient, SubprocessConfig, define_tool
-from copilot.generated.session_events import AssistantMessageData, SessionIdleData
+from copilot import CopilotClient, define_tool
+from copilot.session_events import AssistantMessageData, SessionIdleData
 from copilot.session import PermissionHandler
 
 # ─── Konfiguracja ────────────────────────────────────────────────────────────
@@ -72,6 +66,10 @@ class ChatResponse(BaseModel):
 
     reply: str
     tools_called: list[str]
+
+
+class CopilotUnavailableError(RuntimeError):
+    """Copilot SDK nie może obsłużyć żądania w bieżącym środowisku."""
 
 
 # ─── Pydantic modele dla custom tools ────────────────────────────────────────
@@ -105,9 +103,6 @@ class SearchOwnersParams(BaseModel):
 
 # ─── Custom tools (rejestrowane w sesji Copilot SDK) ─────────────────────────
 
-_tools_called: list[str] = []  # zbieramy dla ChatResponse (per-sesja, reset w /chat)
-
-
 @define_tool(
     name="get_available_vets",
     description=(
@@ -115,11 +110,9 @@ _tools_called: list[str] = []  # zbieramy dla ChatResponse (per-sesja, reset w /
         "Zwraca imiona, specjalizacje i dostępność. Użyj aby dopasować weterynarza "
         "do opisanych objawów zwierzęcia."
     ),
-    params_type=GetVetsParams,
     skip_permission=True,
 )
-async def get_available_vets(params: GetVetsParams, _inv) -> str:
-    _tools_called.append("get_available_vets")
+async def get_available_vets(params: GetVetsParams) -> str:
     try:
         async with httpx.AsyncClient(timeout=5.0) as client:
             resp = await client.get(f"{PETCLINIC_BASE}/vets")
@@ -175,11 +168,9 @@ _VISIT_LOAD = {
         "(liczba zaplanowanych wizyt na dziś). Pomaga wybrać mniej obciążonego "
         "specjalistę gdy kilku pasuje do objawów."
     ),
-    params_type=VisitLoadParams,
     skip_permission=True,
 )
-async def get_visit_load(params: VisitLoadParams, _inv) -> str:
-    _tools_called.append("get_visit_load")
+async def get_visit_load(params: VisitLoadParams) -> str:
     load = _VISIT_LOAD.get(params.vet_id)
     if load is None:
         return f"Brak danych obciążenia dla weterynarza ID {params.vet_id}."
@@ -197,16 +188,14 @@ async def get_visit_load(params: VisitLoadParams, _inv) -> str:
         "Przydatne gdy użytkownik podaje swoje nazwisko i chce zobaczyć historię "
         "wizyt lub dane swoich pupili."
     ),
-    params_type=SearchOwnersParams,
     skip_permission=True,
 )
-async def search_pet_owners(params: SearchOwnersParams, _inv) -> str:
-    _tools_called.append("search_pet_owners")
+async def search_pet_owners(params: SearchOwnersParams) -> str:
     safe_name = params.last_name[:50]  # ograniczenie długości dla bezpieczeństwa
     try:
         async with httpx.AsyncClient(timeout=5.0) as client:
             resp = await client.get(
-                f"{PETCLINIC_BASE}/owners",
+                f"{PETCLINIC_BASE}/api/owners",
                 params={"lastName": safe_name},
             )
             resp.raise_for_status()
@@ -218,13 +207,24 @@ async def search_pet_owners(params: SearchOwnersParams, _inv) -> str:
     if not owners:
         return f"Brak właścicieli o nazwisku '{safe_name}'."
 
+    return format_owner_history(owners, safe_name)
+
+
+def format_owner_history(owners: list[dict], safe_name: str) -> str:
+    """Formatuje ograniczone DTO właścicieli i historię wizyt dla modelu."""
     lines = [f"Właściciele '{safe_name}':"]
-    for o in owners[:5]:  # max 5 wyników
-        pets = [p.get("name", "?") for p in o.get("pets", [])]
-        lines.append(
-            f"  • {o.get('firstName')} {o.get('lastName')} "
-            f"— zwierzęta: {', '.join(pets) or 'brak'}"
-        )
+    for owner in owners[:5]:
+        lines.append(f"  • {owner.get('firstName')} {owner.get('lastName')}")
+        for pet in owner.get("pets", []):
+            visits = pet.get("visits", [])
+            if visits:
+                visit_summary = ", ".join(
+                    f"{visit.get('date')}: {visit.get('description') or 'brak opisu'}"
+                    for visit in visits
+                )
+            else:
+                visit_summary = "brak wizyt"
+            lines.append(f"    - {pet.get('name', '?')}: {visit_summary}")
     return "\n".join(lines)
 
 
@@ -245,24 +245,34 @@ Styl odpowiedzi:
 - Wymieniaj konkretne imię i specjalizację weterynarza.
 - Jeśli znasz obciążenie — wspomnij który jest mniej zajęty dziś.
 - Zakończ krótkim zdaniem zachęcającym do umówienia wizyty.
+- Zwracaj czysty tekst bez składni Markdown i bez znaczników HTML.
 
 WAŻNE: Nie wymyślaj danych. Używaj wyłącznie informacji zwróconych przez narzędzia."""
 
 
 async def run_copilot_session(message: str) -> tuple[str, list[str]]:
     """Uruchamia sesję Copilot SDK dla jednej wiadomości użytkownika."""
-    global _tools_called
-    _tools_called = []
-
-    ensure_copilot_cli_on_path()
-
     full_prompt = f"{SYSTEM_PROMPT}\n\n---\nPytanie właściciela: {message}"
+    tools_called: list[str] = []
+    tracked_tools = {"get_available_vets", "get_visit_load", "search_pet_owners"}
+
+    async def on_post_tool_use(input_data, _invocation):
+        tool_name = input_data.get("toolName")
+        if tool_name in tracked_tools:
+            tools_called.append(tool_name)
+        return {}
 
     async with CopilotClient() as client:
+        auth = await client.get_auth_status()
+        if not auth.isAuthenticated:
+            raise CopilotUnavailableError(
+                "Copilot SDK nie jest zalogowany. Uruchom `copilot login`."
+            )
         async with await client.create_session(
             on_permission_request=PermissionHandler.approve_all,
             model=COPILOT_MODEL,
             tools=[get_available_vets, get_visit_load, search_pet_owners],
+            hooks={"on_post_tool_use": on_post_tool_use},
         ) as session:
             done = asyncio.Event()
             answer_parts: list[str] = []
@@ -279,9 +289,10 @@ async def run_copilot_session(message: str) -> tuple[str, list[str]]:
             await session.send(full_prompt)
             await asyncio.wait_for(done.wait(), timeout=120)
 
-    reply = "\n".join(answer_parts).strip() or "Przepraszam, nie udało się wygenerować odpowiedzi."
-    called = list(_tools_called)
-    return reply, called
+    reply = "\n".join(answer_parts).strip()
+    if not reply:
+        raise CopilotUnavailableError("Copilot SDK nie zwrócił odpowiedzi.")
+    return reply, tools_called
 
 
 # ─── FastAPI app ──────────────────────────────────────────────────────────────
@@ -312,6 +323,8 @@ async def chat(request: ChatRequest) -> ChatResponse:
     log.info("Pytanie: %.100s", request.message)
     try:
         reply, tools = await run_copilot_session(request.message)
+    except CopilotUnavailableError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
     except asyncio.TimeoutError:
         raise HTTPException(status_code=504, detail="Copilot SDK timeout.")
     except Exception as exc:

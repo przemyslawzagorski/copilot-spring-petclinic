@@ -1,6 +1,6 @@
 # Ex 05: @workspace vs #file — różnica zakresów
 
-> Faza 2 · ~8 min · Źródło: moduł 05
+> Faza 2 · ~8 min · Moduł 02
 
 **Po co:** Zrozumieć KIEDY dać Copilotowi cały projekt, a kiedy wskazać konkretny plik. To klucz do dobrego prompta.
 

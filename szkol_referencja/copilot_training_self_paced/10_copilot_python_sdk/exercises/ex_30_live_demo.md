@@ -22,7 +22,7 @@ Python FastAPI :8081      (ai_server.py)
     │  Copilot SDK — sesja z custom tools
     ├─► get_available_vets   →  GET http://localhost:8080/vets  (ŻYWE DANE!)
     ├─► get_visit_load       →  symulowane obciążenie wizytami
-    └─► search_pet_owners    →  GET http://localhost:8080/owners
+    └─► search_pet_owners    →  GET http://localhost:8080/api/owners
 ```
 
 ---
@@ -30,7 +30,7 @@ Python FastAPI :8081      (ai_server.py)
 ## Wymagania
 
 - Ćwiczenie [ex_26](ex_26_hello_chat.md) i [ex_29](ex_29_custom_tool.md) ukończone.
-- Spring PetClinic uruchomiony (`./mvnw spring-boot:run`).
+- Spring PetClinic uruchomiony (`.\mvnw.cmd spring-boot:run` na Windows).
 - Python 3.11+, aktywne venv z SDK.
 
 ---
@@ -62,7 +62,8 @@ curl http://localhost:8081/health
 
 ```powershell
 # w katalogu głównym projektu
-./mvnw spring-boot:run
+.\mvnw.cmd spring-boot:run
+# Linux/macOS: ./mvnw spring-boot:run
 ```
 
 Otwórz: **http://localhost:8080/ai-assistant**
@@ -96,9 +97,9 @@ Jestem Franklin, mam kota Luckiego. Kiedy była jego ostatnia wizyta?
 ## Co dzieje się pod maską
 
 1. Spring `AiAssistantController.chat()` przyjmuje JSON z przeglądarki.
-2. Walidacja Pydantic w Springu (`@Valid @Size(max=500)`) — ochrona przed zbyt
+2. Jakarta Bean Validation w Springu (`@Valid @Size(max=500)`) — ochrona przed zbyt
    długimi promptami.
-3. `RestClient` (Spring 6.1) wysyła żądanie do FastAPI `:8081`.
+3. Java `HttpClient` wysyła żądanie do FastAPI `:8081`.
 4. FastAPI uruchamia nową sesję `CopilotClient` dla każdego pytania.
 5. Model AI decyduje, które z 3 narzędzi wywołać i w jakiej kolejności.
 6. Narzędzie `get_available_vets` robi `GET /vets` na **tej samej** aplikacji

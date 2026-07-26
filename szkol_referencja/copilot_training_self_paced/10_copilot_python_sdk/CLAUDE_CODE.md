@@ -102,9 +102,41 @@ print(message.content[0].text)
 
 ---
 
-## Ex 27 (CC): Streaming odpowiedzi
+## Ex 27 (CC): PetClinic assistant
 
 **Odpowiednik ex_27_petclinic_assistant.md**
+
+Wczytaj kod pakietu `owner` lokalnie i przekaż go jako kontekst do Anthropic SDK.
+Wynik zapisz do `petclinic_domain_report.md`; raport powinien zawierać pięć encji
+JPA i endpointy kontrolerów.
+
+```python
+from pathlib import Path
+import anthropic
+
+root = Path(__file__).resolve().parents[4]
+owner_sources = "\n\n".join(
+    path.read_text(encoding="utf-8")
+    for path in (root / "src/main/java/org/springframework/samples/petclinic/owner").glob("*.java")
+)
+
+client = anthropic.Anthropic()
+message = client.messages.create(
+    model="claude-sonnet-4-6",
+    max_tokens=4096,
+    messages=[{
+        "role": "user",
+        "content": f"Przeanalizuj encje JPA i endpointy. Zwróć raport Markdown.\n\n{owner_sources}",
+    }],
+)
+Path("petclinic_domain_report.md").write_text(message.content[0].text, encoding="utf-8")
+```
+
+---
+
+## Ex 28 (CC): Streaming odpowiedzi
+
+**Odpowiednik ex_28_streaming.md**
 
 ```python
 import anthropic
@@ -129,9 +161,9 @@ print()  # nowa linia po zakończeniu
 
 ---
 
-## Ex 28 (CC): Tool use (function calling)
+## Ex 29 (CC): Tool use (function calling)
 
-**Odpowiednik ex_28_streaming.md**
+**Odpowiednik ex_29_custom_tool.md**
 
 Tool use to odpowiednik Copilot function calling — identyczna koncepcja, inny format:
 
@@ -201,9 +233,9 @@ if response.stop_reason == "tool_use":
 
 ---
 
-## Ex 29 (CC): Multi-turn conversation (chat)
+## Dodatkowy przykład: Multi-turn conversation
 
-**Odpowiednik ex_29_custom_tool.md**
+Ten przykład uzupełnia ćwiczenia i pokazuje utrzymywanie historii rozmowy.
 
 ```python
 import anthropic
@@ -248,14 +280,34 @@ Ten projekt ma już działający AI Triage Assistant w:
 - `src/main/java/org/springframework/samples/petclinic/ai/AiAssistantController.java`
 - UI: `src/main/resources/templates/ai/assistant.html`
 
-Aby go uruchomić:
-```bash
-$env:ANTHROPIC_API_KEY = "twój-klucz"
-./mvnw spring-boot:run
+Aby uruchomić istniejące wspólne demo Copilot SDK:
+```powershell
+pip install -r .\szkol_referencja\copilot_training_self_paced\10_copilot_python_sdk\solutions\requirements.txt
+python -m copilot download-runtime
+# Wymagana sesja `copilot login` albo COPILOT_GITHUB_TOKEN.
+Push-Location .\szkol_referencja\copilot_training_self_paced\10_copilot_python_sdk\solutions\ex_30_live_demo
+uvicorn ai_server:app --host 127.0.0.1 --port 8081
+```
+
+W drugim terminalu PowerShell:
+```powershell
+.\mvnw.cmd spring-boot:run
 # Otwórz http://localhost:8080/ai-assistant
 ```
 
-> Uwaga: ten żywy przykład używa **Copilot SDK** (mikroserwis Python FastAPI na :8081, endpoint `POST /api/ai/chat` proxy'uje do niego). W ścieżce Claude jego odpowiednik budujesz na Anthropic SDK (ćwiczenia ex_25–ex_29 powyżej).
+Linux/macOS:
+```bash
+pip install -r szkol_referencja/copilot_training_self_paced/10_copilot_python_sdk/solutions/requirements.txt
+python -m copilot download-runtime
+# Wymagana sesja `copilot login` albo COPILOT_GITHUB_TOKEN.
+cd szkol_referencja/copilot_training_self_paced/10_copilot_python_sdk/solutions/ex_30_live_demo
+uvicorn ai_server:app --host 127.0.0.1 --port 8081
+# W drugim terminalu, z root repo: ./mvnw spring-boot:run
+```
+
+> Uwaga: ten żywy przykład celowo używa **Copilot SDK**. Claude Code może go
+> uruchamiać i modyfikować, ale klucz `ANTHROPIC_API_KEY` nie jest przez ten serwis
+> używany. Wariant Anthropic wymaga osobnej implementacji klienta.
 
 **Dodaj własną funkcjonalność** — przykład endpoint analizujący dane właściciela:
 

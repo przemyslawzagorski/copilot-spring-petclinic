@@ -51,5 +51,16 @@ CREATE TABLE IF NOT EXISTS visits (
   pet_id INT(4) UNSIGNED,
   visit_date DATE,
   description VARCHAR(255),
-  FOREIGN KEY (pet_id) REFERENCES pets(id)
+  FOREIGN KEY (pet_id) REFERENCES pets(id),
+  INDEX(pet_id)
+) engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS hotel_bookings (
+  id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  pet_id INT(4) UNSIGNED,
+  check_in_date DATE,
+  check_out_date DATE,
+  notes VARCHAR(255),
+  FOREIGN KEY (pet_id) REFERENCES pets(id),
+  INDEX(pet_id)
 ) engine=InnoDB;

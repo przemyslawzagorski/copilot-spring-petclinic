@@ -24,12 +24,12 @@ import asyncio
 import sys
 from pathlib import Path
 
-from copilot import CopilotClient, SubprocessConfig
-from copilot.generated.session_events import AssistantMessageData, SessionIdleData
+from copilot import CopilotClient
+from copilot.session_events import AssistantMessageData, SessionIdleData
 from copilot.session import PermissionHandler
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from _common import ensure_copilot_cli_on_path, repo_root  # noqa: E402
+from _common import repo_root  # noqa: E402
 
 
 REPORT_NAME = "petclinic_domain_report.md"
@@ -50,16 +50,12 @@ Nie modyfikuj zadnych innych plikow. Nie uruchamiaj polecen powloki.
 
 
 async def main() -> int:
-    ensure_copilot_cli_on_path()
-
     output_dir = Path.cwd().resolve()
     report_path = output_dir / REPORT_NAME
     if report_path.exists():
         report_path.unlink()  # zaczynamy od czystej kartki
 
-    config = SubprocessConfig(cwd=str(repo_root()))
-
-    async with CopilotClient(config) as client:
+    async with CopilotClient(working_directory=str(repo_root())) as client:
         async with await client.create_session(
             on_permission_request=PermissionHandler.approve_all,
             model="auto",

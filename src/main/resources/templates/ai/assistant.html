@@ -7,11 +7,10 @@
 
   <h2>
     <span class="fa fa-robot" aria-hidden="true"></span>
-    AI Asystent Weterynaryjny
+    <span th:text="#{ai.title}">AI Asystent Weterynaryjny</span>
   </h2>
-  <p class="text-muted">
-    Opisz objawy swojego pupila — AI sprawdzi dostępnych specjalistów w naszej klinice
-    i zaproponuje odpowiedniego weterynarza.
+  <p class="text-muted" th:text="#{ai.subtitle}">
+    Opisz objawy swojego pupila, a AI zaproponuje odpowiedniego weterynarza.
   </p>
 
   <!-- ── Interfejs czatu ──────────────────────────────────────────────── -->
@@ -24,10 +23,8 @@
                   border:1px solid #dee2e6; border-radius:8px; padding:16px;
                   background:#f8f9fa; margin-bottom:16px;">
         <div class="ai-bubble ai-bubble--assistant">
-          <strong>AI Asystent:</strong>
-          Cześć! Opisz mi objawy swojego zwierzęcia, a dopasujemy odpowiedniego
-          specjalistę z naszego zespołu. Możesz też podać swoje nazwisko, jeśli
-          chcesz zobaczyć historię wizyt.
+          <strong th:text="|#{ai.assistantLabel}:|">AI Asystent:</strong>
+          <span th:text="#{ai.greeting}">Cześć! Opisz mi objawy swojego zwierzęcia.</span>
         </div>
       </div>
 
@@ -37,23 +34,24 @@
           <input id="user-input"
                  type="text"
                  class="form-control"
-                 placeholder="np. Mój kot ma ból zęba i nie je od dwóch dni…"
+                 th:placeholder="#{ai.placeholder}"
                  maxlength="500"
                  required
-                 aria-label="Wiadomość do AI Asystenta"/>
+                 th:aria-label="#{ai.inputLabel}"/>
           <button id="send-btn" type="submit" class="btn btn-primary">
             <span id="send-icon" class="fa fa-paper-plane" aria-hidden="true"></span>
-            <span id="send-label">Zapytaj</span>
+            <span id="send-label" th:text="#{ai.send}">Zapytaj</span>
           </button>
         </div>
-        <small class="text-muted">Maks. 500 znaków.</small>
+        <small class="text-muted" th:text="#{ai.limit}">Maks. 500 znaków.</small>
       </form>
 
       <!-- Pasek narzędzi (ukryty domyślnie) -->
       <div id="tools-info" class="mt-2" style="display:none;">
         <small class="text-success">
           <span class="fa fa-cogs" aria-hidden="true"></span>
-          Narzędzia AI wywołane: <span id="tools-list"></span>
+          <span th:text="#{ai.toolsCalled}">Narzędzia AI wywołane:</span>
+          <span id="tools-list"></span>
         </small>
       </div>
     </div>
@@ -63,26 +61,19 @@
       <div class="card border-primary">
         <div class="card-header bg-primary text-white">
           <span class="fa fa-plug" aria-hidden="true"></span>
-          Jak to działa?
+          <span th:text="#{ai.howItWorks}">Jak to działa?</span>
         </div>
         <div class="card-body" style="font-size:0.88rem;">
-          <p>
-            Ta zakładka to <strong>żywa integracja</strong> Spring PetClinic
-            z&nbsp;<strong>GitHub Copilot SDK</strong> (Python).
-          </p>
+          <p th:utext="#{ai.integrationSummary}">Integracja Spring PetClinic z GitHub Copilot SDK.</p>
           <ol class="ps-3 mb-2">
-            <li>Twoje pytanie trafia do <strong>Spring</strong> (:8080).</li>
-            <li>Spring proxy przekazuje je do <strong>Python FastAPI</strong> (:8081).</li>
-            <li>Mikroserwis uruchamia <strong>Copilot SDK</strong> z&nbsp;custom tools.</li>
-            <li>AI wywołuje narzędzie <code>get_available_vets</code>, które
-                odpytuje <strong>żywy endpoint <code>/vets</code></strong>
-                tej aplikacji.</li>
-            <li>AI analizuje dane i odpowiada po polsku.</li>
+            <li th:utext="#{ai.integrationStep1}">Pytanie trafia do Spring.</li>
+            <li th:utext="#{ai.integrationStep2}">Spring wywołuje FastAPI.</li>
+            <li th:utext="#{ai.integrationStep3}">FastAPI uruchamia Copilot SDK.</li>
+            <li th:utext="#{ai.integrationStep4}">AI pobiera dane weterynarzy.</li>
+            <li th:text="#{ai.integrationStep5}">AI odpowiada po polsku.</li>
           </ol>
-          <div class="alert alert-warning p-2 mb-0" style="font-size:0.82rem;">
-            <strong>Demo:</strong> Wymagany uruchomiony serwis Python.<br/>
-            <code>uvicorn ai_server:app --port 8081</code>
-          </div>
+          <div class="alert alert-warning p-2 mb-0" style="font-size:0.82rem;"
+               th:utext="#{ai.demo}">Wymagany uruchomiony serwis Python.</div>
         </div>
       </div>
     </div>
@@ -134,35 +125,43 @@
       const toolsInfo = document.getElementById('tools-info');
       const toolsList = document.getElementById('tools-list');
 
+      const labels = {
+        user: /*[[#{ai.userLabel}]]*/ 'Ty',
+        assistant: /*[[#{ai.assistantLabel}]]*/ 'AI Asystent',
+        warning: /*[[#{ai.warningLabel}]]*/ 'Uwaga',
+        send: /*[[#{ai.send}]]*/ 'Zapytaj',
+        thinking: /*[[#{ai.thinking}]]*/ 'Myślę...',
+        analyzing: /*[[#{ai.analyzing}]]*/ 'Analizuję dane weterynarzy...',
+        serverError: /*[[#{ai.serverError}]]*/ 'Błąd serwera.',
+        connectionError: /*[[#{ai.connectionError}]]*/ 'Nie można połączyć z serwisem AI.'
+      };
+
       function appendBubble(text, type) {
         const div = document.createElement('div');
         div.className = 'ai-bubble ai-bubble--' + type;
-        if (type === 'user') {
-          div.innerHTML = '<strong>Ty:</strong> ' + escapeHtml(text);
-        } else if (type === 'assistant') {
-          div.innerHTML = '<strong>AI Asystent:</strong> ' + escapeHtml(text);
+        if (type === 'user' || type === 'assistant') {
+          const label = document.createElement('strong');
+          label.textContent = (type === 'user' ? labels.user : labels.assistant) + ':';
+          div.append(label, document.createTextNode(' ' + text));
         } else if (type === 'thinking') {
-          div.innerHTML = '<span class="fa fa-spinner fa-spin"></span> ' + escapeHtml(text);
+          const spinner = document.createElement('span');
+          spinner.className = 'fa fa-spinner fa-spin';
+          spinner.setAttribute('aria-hidden', 'true');
+          div.append(spinner, document.createTextNode(' ' + text));
         } else {
-          div.innerHTML = '<strong>⚠️</strong> ' + escapeHtml(text);
+          const label = document.createElement('strong');
+          label.textContent = labels.warning + ':';
+          div.append(label, document.createTextNode(' ' + text));
         }
         history.appendChild(div);
         history.scrollTop = history.scrollHeight;
         return div;
       }
 
-      function escapeHtml(str) {
-        return String(str)
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;');
-      }
-
       function setBusy(busy) {
         sendBtn.disabled = busy;
         input.disabled   = busy;
-        sendLabel.textContent = busy ? 'Myślę…' : 'Zapytaj';
+        sendLabel.textContent = busy ? labels.thinking : labels.send;
         sendIcon.className = busy ? 'fa fa-spinner fa-spin' : 'fa fa-paper-plane';
       }
 
@@ -176,7 +175,7 @@
         input.value = '';
         setBusy(true);
 
-        const thinkingBubble = appendBubble('Analizuję dane weterynarzy…', 'thinking');
+        const thinkingBubble = appendBubble(labels.analyzing, 'thinking');
 
         try {
           const resp = await fetch('/api/ai/chat', {
@@ -189,17 +188,17 @@
           thinkingBubble.remove();
 
           if (!resp.ok) {
-            appendBubble(data.reply || 'Błąd serwera.', 'error');
+            appendBubble(data.reply || labels.serverError, 'error');
           } else {
             appendBubble(data.reply, 'assistant');
-            if (data.toolsCalled && data.toolsCalled.length > 0) {
-              toolsList.textContent = data.toolsCalled.join(', ');
+            if (data.tools_called && data.tools_called.length > 0) {
+              toolsList.textContent = data.tools_called.join(', ');
               toolsInfo.style.display = 'block';
             }
           }
         } catch (err) {
           thinkingBubble.remove();
-          appendBubble('Nie można połączyć z serwisem AI. Sprawdź czy mikroserwis Python jest uruchomiony.', 'error');
+          appendBubble(labels.connectionError, 'error');
         } finally {
           setBusy(false);
           input.focus();

@@ -19,6 +19,7 @@ Dodaj nowy endpoint REST GET /api/owners/statistics do OwnerController.java, kt�
   "mostPopularPetType": "<nazwa>"
 }
 Użyj istniejących repozytoriów. Po implementacji uruchom: .\mvnw.cmd compile
+(Windows) albo ./mvnw compile (Linux/macOS).
 ```
 
 ### Krok 2: Obserwuj pętlę
@@ -36,6 +37,7 @@ Użyj istniejących repozytoriów. Po implementacji uruchom: .\mvnw.cmd compile
 
 ```
 .\mvnw.cmd compile
+# Linux/macOS: ./mvnw compile
 ```
 
 Jeśli kompilacja przechodzi — sukces. Agent sam się naprawił.

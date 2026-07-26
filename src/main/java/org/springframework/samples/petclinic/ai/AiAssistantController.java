@@ -4,7 +4,6 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
@@ -77,7 +76,7 @@ class AiAssistantController {
 	public ResponseEntity<AiResponse> chat(@Valid @RequestBody AiRequest request) {
 		try {
 			byte[] jsonBody = objectMapper.writeValueAsBytes(Map.of("message", request.message()));
-			log.info("Wysylam do AI ({} bajtow): {}", jsonBody.length, new String(jsonBody, StandardCharsets.UTF_8));
+			log.info("Wysylam pytanie do AI ({} bajtow)", jsonBody.length);
 			HttpRequest httpRequest = HttpRequest.newBuilder()
 				.uri(URI.create(AI_SERVICE_URL + "/chat"))
 				.timeout(Duration.ofSeconds(120))
@@ -86,10 +85,9 @@ class AiAssistantController {
 				.build();
 			HttpResponse<byte[]> httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofByteArray());
 			if (httpResponse.statusCode() >= 400) {
-				String errBody = new String(httpResponse.body(), StandardCharsets.UTF_8);
-				log.error("AI service returned {}: {}", httpResponse.statusCode(), errBody);
+				log.error("AI service returned status {}", httpResponse.statusCode());
 				return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
-					.body(new AiResponse("Blad AI (" + httpResponse.statusCode() + "): " + errBody, List.of()));
+					.body(new AiResponse("Blad AI (" + httpResponse.statusCode() + ")", List.of()));
 			}
 			AiResponse response = objectMapper.readValue(httpResponse.body(), AiResponse.class);
 			return ResponseEntity.ok(response);

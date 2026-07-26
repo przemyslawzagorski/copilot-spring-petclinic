@@ -1,6 +1,6 @@
 # Ex 03: Generuj Javadoc inline
 
-> Faza 1 · ~3 min · Źródło: moduł 09
+> Faza 1 · ~3 min · Moduł 01
 
 **Po co:** Szybkie generowanie dokumentacji bez opuszczania kodu.
 

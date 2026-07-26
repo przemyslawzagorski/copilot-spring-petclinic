@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+
+<body>
+
+  <h2>
+    <th:block th:if="${hotelBooking['new']}" th:text="#{new}">New </th:block>
+    <th:block th:text="#{hotelBooking}">Hotel Booking</th:block>
+  </h2>
+
+  <b th:text="#{pet}">Pet</b>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th th:text="#{name}">Name</th>
+        <th th:text="#{birthDate}">Birth Date</th>
+        <th th:text="#{type}">Type</th>
+        <th th:text="#{owner}">Owner</th>
+      </tr>
+    </thead>
+    <tr>
+      <td th:text="${pet.name}"></td>
+      <td th:text="${#temporals.format(pet.birthDate, 'yyyy-MM-dd')}"></td>
+      <td th:text="${pet.type}"></td>
+      <td th:text="${owner?.firstName + ' ' + owner?.lastName}"></td>
+    </tr>
+  </table>
+
+  <form th:object="${hotelBooking}" class="form-horizontal" method="post">
+    <div class="form-group has-feedback">
+      <input th:replace="~{fragments/inputField :: input (#{checkInDate}, 'checkInDate', 'date')}" />
+      <input th:replace="~{fragments/inputField :: input (#{checkOutDate}, 'checkOutDate', 'date')}" />
+      <input th:replace="~{fragments/inputField :: input (#{notes}, 'notes', 'text')}" />
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <input type="hidden" name="petId" th:value="${pet.id}" />
+        <button class="btn btn-primary" type="submit" th:text="#{addHotelBooking}">Add Hotel Booking</button>
+      </div>
+    </div>
+  </form>
+
+  <br />
+  <b th:text="#{previousHotelBookings}">Previous Hotel Bookings</b>
+  <table class="table table-striped">
+    <tr>
+      <th th:text="#{checkInDate}">Check-in Date</th>
+      <th th:text="#{checkOutDate}">Check-out Date</th>
+      <th th:text="#{notes}">Notes</th>
+    </tr>
+    <tr th:if="${!hotelBooking['new']}" th:each="hotelBooking : ${pet.hotelBookings}">
+      <td th:text="${#temporals.format(hotelBooking.checkInDate, 'yyyy-MM-dd')}"></td>
+      <td th:text="${#temporals.format(hotelBooking.checkOutDate, 'yyyy-MM-dd')}"></td>
+      <td th:text="${hotelBooking.notes}"></td>
+    </tr>
+  </table>
+
+</body>
+
+</html>

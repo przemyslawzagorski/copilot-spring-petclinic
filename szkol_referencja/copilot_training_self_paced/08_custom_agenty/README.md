@@ -81,7 +81,8 @@ VS Code dostarcza 3 wbudowane agenty (nie trzeba ich tworzyć):
 
 ### 🔗 Żywe przykłady w `.github/agents/`
 
-W tym repozytorium jest 5 gotowych agentów — przeanalizuj ich budowę:
+W repozytorium są gotowe agenty do analizy, implementacji, review i prowadzenia
+ćwiczeń. Przeanalizuj między innymi:
 
 | Agent | Kluczowa cecha |
 |-------|---------------|
@@ -99,10 +100,11 @@ W tym repozytorium jest 5 gotowych agentów — przeanalizuj ich budowę:
 |---|-----------|------|
 | 🅱️ ex_18b | Migracja między językami — Java → Python | ~15 min |
 | 🅱️ ex_18c | Refaktoring architektury z AI | ~12 min |
-| ex_19 | Multi-agent: Planner → Executor | ~15 min |
-| ex_20 | Handoffs — przyciski przekazania | ~15 min |
-| ex_21 | Quality gate — Reviewer agent | ~15 min |
-| 🅱️ ex_21c | Bonus: pełny pipeline Plan→Execute→Review | ~20 min |
+| ex_19 | Twój pierwszy custom agent | ~10 min |
+| ex_20 | Handoff między agentami | ~12 min |
+| ex_21 | Triada agentów — Planner / Executor / Reviewer | ~15 min |
+| 🅱️ ex_21c | Feature Builder — agent koordynujący subagentów | ~12 min |
+| 🅱️ ex_31 | Autonomiczny agent na zadaniu (Copilot Coding Agent / Claude Workflows) | ~20 min |
 
 Pliki ćwiczeń: `exercises/`
 

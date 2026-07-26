@@ -94,6 +94,12 @@ public class Owner extends Person {
 		return this.pets;
 	}
 
+	/**
+	 * Adds the given pet to this owner's collection of pets.
+	 * <p>
+	 * Only new pets are added; existing pets are not duplicated in the collection.
+	 * @param pet the pet to add
+	 */
 	public void addPet(Pet pet) {
 		if (pet.isNew()) {
 			getPets().add(pet);
@@ -171,6 +177,23 @@ public class Owner extends Person {
 		Assert.notNull(pet, "Invalid Pet identifier!");
 
 		pet.addVisit(visit);
+	}
+
+	/**
+	 * Adds the given {@link HotelBooking} to the {@link Pet} with the given identifier.
+	 * @param petId the identifier of the {@link Pet}, must not be {@literal null}.
+	 * @param hotelBooking the hotel booking to add, must not be {@literal null}.
+	 */
+	public void addHotelBooking(Integer petId, HotelBooking hotelBooking) {
+
+		Assert.notNull(petId, "Pet identifier must not be null!");
+		Assert.notNull(hotelBooking, "Hotel booking must not be null!");
+
+		Pet pet = getPet(petId);
+
+		Assert.notNull(pet, "Invalid Pet identifier!");
+
+		pet.addHotelBooking(hotelBooking);
 	}
 
 }

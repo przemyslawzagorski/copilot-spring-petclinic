@@ -1,6 +1,6 @@
 # Ex 21: Triada agentów — Planner / Executor / Reviewer
 
-> Faza 6 · ~15 min · Źródło: moduł 13
+> Faza 6 · ~15 min · Moduł 08
 
 **Po co:** Pełny workflow wieloagentowy: planowanie → wykonanie → review z oceną jakości. Przejścia realizujesz przez `handoffs:` w frontmatter (przyciski handoff).
 

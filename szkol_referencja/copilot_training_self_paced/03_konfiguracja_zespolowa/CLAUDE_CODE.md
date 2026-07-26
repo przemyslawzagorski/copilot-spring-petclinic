@@ -106,7 +106,7 @@ szkol_referencja/copilot_training_self_paced/mcp_jira_wiki/.env
 
 Zamiast `.github/prompts/*.prompt.md` używasz `.claude/skills/<name>/SKILL.md` lub `.claude/commands/<name>.md`.
 
-**Ten projekt ma już 4 skills** — wywołaj je:
+**Ten projekt ma już 6 skills** — wywołaj przykładowe:
 ```
 /project-versions
 /method-deep-dive OwnerController#processCreationForm

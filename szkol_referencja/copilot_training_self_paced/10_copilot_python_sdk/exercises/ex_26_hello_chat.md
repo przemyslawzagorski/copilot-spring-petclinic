@@ -19,7 +19,7 @@ W katalogu `10_copilot_python_sdk/` utwórz plik:
 import asyncio
 
 from copilot import CopilotClient
-from copilot.generated.session_events import AssistantMessageData, SessionIdleData
+from copilot.session_events import AssistantMessageData, SessionIdleData
 from copilot.session import PermissionHandler
 
 

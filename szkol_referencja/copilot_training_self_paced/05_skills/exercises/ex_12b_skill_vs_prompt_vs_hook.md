@@ -1,6 +1,6 @@
 # Ex 12b: Skill vs Prompt vs Hook vs Agent — kiedy co wybrać
 
-> Faza 4 · ~10 min · Źródło: moduł 04
+> Faza 4 · ~10 min · Moduł 05
 > Dokumentacja: https://code.visualstudio.com/docs/copilot/customization/agent-skills
 
 **Po co:** Copilot oferuje 5 mechanizmów customizacji. Jeśli wybierzesz zły — albo nie zadziała, albo zadziała w złym momencie. To ćwiczenie buduje intuicję.

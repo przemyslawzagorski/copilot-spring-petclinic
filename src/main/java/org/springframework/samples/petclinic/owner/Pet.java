@@ -58,6 +58,10 @@ public class Pet extends NamedEntity {
 	@OrderBy("date ASC")
 	private final Set<Visit> visits = new LinkedHashSet<>();
 
+	@OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OrderBy("checkInDate ASC")
+	private final Set<HotelBooking> hotelBookings = new LinkedHashSet<>();
+
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
@@ -80,6 +84,15 @@ public class Pet extends NamedEntity {
 
 	public void addVisit(Visit visit) {
 		getVisits().add(visit);
+	}
+
+	public Collection<HotelBooking> getHotelBookings() {
+		return this.hotelBookings;
+	}
+
+	public void addHotelBooking(HotelBooking hotelBooking) {
+		hotelBooking.setPet(this);
+		getHotelBookings().add(hotelBooking);
 	}
 
 }

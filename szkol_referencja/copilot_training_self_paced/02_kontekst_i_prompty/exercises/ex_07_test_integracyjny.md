@@ -1,6 +1,6 @@
 # Ex 07: Test integracyjny z kontrolowanym kontekstem
 
-> Faza 2 · ~10 min · Źródło: moduł 05
+> Faza 2 · ~10 min · Moduł 02
 
 **Po co:** Generowanie testów to killer feature Copilota. Ale musisz wskazać co testować i jak.
 
@@ -14,7 +14,8 @@
 ```
 
 3. Przejrzyj wygenerowany test.
-4. Skopiuj do `src/test/java/` i uruchom: `.\mvnw.cmd test`
+4. Skopiuj do `src/test/java/` i uruchom: `.\mvnw.cmd test` (Windows) lub
+	`./mvnw test` (Linux/macOS)
 
 **Spodziewany wynik:** Klasa testowa z 3 metodami `@Test`, mockowanym `OwnerRepository`, i asercjami na status HTTP i model.
 

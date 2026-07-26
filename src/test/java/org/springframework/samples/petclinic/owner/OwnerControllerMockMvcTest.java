@@ -29,6 +29,7 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.flash;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -163,6 +164,17 @@ class OwnerControllerMockMvcTest {
 			.andExpect(model().attributeHasFieldErrors("owner", "lastName"))
 			.andExpect(model().attributeHasFieldErrorCode("owner", "lastName", "notFound"))
 			.andExpect(view().name("owners/findOwners"));
+	}
+
+	@Test
+	void should_returnOwnerSummary_when_aiSearchesByLastName() throws Exception {
+		mockMvc.perform(get("/api/owners").param("lastName", "Franklin"))
+			.andExpect(status().isOk())
+			.andExpect(jsonPath("$[0].id").value(TEST_OWNER_ID))
+			.andExpect(jsonPath("$[0].firstName").value("George"))
+			.andExpect(jsonPath("$[0].lastName").value("Franklin"))
+			.andExpect(jsonPath("$[0].pets[0].name").value("Max"))
+			.andExpect(jsonPath("$[0].pets[0].visits[0].date").exists());
 	}
 
 	// --- GET /owners/{ownerId}/edit ---

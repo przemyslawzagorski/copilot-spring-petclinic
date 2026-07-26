@@ -51,3 +51,6 @@ INSERT INTO visits VALUES (default, 7, '2013-01-01', 'rabies shot');
 INSERT INTO visits VALUES (default, 8, '2013-01-02', 'rabies shot');
 INSERT INTO visits VALUES (default, 8, '2013-01-03', 'neutered');
 INSERT INTO visits VALUES (default, 7, '2013-01-04', 'spayed');
+
+INSERT INTO hotel_bookings VALUES (default, 7, '2026-07-10', '2026-07-14', 'Needs morning medication');
+INSERT INTO hotel_bookings VALUES (default, 8, '2026-08-01', '2026-08-03', 'Prefers a quiet room');

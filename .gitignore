@@ -1,7 +1,6 @@
 HELP.md
 pom.xml.bak
 target/
-!.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 .gradle
@@ -44,9 +43,15 @@ out/
 
 ### Local tooling and env ###
 .copilot/
-.mvn/
+.mvn/*
+!.mvn/wrapper/
+.mvn/wrapper/*
+!.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.properties
 .adk/
 .venv/
+__pycache__/
+*.py[cod]
 szkol_referencja/copilot_training_self_paced/mcp_jira_wiki/.env
 
 ### Local OS and temp ###
@@ -64,6 +69,7 @@ _site/
 # Large MCP toolbox binary
 szkol_referencja/**/toolbox
 szkol_referencja/**/toolbox.exe
+szkol_referencja/**/toolbox.local.yaml
 **/mcp_for_databases/toolbox
 **/mcp_for_databases/toolbox.exe
 

@@ -169,7 +169,7 @@ Dodatkowe przykłady hookowe (gotowe do kopiowania): folder `examples/hooks/` w 
 
 | # | Ćwiczenie | Czas |
 |---|-----------|------|
-| ex_11 | Pre-run hook — guardrail | ~10 min |
+| ex_11 | Pre-run hook — guardrail | ~15 min |
 | ex_18 | Hook vs Prompt — kiedy co | ~10 min |
 | 🅱️ ex_21d | Scoped Hooks (Preview) — hooki na agenta | ~8 min |
 

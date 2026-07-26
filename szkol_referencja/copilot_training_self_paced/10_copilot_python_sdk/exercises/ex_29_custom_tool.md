@@ -21,7 +21,7 @@ import asyncio
 from pydantic import BaseModel, Field
 
 from copilot import CopilotClient, define_tool
-from copilot.generated.session_events import AssistantMessageData, SessionIdleData
+from copilot.session_events import AssistantMessageData, SessionIdleData
 from copilot.session import PermissionHandler
 
 # --- Definicja narzędzia ---

@@ -51,3 +51,6 @@ INSERT INTO visits (pet_id, visit_date, description) SELECT 7, '2010-03-04', 'ra
 INSERT INTO visits (pet_id, visit_date, description) SELECT 8, '2011-03-04', 'rabies shot' WHERE NOT EXISTS (SELECT * FROM visits WHERE id=2);
 INSERT INTO visits (pet_id, visit_date, description) SELECT 8, '2009-06-04', 'neutered' WHERE NOT EXISTS (SELECT * FROM visits WHERE id=3);
 INSERT INTO visits (pet_id, visit_date, description) SELECT 7, '2008-09-04', 'spayed' WHERE NOT EXISTS (SELECT * FROM visits WHERE id=4);
+
+INSERT INTO hotel_bookings (pet_id, check_in_date, check_out_date, notes) SELECT 7, '2026-07-10', '2026-07-14', 'Needs morning medication' WHERE NOT EXISTS (SELECT * FROM hotel_bookings WHERE id=1);
+INSERT INTO hotel_bookings (pet_id, check_in_date, check_out_date, notes) SELECT 8, '2026-08-01', '2026-08-03', 'Prefers a quiet room' WHERE NOT EXISTS (SELECT * FROM hotel_bookings WHERE id=2);

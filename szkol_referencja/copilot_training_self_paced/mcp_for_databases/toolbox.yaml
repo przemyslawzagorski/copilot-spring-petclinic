@@ -16,11 +16,11 @@ sources:
     kind: "postgres"
 
     # Connection parameters (only these fields are supported)
-    host: "ep-green-frost-aiegln2l-pooler.c-4.us-east-1.aws.neon.tech"
+    host: "YOUR_POSTGRES_HOST"
     port: 5432
-    database: "neondb"
-    user: "neondb_owner"
-    password: "npg_ESr0gTptknu1"
+    database: "YOUR_DATABASE"
+    user: "YOUR_DATABASE_USER"
+    password: "YOUR_DATABASE_PASSWORD"
 
     # Example for Neon.tech:
     # Parse: postgresql://neondb_owner:PASSWORD@ep-xxxxx.us-east-2.aws.neon.tech/neondb
@@ -121,6 +121,31 @@ tools:
       ORDER BY rating DESC
       LIMIT $1;
 
+  # Execute an arbitrary read-only SELECT query
+  # ---------------------------------------------------------------------------
+  # The "postgres-execute-sql" kind exposes a single free-form `sql` parameter
+  # instead of a fixed `statement`. The agent supplies the full SQL text at
+  # call time, which makes it ideal for ad-hoc exploration of the database.
+  #
+  # WARNING: this tool runs WHATEVER SQL the agent sends - it does not enforce
+  # SELECT-only access by itself. According to the official docs it is meant for
+  # "developer assistant workflows with human-in-the-loop" and should NOT be
+  # used by autonomous production agents. To make it truly read-only, connect
+  # the `hotels-database` source with a database user that only has SELECT
+  # privileges (e.g. a dedicated read-only role).
+  # ---------------------------------------------------------------------------
+  execute-select:
+    kind: postgres-execute-sql
+    source: hotels-database
+    description: >
+      Execute an arbitrary read-only SELECT query against the hotels database
+      and return the resulting rows. Pass the complete SQL statement in the
+      `sql` parameter, for example:
+      "SELECT name, location, rating FROM hotels WHERE rating > 4 ORDER BY rating DESC LIMIT 5".
+      Use this for ad-hoc questions that the predefined hotel-search tools do not
+      cover. Only SELECT statements are intended - do not issue INSERT, UPDATE,
+      DELETE or DDL.
+
 # ============================================================================
 # TOOLSETS - Groups of tools that can be used together
 # ============================================================================
@@ -132,4 +157,5 @@ toolsets:
     - search-hotels-by-price-range
     - get-hotel-by-id
     - get-top-rated-hotels
+    - execute-select
 

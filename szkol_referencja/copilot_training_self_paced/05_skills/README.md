@@ -93,7 +93,7 @@ Czytaj pom.xml i podaj wersje w tabeli Markdown...
 - Kiedy go używać (a kiedy NIE)
 - Procedura krok po kroku
 - Przykłady wejścia i wyjścia
-- Referencje do plików w folderze skilla: `[skrypt](./check-versions.sh)`
+- Referencje do plików w folderze skilla, np. ``[skrypt](./check-versions.sh)``
 
 ### Wywoływanie skilli
 
@@ -222,7 +222,8 @@ argument-hint: "[klasa kontrolera] [opcjonalnie: konkretna metoda]"
    - Happy path (HTTP 200/302)
    - Walidacja błędów (HTTP 400)
    - Brak danych (HTTP 404)
-4. Uruchom: `./mvnw test -pl . -Dtest=NazwaTestuKontrolera`
+4. Uruchom: `.\mvnw.cmd test "-Dtest=NazwaTestuKontrolera"` (Windows) lub
+    `./mvnw test -Dtest=NazwaTestuKontrolera` (Linux/macOS)
 
 ## Konwencje
 - Klasa testowa: `{Controller}IntegrationTest`
@@ -265,12 +266,19 @@ argument-hint: "[numer PR lub opis problemu]"
 
 ---
 
+## 📝 Ćwiczenia
+
+| # | Ćwiczenie | Plik | Czas |
+|---|-----------|------|------|
+| ex_12 | Skill raportujący wersje projektu | [ex_12](exercises/ex_12_skill_wersje.md) | ~10 min |
+| ex_12b | Skill vs Prompt vs Hook | [ex_12b](exercises/ex_12b_skill_vs_prompt_vs_hook.md) | ~10 min |
+
 ## ✅ Best Practices
 
 1. **Jeden skill = jedna umiejętność.** Nie rób mega-skilla „do wszystkiego". Lepiej 5 małych niż 1 duży.
 2. **Description decyduje o auto-load.** Pisz konkretnie co skill robi I kiedy go użyć. Złe: *"Pomaga z testami"*. Dobre: *"Generuje testy integracyjne MockMvc dla kontrolerów Spring. Użyj gdy testujesz endpoint HTTP."*
 3. **Nazwa folderu = name.** Jeśli folder to `webapp-testing/`, to `name: webapp-testing`. Inaczej skill nie zadziała.
-4. **Referencje relatywne.** W body odwołuj się do plików w folderze `[szablon](./template.java)` — Copilot wczyta je gdy będą potrzebne.
+4. **Referencje relatywne.** W body odwołuj się do plików w folderze, np. ``[szablon](./template.java)`` — Copilot wczyta je gdy będą potrzebne.
 5. **Nie powtarzaj instrukcji.** Jeśli reguła dotyczy ZAWSZE (np. „używaj JUnit 5"), to daj ją do `.instructions.md`, nie do skilla.
 6. **Shared skills — weryfikuj!** Przed użyciem cudzych skilli z [awesome-copilot](https://github.com/github/awesome-copilot) lub [anthropics/skills](https://github.com/anthropics/skills) — przeczytaj `SKILL.md` i sprawdź bezpieczeństwo.
 

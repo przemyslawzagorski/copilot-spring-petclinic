@@ -7,12 +7,13 @@
 | 27 | PetClinic assistant — automatyzacja | [ex_27](exercises/ex_27_petclinic_assistant.md) | ~25 min |
 | 🅱️ 28 | Bonus: streaming odpowiedzi | [ex_28](exercises/ex_28_streaming.md) | ~15 min |
 | 🅱️ 29 | Bonus: własne narzędzie (custom tool) | [ex_29](exercises/ex_29_custom_tool.md) | ~25 min |
+| 🅱️ 30 | Live demo: AI Asystent w PetClinic | [ex_30](exercises/ex_30_live_demo.md) | ~30 min |
 
-**ex_28 i ex_29 są bonusowe.**
+**ex_28, ex_29 i ex_30 są bonusowe.**
 
 ## Kolejność
 
-ex_25 → ex_26 → ex_27 → (ex_28) → (ex_29)
+ex_25 → ex_26 → ex_27 → (ex_28) → (ex_29) → (ex_30)
 
 ## Wymagania wstępne
 
@@ -23,6 +24,7 @@ ex_25 → ex_26 → ex_27 → (ex_28) → (ex_29)
 ## Co dostaniesz po module
 
 - Działające środowisko `github-copilot-sdk` w lokalnym `.venv`.
-- 5 skryptów `.py` pokazujących kolejno: hello, automatyzację, streaming, custom tool.
+- 6 skryptów `.py` pokazujących kolejno: setup, hello, automatyzację, streaming,
+  custom tool i live demo FastAPI.
 - Zrozumienie różnicy między SDK, CLI i Copilot Chat.
 - Bazę pod własne automatyzacje (np. bot CI, batch refactor, generator raportów).

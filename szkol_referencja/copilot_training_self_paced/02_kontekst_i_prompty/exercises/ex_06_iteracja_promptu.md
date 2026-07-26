@@ -1,6 +1,6 @@
 # Ex 06: Iteracja promptu v1 → v2 → v3
 
-> Faza 2 · ~10 min · Źródło: moduł 05
+> Faza 2 · ~10 min · Moduł 02
 
 **Po co:** Pierwszy prompt rzadko jest idealny. Nauczysz się iterować i poprawiać wynik.
 

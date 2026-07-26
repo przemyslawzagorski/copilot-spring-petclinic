@@ -41,7 +41,7 @@
   <br />
   <br />
   <br />
-  <h2 th:text="#{petsAndVisits}">Pets and Visits</h2>
+  <h2 th:text="#{petsVisitsAndHotelBookings}">Pets, Visits and Hotel Bookings</h2>
 
   <table class="table table-striped">
 
@@ -71,6 +71,26 @@
           <tr>
             <td><a th:href="@{__${owner.id}__/pets/__${pet.id}__/edit}" th:text="#{editPet}">Edit Pet</a></td>
             <td><a th:href="@{__${owner.id}__/pets/__${pet.id}__/visits/new}" th:text="#{addVisit}">Add Visit</a></td>
+          </tr>
+        </table>
+      </td>
+      <td valign="top">
+        <table class="table-condensed">
+          <thead>
+            <tr>
+              <th th:text="#{checkInDate}">Check-in Date</th>
+              <th th:text="#{checkOutDate}">Check-out Date</th>
+              <th th:text="#{notes}">Notes</th>
+            </tr>
+          </thead>
+          <tr th:each="hotelBooking : ${pet.hotelBookings}">
+            <td th:text="${#temporals.format(hotelBooking.checkInDate, 'yyyy-MM-dd')}"></td>
+            <td th:text="${#temporals.format(hotelBooking.checkOutDate, 'yyyy-MM-dd')}"></td>
+            <td th:text="${hotelBooking?.notes}"></td>
+          </tr>
+          <tr>
+            <td colspan="3"><a th:href="@{__${owner.id}__/pets/__${pet.id}__/hotel-bookings/new}"
+                th:text="#{addHotelBooking}">Add Hotel Booking</a></td>
           </tr>
         </table>
       </td>

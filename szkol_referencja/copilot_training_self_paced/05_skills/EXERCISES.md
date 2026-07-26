@@ -2,6 +2,16 @@
 
 > Źródło: https://code.visualstudio.com/docs/copilot/customization/agent-skills
 
+## Indeks ćwiczeń modułu
+
+| # | Ćwiczenie | Plik | Czas |
+|---|-----------|------|------|
+| 12 | Skill raportujący wersje projektu | [ex_12](exercises/ex_12_skill_wersje.md) | ~10 min |
+| 12b | Skill vs Prompt vs Hook | [ex_12b](exercises/ex_12b_skill_vs_prompt_vs_hook.md) | ~10 min |
+
+Poniżej znajduje się rozszerzony warsztat trenerski z dodatkowymi wariantami tych
+ćwiczeń. Podstawową ścieżką uczestnika są pliki wskazane w tabeli powyżej.
+
 Format każdego ćwiczenia:
 - Cel
 - Prompt kursanta (bazowy)
@@ -138,7 +148,8 @@ argument-hint: "[nazwa kontrolera] [opcjonalnie: metoda]"
    - Happy path (HTTP 200/302)
    - Walidacja (HTTP 400)
    - Not found (HTTP 404)
-4. Uruchom: `./mvnw test -Dtest=NazwaTestu`
+4. Uruchom: `.\mvnw.cmd test "-Dtest=NazwaTestu"` (Windows) lub
+    `./mvnw test -Dtest=NazwaTestu` (Linux/macOS)
 
 ## Konwencje projektu
 - Klasa: `{Controller}MockMvcTest`
@@ -238,7 +249,7 @@ Pomóż mi napisać testy MockMvc dla VetController.
 - Używa konwencji z SKILL.md (nazewnictwo klasy, metod).
 
 ### Jak zweryfikować
-1. Wygenerowana klasa kompiluje się: `./mvnw compile -pl . -Dtest=VetControllerMockMvcTest`
+1. Wygenerowana klasa kompiluje się i uruchamia: `./mvnw test -Dtest=VetControllerMockMvcTest`
 2. Używa `@WebMvcTest` (nie `@SpringBootTest`)
 3. Zawiera minimum 2 metody testowe (happy path + edge case)
 4. Copilot odwołuje się do szablonu lub przykładu z folderu skilla
@@ -246,7 +257,7 @@ Pomóż mi napisać testy MockMvc dla VetController.
 ### Typowe błędy i korekta
 | Błąd | Korekta |
 |---|---|
-| Copilot ignoruje szablon i pisze od zera | Dodaj w SKILL.md: "ZAWSZE użyj szablonu z [test-template.java](./test-template.java)" |
+| Copilot ignoruje szablon i pisze od zera | Dodaj w SKILL.md: „ZAWSZE użyj szablonu z `[test-template.java](./test-template.java)`” |
 | Test używa @SpringBootTest | Skill mówi @WebMvcTest — wzmocnij instrukcję w body |
 | Brak MockBean | Dodaj do procedury: "Krok 0: zidentyfikuj zależności kontrolera → MockBean" |
 

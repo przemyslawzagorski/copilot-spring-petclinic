@@ -1,6 +1,6 @@
 # Ex 02: Inline edit — refaktor metody
 
-> Faza 1 · ~5 min · Źródło: moduł 09
+> Faza 1 · ~5 min · Moduł 01
 
 **Po co:** Nauczyć się edytować kod bezpośrednio w pliku, bez przełączania do chatu.
 

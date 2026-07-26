@@ -1,54 +1,92 @@
-# Reguły dla Claude Code w tym projekcie
+# CLAUDE.md
 
-## Reguły kodu
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-- Język kodu: Java 17+, używaj rekordów zamiast POJO gdzie to możliwe.
-- Framework: Spring Boot 4.x, Spring Data JPA.
-- Testy: JUnit 5 + Mockito. Nigdy JUnit 4.
-- Nazewnictwo: camelCase, klasy z dużej litery, pakiety lowercase.
-- Komentarze: Javadoc po polsku dla klas publicznych.
-- Bezpieczeństwo: zawsze waliduj dane wejściowe. Nigdy nie loguj haseł.
+## Code rules
 
-## Struktura projektu
+- **Java:** 17+, use records instead of POJOs where feasible
+- **Framework:** Spring Boot 4.0.3, Spring Data JPA
+- **Tests:** JUnit 5 + Mockito exclusively (never JUnit 4)
+- **Naming:** camelCase for methods/vars, PascalCase for classes, lowercase for packages
+- **Security:** Always validate input at system boundaries; never log passwords or secrets
+- **Code formatting:** Runs via Maven plugin (`mvn spring-javaformat:apply`); committed code should be pre-formatted
+
+## Project structure
 
 ```
-copilot-spring-petclinic/
-├── src/main/java/org/springframework/samples/petclinic/
-│   ├── ai/              # AI Assistant Controller (ex_30 live demo)
-│   ├── model/           # BaseEntity, Person
-│   ├── owner/           # Owner, Pet, Visit, OwnerController
-│   ├── vet/             # Vet, Specialty, VetController
-│   └── system/          # CacheConfig, WelcomeController
-├── src/test/java/       # Testy JUnit 5 + Mockito
-├── szkol_referencja/    # Materiały szkoleniowe (Copilot + Claude Code)
-│   ├── copilot_training_self_paced/   # 10 modułów szkolenia Copilot
-│   └── claude_code_guide/            # Przewodnik Claude Code (START TUTAJ)
-├── .github/             # Konfiguracja Copilot (agents/, skills/, hooks/, prompts/)
-├── .claude/             # Konfiguracja Claude Code (agents/, skills/)
-├── docs/                # Dokumentacja MkDocs
-└── pom.xml              # Java 17, Spring Boot 4.0.3
+src/main/java/org/springframework/samples/petclinic/
+├── ai/              # AI Assistant chat controller + Thymeleaf UI (ex_30)
+├── model/           # BaseEntity, Person (base classes)
+├── owner/           # Owner, Pet, Visit entities and OwnerController
+├── vet/             # Vet, Specialty entities and VetController
+└── system/          # CacheConfig, WelcomeController, app-level setup
+
+src/test/java/      # Test classes (JUnit 5 + Mockito)
+docs/               # MkDocs documentation
 ```
 
-## Uruchamianie projektu
+## Common tasks
 
+**Run application:**
 ```bash
-./mvnw spring-boot:run    # Maven (zalecane)
-./gradlew bootRun         # Gradle
-# Aplikacja: http://localhost:8080
+./mvnw spring-boot:run
+# Then http://localhost:8080
 ```
 
-## Materiały szkoleniowe
+**Run tests:**
+```bash
+./mvnw test                    # All tests
+./mvnw test -Dtest=OwnerTests  # Specific test class
+```
 
-Szkolenie dotyczy GitHub Copilot, ale zawiera też adaptacje dla Claude Code:
-- `szkol_referencja/claude_code_guide/README.md` — przewodnik Claude Code (start tutaj)
-- W każdym module szkolenia znajdziesz `CLAUDE_CODE.md` z adaptacją ćwiczeń
+**Code quality:**
+```bash
+./mvnw clean verify            # Full build + tests + code checks
+./mvnw checkstyle:check        # Checkstyle only
+./mvnw jacoco:report           # Code coverage report (target/site/jacoco/index.html)
+./mvnw spring-javaformat:apply # Format code (must do before commit)
+```
 
-## Dla uczestnika szkolenia Claude Code
+**Database:**
+- Default: H2 in-memory (auto-populated at startup)
+- H2 console: http://localhost:8080/h2-console
+- Switch to MySQL: `./mvnw spring-boot:run -Dspring-boot.run.arguments="--spring.profiles.active=mysql"`
+- Switch to PostgreSQL: `./mvnw spring-boot:run -Dspring-boot.run.arguments="--spring.profiles.active=postgres"`
 
-Pliki konfiguracyjne Claude Code w tym projekcie:
-- `.claude/agents/` — subagenci (mentor, reviewer, tdd-expert, security-expert, feature-builder)
-- `.claude/skills/` — slash commands (/project-versions, /method-deep-dive, /controller-testing, /dependency-check)
-- `.claude/settings.json` — uprawnienia i hooki
-- `.mcp.json` — serwery MCP
+## Claude Code tools in this project
 
-Zacznij od: `szkol_referencja/claude_code_guide/README.md`
+**Agents** (in `.claude/agents/`):
+- `mentor` — guides through training modules step-by-step
+- `reviewer` — reviews Spring MVC controllers for quality/security (read-only)
+- `tdd-expert` — leads Red-Green-Refactor cycle with JUnit 5
+- `security-expert` — analyzes code for OWASP vulnerabilities (read-only)
+- `feature-builder` — builds new features by understanding architecture first
+- `exercise-validator` — validates training material consistency
+- `mkdocs-documentation` — generates/updates MkDocs docs
+
+**Skills** (slash commands):
+- `/project-versions` — shows Java, Spring Boot, Maven versions
+- `/method-deep-dive` — analyzes a method's flow, dependencies, security risks
+- `/controller-testing` — generates MockMvc integration tests for controllers
+- `/dependency-check` — scans for dependency vulnerabilities
+
+## Architecture notes
+
+**AI Assistant (ex_30):**
+The `ai/` package contains a live demo of a simple AI-powered chat interface. The `AiAssistantController` processes user messages and integrates with a Thymeleaf template. This is not production code — it's a teaching example.
+
+**Entity hierarchy:**
+- `BaseEntity` — base class with ID and equality
+- `Person` — base for user types (Owner, Vet)
+- `NamedEntity` — entity with a `name` field (Specialty, etc.)
+
+**Caching:**
+Default caching is configured in `CacheConfig`. Pets and vets are cached; owners are not. Cache keys follow Spring conventions.
+
+## Training materials
+
+This project includes self-paced training modules:
+- `szkol_referencja/copilot_training_self_paced/` — 10 GitHub Copilot modules (modules 01–10)
+- `szkol_referencja/claude_code_guide/` — Claude Code adaptation guide
+
+Each module includes a `CLAUDE_CODE.md` file explaining how exercises differ when using Claude Code instead of Copilot.

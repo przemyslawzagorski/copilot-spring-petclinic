@@ -28,5 +28,9 @@ Wzoruj się na przykładach w `examples/`:
 
 ## Krok 4 — Uruchom testy
 ```bash
-./mvnw test -pl spring-petclinic -Dtest=<NazwaTestu>
+# Windows PowerShell
+.\mvnw.cmd test "-Dtest=NazwaTestu"
+
+# Linux/macOS
+./mvnw test -Dtest=NazwaTestu
 ```

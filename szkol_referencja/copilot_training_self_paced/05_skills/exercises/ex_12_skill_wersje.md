@@ -1,6 +1,6 @@
 # Ex 12: Skill — raport wersji projektu (SKILL.md)
 
-> Faza 4 · ~10 min · Źródło: moduł 04
+> Faza 4 · ~10 min · Moduł 05
 > Dokumentacja: https://code.visualstudio.com/docs/copilot/customization/agent-skills
 
 **Po co:** Skill to folder z plikiem `SKILL.md` — specjalistyczna umiejętność, którą Copilot ładuje automatycznie lub na żądanie (`/`). W odróżnieniu od prompt file, skill może zawierać zasoby (skrypty, szablony, przykłady) i jest zgodny z otwartym standardem [agentskills.io](https://agentskills.io/).

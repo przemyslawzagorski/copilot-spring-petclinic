@@ -1,6 +1,6 @@
 # Ex 17: Anti-injection w instructions
 
-> Faza 5 · ~5 min · Źródło: moduł 10
+> Faza 5 · ~5 min · Moduł 07
 
 **Po co:** Copilot instructions mogą zawierać reguły anty-prompt-injection — ochrona przed złośliwym kontekstem.
 

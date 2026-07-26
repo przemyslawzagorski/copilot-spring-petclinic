@@ -26,7 +26,7 @@ import pytest
 # pozwala importowac _common z solutions/
 SOLUTIONS_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(SOLUTIONS_DIR))
-from _common import ensure_copilot_cli_on_path, repo_root  # noqa: E402
+from _common import repo_root  # noqa: E402
 
 from copilot import CopilotClient  # noqa: E402
 
@@ -40,8 +40,6 @@ def pytest_configure(config: pytest.Config) -> None:
 
 def _check_auth() -> tuple[bool, str]:
     """Sprawdza autoryzacje — zwraca (is_auth, status_message)."""
-    ensure_copilot_cli_on_path()
-
     async def _probe() -> tuple[bool, str]:
         async with CopilotClient() as client:
             auth = await client.get_auth_status()
@@ -63,7 +61,7 @@ def pytest_collection_modifyitems(config: pytest.Config, items: list[pytest.Item
         reason=(
             "Brak autoryzacji GitHub Copilot. Zaloguj sie: 1) `npm i -g @github/copilot` "
             "2) uruchom `copilot` i wpisz `/login`, ALBO 3) ustaw zmienna srodowiskowa "
-            f"GITHUB_TOKEN. Status SDK: {_AUTH_MSG!r}"
+            f"COPILOT_GITHUB_TOKEN. Status SDK: {_AUTH_MSG!r}"
         )
     )
     for item in items:

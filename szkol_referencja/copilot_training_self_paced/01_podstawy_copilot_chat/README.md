@@ -73,7 +73,7 @@ W tym repozytorium masz już skonfigurowane elementy Copilota, które zobaczysz 
 | ex_01 | Chat o projekcie (`@workspace`) | ~5 min |
 | ex_02 | Inline edit — refaktor metody (Ctrl+I) | ~5 min |
 | 🅱️ ex_02b | Edycja wielu plików w trybie Agent | ~10 min |
-| ex_03 | Generuj Javadoc inline | ~5 min |
+| ex_03 | Generuj Javadoc inline | ~3 min |
 | 🅱️ ex_03b | Next Edit Suggestions — Tab prediction | ~5 min |
 | ex_04 | Terminal przez chat | ~5 min |
 

@@ -23,8 +23,8 @@ from __future__ import annotations
 import asyncio
 from pathlib import Path
 
-from copilot import CopilotClient, SubprocessConfig
-from copilot.generated.session_events import (
+from copilot import CopilotClient
+from copilot.session_events import (
     AssistantMessageData,
     SessionIdleData,
 )
@@ -49,8 +49,7 @@ Nie modyfikuj kodu Java. Tylko czytaj i zapisz raport.
 
 
 async def main() -> None:
-    config = SubprocessConfig(cwd=str(REPO_ROOT))
-    async with CopilotClient(config) as client:
+    async with CopilotClient(working_directory=str(REPO_ROOT)) as client:
         async with await client.create_session(
             on_permission_request=PermissionHandler.approve_all,
             model="gpt-5",
@@ -88,13 +87,15 @@ python petclinic_assistant.py
 Skrypt może trwać 20-60 sekund (model czyta wiele plików). W trakcie zobaczysz strumień komunikatów asystenta.
 
 **Spodziewany wynik:**
-- Powstaje plik `petclinic_domain_report.md` z tabelą encji (`Owner`, `Pet`, `PetType`, `Visit`).
+- Powstaje plik `petclinic_domain_report.md` z tabelą pięciu encji (`Owner`,
+  `Pet`, `PetType`, `Visit`, `HotelBooking`).
 - Konsola: ostatnie zdanie asystenta typu „Raport zapisany do ...".
 
 ### 3. Zweryfikuj raport
 
 ```powershell
 type petclinic_domain_report.md
+# Linux/macOS: cat petclinic_domain_report.md
 ```
 
 Otwórz plik i sprawdź czy lista encji pokrywa się z faktycznym kodem. Jeśli model coś pominął — zobacz `src/main/java/org/springframework/samples/petclinic/owner/` ręcznie.
@@ -104,8 +105,7 @@ Otwórz plik i sprawdź czy lista encji pokrywa się z faktycznym kodem. Jeśli 
 Jeśli chcesz zablokować polecenia shell, podmień handler:
 
 ```python
-from copilot.generated.session_events import PermissionRequest
-from copilot.session import PermissionRequestResult
+from copilot import PermissionRequest, PermissionRequestResult
 
 
 def deny_shell(request: PermissionRequest, invocation: dict) -> PermissionRequestResult:
@@ -120,7 +120,7 @@ on_permission_request=deny_shell,
 
 ## Co właśnie się stało
 
-- Ustawiliśmy `cwd` na root repo (`SubprocessConfig(cwd=...)`) — Copilot ma widoczność na kod Java.
+- Ustawiliśmy `working_directory` na root repo — Copilot ma widoczność na kod Java.
 - Custom prompt opisuje **zadanie + ścieżki + format wyniku + ograniczenia** (nie modyfikuj kodu).
 - Agent użył wewnętrznych narzędzi: `view`, `glob`, `read_file`, `edit_file` (utworzenie raportu).
 - `approve_all` automatycznie zatwierdził wszystkie te wywołania.
@@ -134,6 +134,6 @@ on_permission_request=deny_shell,
 | Model edytuje kod Java | **Wzmocnij prompt:** „TYLKO READ-ONLY. Nie wywołuj `edit_file` na plikach `.java`." |
 | Kosztuje za dużo premium requests | Skróć zakres do jednej encji albo użyj `gpt-4o-mini` |
 
-**Spodziewany wynik:** Plik `petclinic_domain_report.md` istnieje i zawiera 4 encje z relacjami.
+**Spodziewany wynik:** Plik `petclinic_domain_report.md` istnieje i zawiera 5 encji z relacjami.
 
 **Następne ćwiczenie (bonus):** [ex_28](ex_28_streaming.md) — streaming odpowiedzi w czasie rzeczywistym.

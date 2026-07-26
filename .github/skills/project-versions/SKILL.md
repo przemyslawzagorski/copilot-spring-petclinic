@@ -29,6 +29,9 @@ Wygeneruj tabelę:
 
 | Technologia | Wersja w projekcie | Najnowsza stabilna | Status |
 |---|---|---|---|
-| Java | ? | 21 | ✅/⚠️ |
-| Spring Boot | ? | 3.4.x | ✅/⚠️ |
+| Java | ? | sprawdź w oficjalnym źródle | ✅/⚠️ |
+| Spring Boot | ? | sprawdź na spring.io/projects/spring-boot | ✅/⚠️ |
 | ... | ... | ... | ... |
+
+Nie hardkoduj „najnowszych” wersji w raporcie. Odczytaj je w momencie wykonania
+skilla i podaj datę sprawdzenia.

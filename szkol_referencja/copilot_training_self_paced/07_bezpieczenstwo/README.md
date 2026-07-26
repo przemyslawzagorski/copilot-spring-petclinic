@@ -58,9 +58,9 @@ Użyj: `@senior-security-code-review przejrzyj src/main/java/...`
 
 | # | Ćwiczenie | Czas |
 |---|-----------|------|
-| ex_16 | Security review — analiza kodu pod kątem ryzyk | ~15 min |
+| ex_16 | Security review — analiza kodu pod kątem ryzyk | ~8 min |
 | 🅱️ ex_16b | Generowanie diagramów Mermaid | ~5 min |
-| ex_17 | Anti prompt-injection w instrukcjach repo | ~10 min |
-| 🅱️ ex_21b | Bonus: zaawansowana analiza bezpieczeństwa | ~15 min |
+| ex_17 | Anti prompt-injection w instrukcjach repo | ~5 min |
+| 🅱️ ex_21b | Bonus: zaawansowana analiza bezpieczeństwa | ~8 min |
 
 Pliki ćwiczeń: `exercises/`

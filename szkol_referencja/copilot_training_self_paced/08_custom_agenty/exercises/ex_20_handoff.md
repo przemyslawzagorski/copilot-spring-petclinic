@@ -1,6 +1,6 @@
 # Ex 20: Handoff między agentami
 
-> Faza 6 · ~12 min · Źródło: moduł 07
+> Faza 6 · ~12 min · Moduł 08
 
 **Po co:** Agenty mogą przekazywać sobie zadania przez **`handoffs:` w frontmatter**. Jeden badacz, drugi implementator — jak w realnym zespole.
 
@@ -10,12 +10,12 @@
 
 ```markdown
 ---
-name: researcher
+name: Researcher
 description: "Agent badawczy — analizuje, nie implementuje"
 tools: [read, search, todo, agent]
 handoffs:
-  - label: Przekaż do implementera
-    agent: implementer
+  - label: Przekaż do Implementera
+    agent: Implementer
     prompt: |-
       Zrealizuj plan badawczy z poprzedniej odpowiedzi.
       Trzymaj się wskazanych plików, ograniczeń i kryteriów sukcesu.
@@ -41,14 +41,14 @@ Analizujesz problem i tworzysz plan implementacji.
 - success criteria
 - open risks
 
-Na końcu odpowiedzi dodaj zdanie: "Plan gotowy. Użyj przycisku handoff: Przekaż do implementera."
+Na końcu odpowiedzi dodaj zdanie: "Plan gotowy. Użyj przycisku handoff: Przekaż do Implementera."
 ```
 
 2. Utwórz `.github/agents/implementer.agent.md`:
 
 ```markdown
 ---
-name: implementer
+name: Implementer
 description: "Agent implementujący — realizuje plan"
 tools: [read, search, edit, execute, todo]
 ---
@@ -74,7 +74,7 @@ Chcę dodać pole email do encji Owner z walidacją. Zbadaj co trzeba zmienić.
 4. Po otrzymaniu planu:
 
 ```
-Kliknij przycisk handoff `Przekaż do implementera`.
+Kliknij przycisk handoff `Przekaż do Implementera`.
 
 (Fallback: ręcznie przełącz agenta na `implementer` i wklej prompt z planem.)
 ```
@@ -84,6 +84,7 @@ Kliknij przycisk handoff `Przekaż do implementera`.
 ## Checklist walidacji
 
 - W `researcher.agent.md` istnieje sekcja `handoffs:` z `label`, `agent`, `prompt`.
+- Wartość `agent: Implementer` jest identyczna z polem `name` agenta docelowego.
 - Po odpowiedzi `researcher` pojawia się przycisk handoff.
 - `implementer` dostaje kontekst planu i nie rozszerza zakresu.
 

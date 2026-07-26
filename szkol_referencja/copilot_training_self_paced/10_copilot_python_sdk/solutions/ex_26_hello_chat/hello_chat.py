@@ -3,13 +3,13 @@ Rozwiązanie ex_26 — Hello chat.
 
 Cel: pokazać minimalny szkielet sesji Copilot SDK:
 1. otwieramy `CopilotClient` (asynchroniczny context manager)
-2. tworzymy sesję z modelem `gpt-5` i wymaganym handlerem permissions
+2. tworzymy sesję z modelem `auto` i wymaganym handlerem permissions
 3. rejestrujemy handler eventów (`on_event`) i czekamy na `SessionIdleData`
 4. drukujemy finalną odpowiedź modelu
 
 Wymagana autoryzacja (jedno z poniższych):
 - aktywna sesja po `copilot` (login zrobiony w CLI), albo
-- `GITHUB_TOKEN` w środowisku (PAT z dostępem do Copilot).
+- `COPILOT_GITHUB_TOKEN` w środowisku (token z dostępem do Copilot).
 
 Uruchomienie:  `python hello_chat.py`
 """
@@ -17,15 +17,9 @@ Uruchomienie:  `python hello_chat.py`
 from __future__ import annotations
 
 import asyncio
-import sys
-
 from copilot import CopilotClient
-from copilot.generated.session_events import AssistantMessageData, SessionIdleData
+from copilot.session_events import AssistantMessageData, SessionIdleData
 from copilot.session import PermissionHandler
-
-# pozwala importować _common.py z katalogu nadrzędnego (solutions/)
-sys.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parents[1]))
-from _common import ensure_copilot_cli_on_path  # noqa: E402
 
 
 PROMPT = (
@@ -35,8 +29,6 @@ PROMPT = (
 
 
 async def main() -> int:
-    ensure_copilot_cli_on_path()
-
     async with CopilotClient() as client:
         async with await client.create_session(
             on_permission_request=PermissionHandler.approve_all,

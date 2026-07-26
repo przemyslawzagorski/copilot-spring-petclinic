@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.owner;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -32,6 +33,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.validation.Valid;
@@ -118,6 +120,19 @@ class OwnerController {
 		return addPaginationModel(page, model, ownersResults);
 	}
 
+	@GetMapping("/api/owners")
+	@ResponseBody
+	public List<OwnerSummary> findOwnersForAi(@RequestParam(defaultValue = "") String lastName) {
+		String normalizedLastName = lastName.trim();
+		if (normalizedLastName.length() > 50) {
+			throw new IllegalArgumentException("Last name must not exceed 50 characters");
+		}
+		return this.owners.findByLastNameStartingWith(normalizedLastName, Pageable.unpaged())
+			.stream()
+			.map(OwnerSummary::from)
+			.toList();
+	}
+
 	private String addPaginationModel(int page, Model model, Page<Owner> paginated) {
 		List<Owner> listOwners = paginated.getContent();
 		model.addAttribute("currentPage", page);
@@ -131,6 +146,32 @@ class OwnerController {
 		int pageSize = 5;
 		Pageable pageable = PageRequest.of(page - 1, pageSize);
 		return owners.findByLastNameStartingWith(lastname, pageable);
+	}
+
+	record OwnerSummary(Integer id, String firstName, String lastName, List<PetSummary> pets) {
+
+		static OwnerSummary from(Owner owner) {
+			return new OwnerSummary(owner.getId(), owner.getFirstName(), owner.getLastName(),
+					owner.getPets().stream().map(PetSummary::from).toList());
+		}
+
+	}
+
+	record PetSummary(Integer id, String name, List<VisitSummary> visits) {
+
+		static PetSummary from(Pet pet) {
+			return new PetSummary(pet.getId(), pet.getName(),
+					pet.getVisits().stream().map(VisitSummary::from).toList());
+		}
+
+	}
+
+	record VisitSummary(Integer id, LocalDate date, String description) {
+
+		static VisitSummary from(Visit visit) {
+			return new VisitSummary(visit.getId(), visit.getDate(), visit.getDescription());
+		}
+
 	}
 
 	@GetMapping("/owners/{ownerId}/edit")

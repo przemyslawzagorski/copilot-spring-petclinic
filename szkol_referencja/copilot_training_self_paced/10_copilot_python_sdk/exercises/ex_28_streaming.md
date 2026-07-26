@@ -16,7 +16,7 @@
 import asyncio
 
 from copilot import CopilotClient
-from copilot.generated.session_events import (
+from copilot.session_events import (
     AssistantMessageData,
     AssistantMessageDeltaData,
     SessionIdleData,
@@ -81,7 +81,7 @@ Uruchom ex_26 i ex_28 obok siebie. Różnica w UX jest spora.
 Jeśli używasz modelu z reasoning (np. `gpt-5` w trybie wysokim), dostaniesz też `AssistantReasoningDeltaData`:
 
 ```python
-from copilot.generated.session_events import AssistantReasoningDeltaData
+from copilot.session_events import AssistantReasoningDeltaData
 
 # w match:
 case AssistantReasoningDeltaData() as data:

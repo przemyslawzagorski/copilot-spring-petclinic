@@ -3,7 +3,8 @@
 ## 🎯 Cele modułu
 
 - Przeprowadzić pełny cykl Red-Green-Refactor z aktywnym wsparciem Copilota.
-- Generować testy jednostkowe z użyciem JUnit 5 + Mockito.
+- Generować testy JUnit 5 dopasowane do warstwy: Mockito dla logiki jednostkowej i
+	`@DataJpaTest` dla zapytań repozytorium.
 - Debugować z Copilotem: analiza stack trace, sugestie poprawek.
 - Poznać self-correction loop — agent naprawia własne błędy.
 
@@ -23,7 +24,7 @@ REFACTOR → Ulepszenie bez łamania testów (Copilot refaktoryzuje)
 
 Copilot doskonale generuje testy z kontekstu. Wystarczy:
 - komentarz z intencją: `// test: should return empty list when no visits found`
-- albo prompt w Chat: `Napisz test jednostkowy JUnit 5 dla metody findByLastName w OwnerRepository`
+- albo prompt w Chat: `Napisz test JUnit 5 dla metody findByLastNameStartingWith w OwnerRepository`
 
 **Zasada:** Test powinien failować — jeśli przechodzi od razu, albo jest za prosty, albo metoda już istnieje.
 
@@ -72,8 +73,8 @@ To wymaga trybu **Agent** z dostępem do terminala.
 | # | Ćwiczenie | Czas |
 |---|-----------|------|
 | ex_13 | TDD Red — napisz failujący test | ~10 min |
-| ex_14 | TDD Green — minimalna implementacja | ~10 min |
-| ex_15 | TDD Refactor — ulepszenie bez łamania testów | ~10 min |
+| ex_14 | TDD Green — minimalna implementacja | ~8 min |
+| ex_15 | TDD Refactor — ulepszenie bez łamania testów | ~8 min |
 | 🅱️ ex_15b | Self-Correction Loop — agent naprawia własne błędy | ~10 min |
 
 Pliki ćwiczeń: `exercises/`

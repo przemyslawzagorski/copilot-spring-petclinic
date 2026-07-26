@@ -1,12 +1,12 @@
 # Ex 09: Instrukcje per ścieżka (applyTo)
 
-> Faza 3 · ~8 min · Źródło: moduł 06
+> Faza 3 · ~8 min · Moduł 03
 
 **Po co:** Różne pliki potrzebują różnych reguł. Testy inne niż kontrolery. To się robi przez `applyTo`.
 
 ## Co zrobić
 
-1. Utwórz plik `java.instructions.md` w katalogu głównym spring-petclinic:
+1. Utwórz plik `.github/instructions/java.instructions.md`:
 
 ```markdown
 ---
@@ -17,7 +17,7 @@ applyTo: "**/*.java"
 - Każda metoda publiczna musi mieć Javadoc.
 ```
 
-2. Utwórz plik `test.instructions.md`:
+2. Utwórz plik `.github/instructions/test.instructions.md`:
 
 ```markdown
 ---
@@ -32,9 +32,13 @@ applyTo: "**/test/**/*.java"
 3. Przetestuj — otwórz plik testowy i w inline chat (Ctrl+I) wpisz:
 
 ```
-Wygeneruj test dla metody findByLastName w OwnerRepository.
+Wygeneruj test dla metody findByLastNameStartingWith w OwnerRepository.
 ```
 
 **Spodziewany wynik:** Test z `@DisplayName`, `should_...when_...`, sekcjami given/when/then.
+
+> **Ważne:** VS Code wykrywa repozytoryjne pliki `*.instructions.md` w
+> `.github/instructions/`. Pliki o tych nazwach umieszczone w katalogu głównym nie
+> zostaną automatycznie załadowane.
 
 **Więcej:** `03_konfiguracja_zespolowa/EXERCISES.md`
