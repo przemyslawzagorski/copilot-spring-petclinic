@@ -8,6 +8,11 @@ import os
 import sys
 from datetime import datetime
 
+# Windows: konsola bywa w cp1250, a JSON musi byc UTF-8.
+# Bez tego polskie znaki w komunikatach hooka wychodza jako krzaki.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
 input_data = json.loads(sys.stdin.read())
 trigger = input_data.get("trigger", "unknown")
 transcript_path = input_data.get("transcript_path", "")

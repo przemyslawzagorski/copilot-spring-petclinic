@@ -28,8 +28,19 @@ i odwołaj się do nich przez {klucz}. Nie zmieniaj istniejących pól.
 > **Uwaga na ścieżkę:** pliki komunikatów leżą w
 > `src/main/resources/messages/`, nie bezpośrednio w `resources/`. Repo ma
 > tłumaczenia `de`, `en`, `es`, `fa`, `ko`, `pt`, `ru`, `tr` — **polskiego nie
-> ma**. Jeśli chcesz go dodać, utwórz `messages_pl.properties` w tym samym
-> katalogu; to dobre ćwiczenie dodatkowe.
+> ma**.
+
+> ⚠️ **Nie dodawaj `messages_pl.properties` „na próbę".** Projekt ma test
+> `I18nPropertiesSyncTest`, który porównuje klucze we wszystkich lokalizacjach.
+> Niekompletny plik **wywala build** komunikatem `Missing keys in
+> messages_pl.properties`. Sprawdzone: dwa klucze zamiast **83** = czerwony
+> build.
+>
+> Jeśli chcesz dodać polski, to osobne zadanie na 83 klucze — i całkiem dobre
+> ćwiczenie na Copilota. Poproś o przetłumaczenie **całego**
+> `messages.properties` naraz, a potem uruchom
+> `./mvnw test -Dtest=I18nPropertiesSyncTest`, żeby zweryfikować komplet.
+> To zresztą świetny przykład tego, jak testy repo pilnują roboty agenta.
 
 ## Porównaj wyniki
 

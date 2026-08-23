@@ -22,4 +22,9 @@ H2. Metoda `findByCity` to jedna linia: sygnatura metody w interfejsie repozytor
 
 **Nie działa?** Jeśli Copilot dodał za dużo, powiedz: "Za dużo kodu. Zostaw TYLKO sygnaturę metody w interfejsie."
 
+**Zweryfikowane na tym repo:** minimalna wersja to dosłownie
+`List<Owner> findByCity(String city);` plus `import java.util.List;`. Trzy testy
+z ex_13 przechodzą — łącznie z tym dla `null`, bo derived query z `null`
+zwraca pustą listę bez rzucania wyjątku.
+
 **Następny krok:** Ex 15 (Refactor)

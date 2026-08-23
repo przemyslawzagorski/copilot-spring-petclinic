@@ -55,6 +55,12 @@ git checkout -- <plik>     # cofnij pojedynczy plik
 git checkout -- .          # cofnij wszystko (uwaga: bezpowrotnie)
 ```
 
+> ⚠️ **Skasowałeś plik testowy? Uruchom `./mvnw clean test`, nie samo
+> `./mvnw test`.** Maven nie usuwa z `target/test-classes` klas po skasowanych
+> źródłach i nadal je uruchamia. Objaw jest mylący: build pada na teście,
+> którego już nie ma w projekcie. Sprawdzone na tym repo przy cofaniu
+> ćwiczeń z modułu 06.
+
 Dlaczego to ma znaczenie:
 
 | Bez sprzątania | Co się psuje |
