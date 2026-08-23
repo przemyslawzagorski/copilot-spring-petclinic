@@ -35,3 +35,8 @@ Nie usuwaj istniejących pól.
 - **Plan** — tworzy plan krok po kroku, ale czeka na Twoje potwierdzenie przed zmianami
 
 **Tip:** Im precyzyjniej opiszesz co zmienić, tym lepszy wynik. Agent sam znajdzie pliki — nie musisz ich wskazywać ręcznie.
+
+> 🧹 **Posprzątaj — to ważne akurat tutaj.** `git checkout -- .`
+> Pole `email` w `Owner` dodaje również ex_20 i ex_21c. Jeśli zostawisz je
+> teraz, tamte ćwiczenia zobaczą gotowy wynik i nie pokażą przekazania
+> między agentami.

@@ -36,9 +36,12 @@ Stwórz `.github/hooks/sensitive-guard.json`:
 }
 ```
 
-### 2. Utwórz skrypt hooka
+### 2. Skrypt hooka — ten już jest w repo
 
-Stwórz `scripts/hooks/block-sensitive.py`:
+> 📁 `scripts/hooks/block-sensitive.py` **istnieje**. Otwórz go i porównaj
+> z listingiem poniżej, zamiast pisać od zera. Plik JSON z kroku 1 tworzysz
+> sam — i to jest właściwa część tego ćwiczenia, bo bez niego skrypt jest
+> martwy.
 
 ```python
 #!/usr/bin/env python3

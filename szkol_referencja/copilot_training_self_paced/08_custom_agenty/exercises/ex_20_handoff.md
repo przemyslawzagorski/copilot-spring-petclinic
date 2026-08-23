@@ -4,9 +4,15 @@
 
 **Po co:** Agenty mogą przekazywać sobie zadania przez **`handoffs:` w frontmatter**. Jeden badacz, drugi implementator — jak w realnym zespole.
 
+> 📁 **Obaj agenci już istnieją w repo** — `.github/agents/researcher.agent.md`
+> i `implementer.agent.md`. Listingi poniżej są do **porównania**, nie do
+> przepisania. Otwórz oba pliki obok siebie i zwróć uwagę na jedno: `handoffs:`
+> jest zadeklarowane **tylko u Researchera**. Przekazanie jest jednokierunkowe
+> i to autor agenta decyduje, dokąd prowadzi.
+
 ## Co zrobić
 
-1. Utwórz `.github/agents/researcher.agent.md`:
+1. Otwórz `.github/agents/researcher.agent.md` i porównaj z listingiem:
 
 ```markdown
 ---
@@ -44,7 +50,7 @@ Analizujesz problem i tworzysz plan implementacji.
 Na końcu odpowiedzi dodaj zdanie: "Plan gotowy. Użyj przycisku handoff: Przekaż do Implementera."
 ```
 
-2. Utwórz `.github/agents/implementer.agent.md`:
+2. Otwórz `.github/agents/implementer.agent.md` i porównaj:
 
 ```markdown
 ---
@@ -87,5 +93,17 @@ Kliknij przycisk handoff `Przekaż do Implementera`.
 - Wartość `agent: Implementer` jest identyczna z polem `name` agenta docelowego.
 - Po odpowiedzi `researcher` pojawia się przycisk handoff.
 - `implementer` dostaje kontekst planu i nie rozszerza zakresu.
+
+## 5. Zepsuj handoff — tu jest właściwa nauka
+
+W `researcher.agent.md` zmień `agent: Implementer` na `agent: implementer`
+(mała litera) i powtórz krok 3.
+
+**Spodziewany wynik:** przycisk handoff przestaje działać albo znika. Wartość
+`agent:` musi być **dokładnie** równa polu `name` agenta docelowego — to
+najczęstsza przyczyna „handoff mi nie działa" i jedyna rzecz z tego ćwiczenia,
+którą naprawdę warto zapamiętać.
+
+> 🧹 **Posprzątaj:** `git checkout -- .github/agents/researcher.agent.md`
 
 **Więcej:** `08_custom_agenty/EXERCISES.md`

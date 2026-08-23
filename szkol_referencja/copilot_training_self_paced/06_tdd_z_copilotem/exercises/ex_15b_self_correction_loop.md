@@ -46,4 +46,10 @@ Jeśli kompilacja przechodzi — sukces. Agent sam się naprawił.
 
 **Kiedy to nie działa?** Przy błędach logicznych (kod się kompiluje, ale robi coś złego). Self-correction łapie tylko błędy kompilacji/runtime. Logikę musisz weryfikować sam (testami!).
 
-**Wniosek:** Agent Mode ≠ autopilot. To pair programmer, który Sam naprawia literówki i brakujące importy, ale decyzje architektoniczne są Twoje.
+**Wniosek:** Agent Mode ≠ autopilot. To pair programmer, który sam naprawia literówki i brakujące importy, ale decyzje architektoniczne są Twoje.
+
+> 🧹 **Posprzątaj — tu kończy się cykl TDD.** Do tej pory zmiany
+> z ex_13–ex_15 miały zostawać (jedna budowała na drugiej). Teraz cofnij
+> wszystko: `git checkout -- .` oraz usuń utworzony `OwnerRepositoryTest.java`.
+> Endpoint `/api/owners/statistics` z tego ćwiczenia nie jest częścią
+> projektu i zostanie z Tobą do końca szkolenia, jeśli go zostawisz.

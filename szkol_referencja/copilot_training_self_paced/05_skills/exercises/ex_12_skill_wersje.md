@@ -13,15 +13,20 @@
 | Tekst w `copilot-instructions.md` | Folder z instrukcjami + opcjonalnymi zasobami |
 | Sekcja w `package.json` | Plik SKILL.md z YAML frontmatter (`name`, `description`) |
 
+> 📁 **Ten skill już istnieje w repo** — `.github/skills/project-versions/SKILL.md`.
+> Dlatego kroki 1–2 są **do przeczytania, nie do przepisania**. Twoja robota
+> zaczyna się w kroku 3 (test) i w kroku 5 (zepsuj i napraw), gdzie sprawdzasz,
+> od czego naprawdę zależy, czy skill zadziała.
+
 ## Co zrobić
 
-### 1. Utwórz folder skilla
+### 1. Otwórz istniejący skill
 
 ```
 .github/skills/project-versions/SKILL.md
 ```
 
-### 2. Wpisz zawartość SKILL.md
+### 2. Przeczytaj jego zawartość
 
 ```markdown
 ---
@@ -80,6 +85,22 @@ Wpisz `/skills` w chat → otwiera się menu → skill `project-versions` powini
 - Java powinna być 17
 - Spring Boot powinien być 4.0.3
 - Zależności powinny mieć poprawne wersje
+
+### 5. Zepsuj skill i zobacz, co go zabija
+
+Trzy eksperymenty — po każdym przywróć stan poprzedni:
+
+| Co zmieniasz | Co sprawdzasz | Spodziewany efekt |
+|---|---|---|
+| Zmień `name:` na `wersje-projektu` (folder zostaje `project-versions/`) | `/project-versions` w menu | Skill znika z listy — nazwa folderu musi zgadzać się z `name` |
+| Skróć `description` do `"Raportuje wersje"` | Zapytaj naturalnym językiem: „Jakie wersje używa ten projekt?" | Auto-load przestaje trafiać — bez „Użyj gdy…" model nie wie, kiedy sięgnąć |
+| Usuń pierwszy `---` z frontmattera | Cokolwiek | Skill nie jest wykrywany wcale |
+
+**To jest właściwa treść tego ćwiczenia.** Napisanie działającego `SKILL.md`
+zajmuje pięć minut; wiedza, dlaczego przestał działać, oszczędza godziny.
+
+> 🧹 **Posprzątaj:** przywróć oryginalną treść pliku (`git checkout --
+> .github/skills/project-versions/SKILL.md`), zanim przejdziesz do ex_12b.
 
 ## Kluczowe zasady (zapamiętaj!)
 

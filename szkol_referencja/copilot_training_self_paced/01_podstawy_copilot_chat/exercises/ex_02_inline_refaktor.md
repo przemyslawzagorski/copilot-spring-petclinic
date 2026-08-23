@@ -12,14 +12,26 @@
 4. Wpisz:
 
 ```
-Uprość tę metodę używając Stream API. Zachowaj logikę.
+Wydziel z tej metody osobną metodę prywatną odpowiedzialną za ustalenie
+lastName (obsługa null → pusty string). Zachowaj zachowanie i komentarze.
 ```
 
 5. Przejrzyj propozycję i kliknij Accept/Discard.
 
-**Spodziewany wynik:** Copilot zaproponuje wersję z `.stream().filter()` zamiast warunkowego if/else.
+**Spodziewany wynik:** nowa metoda prywatna (np. `resolveLastName`) i wywołanie
+w miejscu dotychczasowego `if (lastName == null)`. Reszta metody bez zmian.
+
+> **Dlaczego nie „użyj Stream API"?** Bo `processFindForm` nie iteruje po
+> kolekcji — to ciąg guard clause'ów zwracających różne widoki
+> (`findOwners`, `redirect:`, paginacja). Nie ma tu czego zamienić na
+> `.stream().filter()`. Jeśli o to poprosisz, Copilot albo odmówi, albo
+> wymyśli coś sztucznego — i to jest **dobry pierwszy test** na to, czy model
+> potrafi powiedzieć „to nie ma sensu". Spróbuj, jeśli chcesz zobaczyć różnicę.
 
 **Nie działa?** Zaznacz DOKŁADNIE ciało metody (od `{` do `}`). Ctrl+I działa na zaznaczeniu.
+
+> 🧹 **Posprzątaj:** `git checkout -- src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java`
+> — kolejne ćwiczenia zakładają oryginalną treść pliku.
 
 ## Bonus: Identyfikacja code smells
 

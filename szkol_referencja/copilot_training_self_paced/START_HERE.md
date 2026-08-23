@@ -41,6 +41,43 @@ Każdy moduł ma README (teoria), EXERCISES.md (index ćwiczeń) i folder `exerc
 
 ---
 
+## Stan repo między ćwiczeniami — przeczytaj przed startem
+
+Wiele ćwiczeń każe agentowi zmienić kod: dodać pole do encji, zrefaktoryzować
+metodę, dopisać endpoint. **Te zmiany nie są celem — celem jest obserwacja, jak
+narzędzie do nich doszło.**
+
+**Zasada: po każdym ćwiczeniu wracaj do czystego stanu.**
+
+```bash
+git status                 # zobacz, co ćwiczenie zmieniło
+git checkout -- <plik>     # cofnij pojedynczy plik
+git checkout -- .          # cofnij wszystko (uwaga: bezpowrotnie)
+```
+
+Dlaczego to ma znaczenie:
+
+| Bez sprzątania | Co się psuje |
+|---|---|
+| ex_02b dodaje pole `email` do `Owner` | ex_20 i ex_21c każą zrobić **to samo** — dostajesz „już jest", zamiast zobaczyć handoff w akcji |
+| ex_10b refaktoryzuje `processFindForm` trzema modelami | ex_16 robi security review tego pliku i ocenia już nie ten kod, co opisuje ćwiczenie |
+| ex_15b dopisuje endpoint `/api/owners/statistics` | zostaje w projekcie do końca szkolenia |
+
+**Wyjątki — to zostaw:**
+
+- **Cykl TDD (ex_13 → ex_14 → ex_15)** jest kumulatywny z założenia. Sprzątaj
+  dopiero po ex_15.
+- **Pliki konfiguracyjne, które sam tworzysz** (`.github/instructions/*`,
+  `.github/agents/reviewer.agent.md`, `.copilotignore`) — kolejne ćwiczenia na
+  nich bazują.
+- **Testy charakteryzujące z ex_06c** — to Twoja siatka bezpieczeństwa.
+
+> 💡 Najprościej: zrób `git commit` przed każdym modułem. Wtedy `git reset
+> --hard` wraca do znanego punktu, a przy okazji ćwiczysz nawyk, który
+> ex_11b pokazuje jako jedyną granicę odporną na agenta.
+
+---
+
 ## Agent mentor
 
 W Copilot Chat wybierz agenta `mentor` i wpisz np. `ćwiczenie 5` — poprowadzi Cię krok po kroku.

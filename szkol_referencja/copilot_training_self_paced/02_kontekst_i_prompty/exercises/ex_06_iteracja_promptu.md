@@ -20,8 +20,16 @@ Dodaj walidację Bean Validation do pól firstName i lastName: oba niepuste, 2-3
 
 **v3 (najlepszy — dodajesz kontekst techniczny):**
 ```
-Dodaj walidację jak w v2. Użyj adnotacji jakarta.validation. Dodaj custom message_pl w messages.properties. Nie zmieniaj istniejących pól.
+Dodaj walidację jak w v2. Użyj adnotacji z pakietu jakarta.validation.
+Komunikaty błędów wynieś do src/main/resources/messages/messages.properties
+i odwołaj się do nich przez {klucz}. Nie zmieniaj istniejących pól.
 ```
+
+> **Uwaga na ścieżkę:** pliki komunikatów leżą w
+> `src/main/resources/messages/`, nie bezpośrednio w `resources/`. Repo ma
+> tłumaczenia `de`, `en`, `es`, `fa`, `ko`, `pt`, `ru`, `tr` — **polskiego nie
+> ma**. Jeśli chcesz go dodać, utwórz `messages_pl.properties` w tym samym
+> katalogu; to dobre ćwiczenie dodatkowe.
 
 ## Porównaj wyniki
 

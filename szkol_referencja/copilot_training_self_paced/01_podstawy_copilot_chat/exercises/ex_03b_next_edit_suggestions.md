@@ -6,18 +6,31 @@
 
 ## Co zrobić
 
-1. Otwórz `Owner.java`
-2. Znajdź pole `firstName` i zmień nazwe getter z `getFirstName` na `retrieveFirstName` (ręcznie)
-3. **Nie rób nic** — poczekaj 1-2 sekundy
-4. Copilot powinien podświetlić kolejną edycję: zmianę `getLastName` → `retrieveLastName` (spójny wzorzec)
+1. Otwórz `src/main/java/org/springframework/samples/petclinic/model/Person.java`
+
+   > `firstName` i `lastName` są w klasie bazowej `Person`, **nie** w `Owner`.
+   > `Owner` ma tylko `address`, `city`, `telephone` i `pets` — resztę
+   > dziedziczy.
+
+2. Zmień nazwę gettera `getFirstName` na `retrieveFirstName` (ręcznie)
+3. **Nie rób nic** — poczekaj 1–2 sekundy
+4. Copilot powinien podświetlić kolejną edycję: `getLastName` → `retrieveLastName` (spójny wzorzec)
 5. Naciśnij **Tab** aby zaakceptować, lub **Esc** aby odrzucić
+
+> 🧹 **Posprzątaj:** `git checkout -- src/main/java/org/springframework/samples/petclinic/model/Person.java`
+> — zmieniona nazwa gettera zepsuje kompilację w innych miejscach.
 
 ## Drugi scenariusz
 
 1. Otwórz `OwnerController.java`
-2. Dodaj adnotację `@Valid` przed parametrem `Owner owner` w jednej metodzie
-3. Copilot zasugeruje dodanie `@Valid` w kolejnych metodach z tym samym parametrem
-4. Tab → Tab → Tab — kolejne sugestie w łańcuchu
+2. Znajdź `processFindForm` (~linia 97) — jako jedyna z metod przyjmujących
+   `Owner owner` **nie ma** adnotacji `@Valid`. Dodaj ją.
+3. Copilot może zasugerować spójne zmiany w pozostałych metodach z tym samym parametrem
+4. Tab → Tab — kolejne sugestie w łańcuchu
+
+> Ten scenariusz bywa mniej wyrazisty niż pierwszy: `processCreationForm`
+> i `processUpdateOwnerForm` **już mają** `@Valid`, więc wzorzec jest prawie
+> domknięty. Jeśli nic nie zaproponuje — to poprawny wynik, nie błąd.
 
 **Spodziewany wynik:** Copilot przewiduje powtarzalne edycje na podstawie wzorca Twojej ostatniej zmiany.
 

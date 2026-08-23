@@ -112,4 +112,8 @@ zawsze.
 
 ---
 
+> 🧹 **Posprzątaj:** `git checkout -- .` — część A zostawia zmiany w encji
+> `Owner`, których checkpoint mógł nie cofnąć w całości. To zresztą dobra
+> pointa tego ćwiczenia.
+
 **Powiązane:** ex_11 (hook blokujący — obrona *przed*), ex_18 (hook kontra prompt)
