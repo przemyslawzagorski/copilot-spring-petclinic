@@ -7,7 +7,7 @@
 ## Co zrobić
 
 1. Otwórz `OwnerController.java`
-2. Zaznacz sygnaturę metody `initFindForm` (~linia 79)
+2. Zaznacz sygnaturę metody `initFindForm` (~linia 92)
 3. **Ctrl+I** i wpisz:
 
 ```

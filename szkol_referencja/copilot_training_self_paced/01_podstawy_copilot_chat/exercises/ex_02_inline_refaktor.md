@@ -7,7 +7,7 @@
 ## Co zrobić
 
 1. Otwórz `src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java`
-2. Zaznacz całą metodę `processFindForm` (~linia 85)
+2. Zaznacz całą metodę `processFindForm` (~linia 97)
 3. Naciśnij **Ctrl+I** (inline chat)
 4. Wpisz:
 

@@ -1,6 +1,6 @@
 # Ex 22: Bootstrap MCP Server w FastAPI
 
-> Faza 7 · ~10 min · Źródło: moduł 11
+> Faza 7 · ~10 min · Źródło: moduł 09
 
 **Po co:** MCP Server rozszerza Copilot o zewnętrzne dane i narzędzia. Budujesz go od pustego folderu.
 

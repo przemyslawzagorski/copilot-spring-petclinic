@@ -1,6 +1,6 @@
 # Ex 23: Endpoint MCP z publicznym API
 
-> Faza 7 · ~12 min · Źródło: moduł 11
+> Faza 7 · ~12 min · Źródło: moduł 09
 
 **Po co:** MCP Server odbiera prompt od Copilota i zwraca dane z zewnętrznego źródła. Tu: JSONPlaceholder.
 

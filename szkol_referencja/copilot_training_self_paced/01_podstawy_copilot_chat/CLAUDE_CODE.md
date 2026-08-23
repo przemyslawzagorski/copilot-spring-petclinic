@@ -13,8 +13,8 @@
 | Inline Chat (Ctrl+I) | Opisz zmianę w prompcie lub zaznacz kod w VSCode |
 | Quick Chat (Ctrl+Shift+Alt+L) | `/btw pytanie` — szybkie pytanie bez dodawania do historii |
 | Tryb Agent (edytuje pliki) | Domyślny tryb — Claude Code zawsze może edytować |
-| Tryb Ask (tylko odpowiada) | Brak trybu — wszystkie narzędzia zawsze dostępne |
-| Tryb Plan (plan → potwierdzenie) | `/plan` lub `claude --plan` — plan przed implementacją |
+| Tryb Ask (tylko odpowiada) | Brak osobnego trybu — najbliżej jest `/plan` (nie edytuje) albo ograniczenie przez `/permissions` / `--disallowedTools` |
+| Tryb Plan (plan → potwierdzenie) | `/plan`, `Shift+Tab` (cykl trybów) lub `claude --permission-mode plan` |
 | `@workspace` | Niepotrzebny — Claude Code widzi pliki bezpośrednio |
 | `#file:nazwa.java` | Podaj ścieżkę w prompcie: `src/main/java/.../OwnerController.java` |
 

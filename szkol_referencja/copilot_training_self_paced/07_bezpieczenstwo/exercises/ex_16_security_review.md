@@ -15,7 +15,14 @@
 
 3. Przeczytaj raport i oceń trafność.
 
-**Spodziewany wynik:** Copilot wskaże np. brak walidacji `@Valid`, potencjalny open redirect, brak CSRF (choć Spring domyślnie chroni). Niektóre uwagi mogą być false positive — i to dobrze, uczysz się oceniać.
+**Spodziewany wynik:** Copilot wskaże np. brak walidacji `@Valid`, potencjalny open redirect, brak ochrony CSRF. Niektóre uwagi mogą być false positive — i to dobrze, uczysz się oceniać.
+
+> ⚠️ **Zweryfikuj to sam:** ten projekt **nie ma** `spring-boot-starter-security`
+> w `pom.xml` ani żadnej klasy `SecurityFilterChain`. Czyli CSRF **nie jest**
+> chroniony — mimo że Copilot potrafi napisać „Spring chroni domyślnie".
+> Chroni, ale **dopiero po dodaniu Spring Security**. To jest modelowy przykład
+> odpowiedzi, która brzmi wiarygodnie i jest fałszywa. Sprawdź `pom.xml`, zanim
+> uwierzysz.
 
 **Tip:** Powtórz to na `VetController.java` i `application.properties` (szukanie jawnych credentials).
 

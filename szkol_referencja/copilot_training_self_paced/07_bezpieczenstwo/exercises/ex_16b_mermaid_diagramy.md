@@ -12,7 +12,8 @@
 @workspace Wygeneruj diagram Mermaid (classDiagram) pokazujący relacje między encjami: Owner, Pet, Vet, Visit, Specialty. Pokaż pola, typy relacji (1:N, M:N) i kierunek asocjacji.
 ```
 
-2. Skopiuj wynik do pliku `docs/domain-model.md` (utwórz folder `docs/`).
+2. Skopiuj wynik do pliku `docs/domain-model.md`. Folder `docs/` już istnieje
+   (jest tam dokumentacja MkDocs) — dopisujesz do niego nowy plik.
 
 3. Teraz drugi diagram — sekwencyjny:
 
@@ -29,3 +30,7 @@
 **Podgląd:** Otwórz Markdown Preview (Ctrl+Shift+V) — niektóre rozszerzenia VS Code renderują Mermaid. Na GitHubie renderuje się automatycznie.
 
 **Zastosowanie w zespole:** Dokumentacja architektury "as code" — zmienia się razem z kodem, nie gnije w Confluence.
+
+> **Uwaga na to repo:** `docs/` jest w `.gitignore`, więc Twój plik **nie
+> trafi do commita**. W prawdziwym projekcie katalog z dokumentacją musi być
+> wersjonowany — inaczej cała idea „as code" się nie domyka.

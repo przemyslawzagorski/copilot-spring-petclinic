@@ -1,6 +1,6 @@
 # Ex 24: Hardening i smoke test MCP
 
-> Faza 7 · ~10 min · Źródło: moduł 11
+> Faza 7 · ~10 min · Źródło: moduł 09
 
 **Po co:** Serwer działa, ale nie jest gotowy na realny świat. Dodajesz: timeout, error handling, limit output, scenariusze testowe.
 
