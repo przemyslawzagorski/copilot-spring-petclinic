@@ -13,6 +13,14 @@ See the presentation here:
 
 ## Run Petclinic locally
 
+<!--
+  Jak uruchomić projekt lokalnie (skrót):
+  1. Sklonuj repozytorium i wejdź do katalogu projektu.
+  2. Uruchom aplikację poleceniem Maven (./mvnw spring-boot:run) albo Gradle (./gradlew bootRun).
+  3. Aplikacja domyślnie startuje z bazą H2 in-memory i jest dostępna pod http://localhost:8080/.
+  Szczegóły komend i profile baz danych (MySQL/PostgreSQL) opisano poniżej.
+-->
+
 Spring Petclinic is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application built using [Maven](https://spring.io/guides/gs/maven/) or [Gradle](https://spring.io/guides/gs/gradle/).
 Java 17 or later is required for the build, and the application can run with Java 17 or newer.
 
