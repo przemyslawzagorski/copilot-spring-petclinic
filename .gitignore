@@ -81,3 +81,6 @@ petclinic-dotnet/
 docs/
 mkdocs.yml
 site/
+
+# Wewnetrzny warsztat Auggie (osobne repo GitLab) - nie nalezy do tego repozytorium
+augment_cli_workspace/
