@@ -234,3 +234,49 @@ handoffs:
 - Dla deterministycznych workflow użyj Workflows (ultracode)
 
 Ta różnica jest celowa — Claude Code preferuje elastyczne podejmowanie decyzji zamiast sztywnych reguł.
+
+---
+
+## Delegacja bez pisania agenta: `/subtask` i `/background`
+
+Nie każde oddelegowanie wymaga pliku w `.claude/agents/`. Dwie komendy
+załatwiają przypadki jednorazowe.
+
+| Komenda | Co robi | Kiedy |
+|---|---|---|
+| `/subtask` | oddaje zadanie poboczne subagentowi, który wraca z raportem | Gadatliwe zadanie, którego wynik chcesz, a przebiegu nie |
+| `/background` | odpina bieżącą sesję i puszcza ją w tle | Długie zadanie, przy którym nie chcesz czekać |
+
+**Po co to w module o agentach:** `/subtask` rozwiązuje ten sam problem co
+subagent z pliku — chroni Twoje okno kontekstu przed zalaniem — tylko bez
+konfiguracji. Subagent dostaje **własne okno**, wykonuje robotę i oddaje
+streszczenie.
+
+**Ćwiczenie (~5 min), rozszerzenie ex_20:**
+
+1. Najpierw bez delegacji — sprawdź `/context`, zapamiętaj zajętość:
+
+```
+Przeskanuj wszystkie kontrolery w projekcie i wypisz każdy endpoint HTTP
+z jego metodą, ścieżką i tym, czy waliduje wejście.
+```
+
+2. Sprawdź `/context` ponownie. Skan wszedł do Twojej rozmowy w całości.
+3. `/rewind` → **Restore conversation** (kod nietknięty, historia czysta).
+4. To samo przez delegację:
+
+```
+/subtask Przeskanuj wszystkie kontrolery i wypisz każdy endpoint HTTP
+z metodą, ścieżką i informacją o walidacji wejścia. Zwróć samą tabelę.
+```
+
+5. `/context` po raz trzeci.
+
+**Spodziewany wynik:** wersja z `/subtask` zostawia w Twoim oknie samą tabelę,
+zamiast całej ścieżki przeszukiwania. To jest ten sam mechanizm, który
+w module 11 opisany jest jako filar oszczędzania kontekstu — tutaj widzisz go
+na liczbach.
+
+> **Uwaga z ex_11b:** edycje subagenta zwykle **nie cofają się** przez
+> `/rewind`. Do delegowania zadań, które piszą po plikach, rób commit
+> wcześniej.

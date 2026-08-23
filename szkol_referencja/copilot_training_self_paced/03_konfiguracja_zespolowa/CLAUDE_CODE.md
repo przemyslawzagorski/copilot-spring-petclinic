@@ -44,16 +44,45 @@ Zamiast `.github/copilot-instructions.md` tworzysz `CLAUDE.md` w root projektu.
 
 ---
 
-## Ex 08b (CC): Pamięć Claude Code
+## Ex 08b (CC): `/memory` — dwie warstwy pamięci
 
 **Odpowiednik ex_08b_copilot_memory.md**
 
-Claude Code ma wbudowany system auto-memory. Zamiast ręcznie konfigurować Copilot Memory:
+Claude Code rozdziela dwie rzeczy, które Copilot Memory łączy w jedno:
 
-1. Auto memory jest domyślnie włączone
-2. Claude Code sam zapisuje ważne informacje w `~/.claude/projects/*/memory/`
-3. Możesz powiedzieć: `Zapamiętaj, że w tym projekcie używamy Javadoc po polsku`
-4. Sprawdź pliki pamięci: `ls ~/.claude/projects/`
+| Warstwa | Gdzie | Charakter |
+|---|---|---|
+| **Instrukcje projektu** | `CLAUDE.md` (commitowany) | Świadome, zespołowe, w repo |
+| **Auto memory** | `~/.claude/projects/<projekt>/memory/` | Uczy się samo, lokalne, poza repo |
+
+Komenda `/memory` otwiera do edycji pliki `CLAUDE.md` i pozwala zarządzać auto
+memory.
+
+**Ćwiczenie:**
+
+1. Uruchom `/memory` i przejrzyj, co narzędzie zapamiętało o tym projekcie.
+2. Powiedz w rozmowie coś, co warto utrwalić:
+
+```
+Zapamiętaj: w tym projekcie testy kontrolerów zawsze piszemy z @WebMvcTest
+i @MockitoBean — @MockBean jest usunięte w Spring Boot 4.
+```
+
+3. Sprawdź `/memory` ponownie — zobacz, gdzie to wylądowało.
+4. Odpowiedz sobie na pytanie projektowe: **czy to powinno być w auto memory,
+   czy w `CLAUDE.md`?**
+
+**Spodziewany wynik:** reguła dotycząca konwencji zespołu należy do `CLAUDE.md`
+— jest wspólna i powinna trafić do repo. Auto memory jest Twoje i lokalne;
+kolega po `git clone` go nie dostanie.
+
+**Kluczowa różnica względem Copilota:** Copilot Memory jest jedną, niejawną
+warstwą. Tutaj masz jawny wybór między „to wie zespół" a „to wiem ja", i ten
+wybór ma konsekwencję w postaci commita.
+
+> **Koszt:** `CLAUDE.md` wchodzi do kontekstu w **każdej turze**. Plik na 5 000
+> tokenów kosztuje 5 000 tokenów za każdym razem. Trzymaj go poniżej 200 linii
+> i wyłącznie na stabilne reguły — szczegóły w module 11, ex_32.
 
 ---
 

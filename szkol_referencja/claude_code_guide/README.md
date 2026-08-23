@@ -39,7 +39,8 @@ Oznacza to, że pliki `SKILL.md` z `.github/skills/` są prawie bezpośrednio ko
 | `#file:nazwa` | Podaj ścieżkę w prompcie | Lub użyj @ w VSCode |
 | Copilot Memory | Auto memory (wbudowane) | Zapisuje w `~/.claude/projects/*/memory/` |
 | Copilot Chat (Ctrl+Alt+I) | `claude` w terminalu / VSCode | Różne interfejsy |
-| Tryby Agent/Ask/Plan | `/plan` do planowania | Domyślnie działa autonomicznie |
+| Tryby Agent/Ask/Plan | `/plan` albo `Shift+Tab` (cykl trybów) | Domyślnie działa autonomicznie |
+| Restore Checkpoint w chacie | `/rewind` albo podwójny `Esc` | Patrz ex_11b — porównanie obu |
 | `.vscode/mcp.json` | `.mcp.json` (root projektu) | MCP konfiguracja |
 
 ---
@@ -92,8 +93,8 @@ Wywołuj: `/nazwa-komendy`
 | **03** | Konfiguracja zespołowa | ❌ Różne pliki konfiguracji | `03_konfiguracja_zespolowa/CLAUDE_CODE.md` |
 | **04** | Hooki i guardrails | ❌ Inny format hooków | `04_hooks_i_guardrails/CLAUDE_CODE.md` |
 | **05** | Skills | ⚠️ Prawie identyczny | `05_skills/CLAUDE_CODE.md` |
-| **06** | TDD z Copilotem | ✅ Identyczny | Użyj oryginalnych ćwiczeń |
-| **07** | Bezpieczeństwo | ✅ Identyczny | Użyj oryginalnych ćwiczeń |
+| **06** | TDD z Copilotem | ⚠️ Cykl ten sam, narzędzia inne | `06_tdd_z_copilotem/CLAUDE_CODE.md` |
+| **07** | Bezpieczeństwo | ❌ Wbudowane `/security-review` i `/code-review` | `07_bezpieczenstwo/CLAUDE_CODE.md` |
 | **08** | Custom Agenty | ❌ Różny format agentów | `08_custom_agenty/CLAUDE_CODE.md` |
 | **09** | MCP Server | ⚠️ Prawie identyczny | `09_mcp_server/CLAUDE_CODE.md` |
 | **10** | Python SDK | ❌ Inny SDK | `10_copilot_python_sdk/CLAUDE_CODE.md` |
@@ -112,6 +113,40 @@ Wywołuj: `/nazwa-komendy`
 | **Memory dla agentów** | Subagenci uczą się między sesjami (`memory: project`) | W frontmatterze agenta |
 | **Background agents** | Ctrl+B — przenieś zadanie w tło | Podczas działania subagenta |
 | **`context: fork` w skills** | Skill uruchamia się w izolowanym subagent | W frontmatterze skill |
+
+---
+
+## Komendy używane w szkoleniu — gdzie która
+
+Claude Code ma kilkadziesiąt wbudowanych komend. Te są wplecione w ćwiczenia —
+reszty szukaj przez `/help`.
+
+| Komenda | Do czego | Gdzie ćwiczysz |
+|---|---|---|
+| `/plan` · `Shift+Tab` | Plan przed implementacją | Moduł 01 |
+| `/memory` | Dwie warstwy pamięci: `CLAUDE.md` i auto memory | Moduł 03, ex 08b |
+| `/permissions` | Twarde reguły allow/ask/deny | Moduł 03 (ex 09b) i 07 (ex 17) |
+| `/rewind` | Cofnięcie kodu i/lub rozmowy do checkpointu | Moduł 04, **ex 11b** |
+| `/security-review` | Skan diffa pod kątem podatności | Moduł 07 |
+| `/code-review` | Review brancha lub PR, z `--fix` i `--comment` | Moduł 07 |
+| `/subtask` · `/background` | Delegacja bez pisania agenta | Moduł 08 |
+| `/agents` | Zarządzanie subagentami | Moduł 08 |
+| `/context` | Co siedzi w oknie kontekstu **teraz** | Moduł 11, ex 32 |
+| `/usage` · `/insights` | Ile poszło tokenów i pieniędzy | Moduł 11 |
+| `/effort` · `/model` | Dobór modelu i poziomu wysiłku | Moduł 03 (ex 10b), 11 |
+| `/goal` | Cel utrzymywany przez wiele tur | Moduł 08, ex 31 |
+| `/mcp` | Połączenia z serwerami MCP | Moduł 09 |
+| `/compact` · `/clear` | Zwijanie i czyszczenie kontekstu | Moduł 11 |
+
+**Trzy rzeczy, które łatwo przeoczyć, a bolą:**
+
+1. **Checkpoint nie cofa terminala.** Ani w Claude Code, ani w Copilocie.
+   Commituj przed puszczeniem agenta na większe zadanie — ex 11b pokazuje to
+   na żywo.
+2. **`.claudeignore` nie działa.** Nie jest wspierane. Sekrety blokujesz przez
+   `permissions.deny` — moduł 03, ex 09b.
+3. **`CLAUDE.md` kosztuje w każdej turze.** Poniżej 200 linii, same stabilne
+   reguły — moduł 11, ex 32.
 
 ---
 

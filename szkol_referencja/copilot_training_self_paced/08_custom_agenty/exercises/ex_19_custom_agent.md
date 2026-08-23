@@ -38,4 +38,35 @@ Zrób review OwnerController.java
 
 **Spodziewany wynik:** Tabela z uwagami dotyczącymi kontrolera — np. brak `@Valid`, za duża odpowiedzialność metody.
 
-**Więcej:** `08_custom_agenty/EXERCISES.md`
+---
+
+## Krok 3: Zabierz agenta ze sobą (poziom użytkownika)
+
+Agent w `.github/agents/` jedzie razem z repo — cały zespół go ma, ale znika,
+gdy przejdziesz do innego projektu. Agenta **osobistego** trzymasz u siebie:
+
+| Narzędzie | Ścieżka |
+|---|---|
+| VS Code / Copilot CLI | `~/.copilot/agents/` |
+| Visual Studio (Windows) | `%USERPROFILE%\.github\agents\` |
+
+W VS Code dodatkowe lokalizacje wskażesz ustawieniem `chat.agentFilesLocations`.
+
+**Ćwiczenie:** skopiuj `reviewer.agent.md` do katalogu użytkownika, zmień w nim
+`name` na `reviewer` (bez zmian) i otwórz **inny** projekt. Agent nadal jest na
+liście.
+
+> **Przy konflikcie nazw wygrywa agent użytkownika** — przesłania tego z repo.
+> To wygodne, ale bywa mylące w zespole: kolega z tą samą nazwą agenta lokalnie
+> dostanie inne wyniki niż Ty, mimo tego samego repo. Nazywaj osobiste agenty
+> inaczej niż zespołowe.
+
+## Podział, który warto zapamiętać
+
+| Poziom | Do czego |
+|---|---|
+| Repo (`.github/agents/`) | Standard zespołu — review, konwencje, architektura projektu |
+| Użytkownik | Twój sposób pracy — przenośny między projektami |
+
+**Więcej:** `08_custom_agenty/EXERCISES.md` · odpowiednik dla Claude Code
+w [CLAUDE_CODE.md](../CLAUDE_CODE.md)

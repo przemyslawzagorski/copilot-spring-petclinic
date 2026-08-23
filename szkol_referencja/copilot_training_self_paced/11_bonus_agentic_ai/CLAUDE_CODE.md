@@ -95,3 +95,36 @@ git diff feat/x-claude feat/x-codex   # porównaj rozbieżności
 | **Multi-tool** | routing wg warstwy → wspólny `.mcp.json` → cross-check na osobnych gałęziach → `ultracode`/`/goal` dla orkiestracji |
 
 **Więcej:** [README modułu 11](README.md) · moduł 08 [CLAUDE_CODE.md](../08_custom_agenty/CLAUDE_CODE.md) · `szkol_referencja/claude_code_guide/README.md`
+
+---
+
+## Pomiar: `/usage` i `/insights` obok `/context`
+
+Ex_32 uczy czytać `/context` — czyli **ile** kontekstu zajmujesz teraz. Do
+domknięcia pętli pomiarowej brakują dwie komendy.
+
+| Komenda | Odpowiada na pytanie |
+|---|---|
+| `/context` | Co **w tej chwili** siedzi w oknie i ile zajmuje |
+| `/usage` | Ile tokenów i pieniędzy poszło **do tej pory** |
+| `/insights` | Raport HTML z **ostatnich sesji** — gdzie naprawdę uciekał budżet |
+
+**Ćwiczenie (~10 min), rozszerzenie ex_32:**
+
+1. Zacznij świeżą sesję i od razu sprawdź `/context`. Zapisz zajętość
+   **zanim** cokolwiek zrobisz — to Twój koszt w spoczynku: system prompt,
+   katalog narzędzi, `CLAUDE.md`.
+2. Wykonaj ćwiczenie z modułu 06 (cykl TDD) w całości.
+3. `/usage` — ile kosztowało to, co przed chwilą zrobiłeś.
+4. `/insights` — otwórz raport i znajdź, która sesja z ostatnich dni była
+   najdroższa. Odpowiedz sobie: **dlaczego?**
+
+**Spodziewany wynik:** koszt startowy jest niezerowy i płacisz go w każdej
+turze — to jest efekt opisany w slajdach jako kula śnieżna. Największe sesje
+zwykle nie są tymi, w których zrobiłeś najwięcej.
+
+**Powiązanie:** [slajdy o ekonomii kontekstu](../../../slajdy_ekonomia_kontekstu/00_PRZEWODNIK.md)
+opierają się na dokładnie takich pomiarach, tylko zebranych z 226 sesji.
+Moduły [01](../../../slajdy_ekonomia_kontekstu/01_kula_sniezna.md)
+i [05](../../../slajdy_ekonomia_kontekstu/05_obserwacja.md) tłumaczą, co z tymi
+liczbami zrobić.
