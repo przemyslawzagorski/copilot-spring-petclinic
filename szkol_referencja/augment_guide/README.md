@@ -172,7 +172,7 @@ wysłaniem.
 | `.github/agents/*.agent.md` | `.claude/agents/*.md` | `.augment/agents/*.md` |
 | `.github/hooks/*.json` | `.claude/settings.json` | `hooks` w `.augment/settings.json` |
 | ustawienia narzędzi agenta | `permissions` | `toolPermissions` i ograniczenia subagenta |
-| `.copilotignore` | `.claudeignore` | `.augmentignore` oraz `.gitignore` |
+| `.copilotignore` | `permissions.deny` (⚠️ `.claudeignore` nie działa) | `.augmentignore` oraz `.gitignore` |
 | `.vscode/mcp.json` | `.mcp.json` | `mcpServers` w ustawieniach lub `auggie mcp` |
 
 ## Rules

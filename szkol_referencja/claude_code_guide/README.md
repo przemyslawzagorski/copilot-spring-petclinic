@@ -34,7 +34,7 @@ Oznacza to, że pliki `SKILL.md` z `.github/skills/` są prawie bezpośrednio ko
 | `.github/prompts/*.prompt.md` | `.claude/commands/*.md` lub skills | Slash commands |
 | `.github/instructions/*.instructions.md` | `CLAUDE.md` z `paths:` | Scoped instructions |
 | `.github/hooks/*.json` | `hooks:` w `.claude/settings.json` | Inny format, te same zdarzenia |
-| `.copilotignore` | `.claudeignore` | Identyczny format |
+| `.copilotignore` | `permissions.deny` w `.claude/settings.json` | ⚠️ **`.claudeignore` nie jest wspierane** — nie blokuje odczytu. Patrz moduł 03 |
 | `@workspace` | Niepotrzebny | Claude Code widzi pliki bezpośrednio |
 | `#file:nazwa` | Podaj ścieżkę w prompcie | Lub użyj @ w VSCode |
 | Copilot Memory | Auto memory (wbudowane) | Zapisuje w `~/.claude/projects/*/memory/` |

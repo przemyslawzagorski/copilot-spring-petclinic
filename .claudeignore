@@ -1,4 +1,13 @@
-# Ignorowane przez Claude Code (analogicznie do .copilotignore)
+# ⚠️ UWAGA — PLIK SZKOLENIOWY, CELOWO NIESKUTECZNY
+#
+# Claude Code NIE wspiera `.claudeignore`. Ten plik niczego nie blokuje.
+# Jest tu jako przykład do modułu 03 (patrz 03_konfiguracja_zespolowa/CLAUDE_CODE.md,
+# "Ex 09b (CC)"): kontrola, ktora wyglada solidnie i nie dziala.
+#
+# Zeby naprawde zablokowac odczyt, uzyj `permissions.deny` w .claude/settings.json:
+#   "permissions": { "deny": ["Read(./.env)", "Read(./secrets/**)"] }
+#
+# Ponizsza lista jest analogiczna do .copilotignore (ktory dziala, ale w Copilocie).
 
 # Dane środowiskowe i sekrety
 .env

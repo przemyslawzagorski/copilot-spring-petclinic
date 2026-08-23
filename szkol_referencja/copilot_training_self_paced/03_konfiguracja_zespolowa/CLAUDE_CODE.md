@@ -88,15 +88,47 @@ Zasady dla testów:
 
 **Odpowiednik ex_09b_exclude_files.md**
 
-Zamiast `.copilotignore` → `.claudeignore` (identyczny format!)
+> ⚠️ **Uwaga — to NIE jest odpowiednik 1:1.** Claude Code **nie wspiera**
+> `.claudeignore`. Plik o tej nazwie nie blokuje odczytu — Claude przeczyta
+> wskazany plik, jeśli go o to poprosisz. Traktowanie go jako zabezpieczenia
+> to fałszywe poczucie bezpieczeństwa.
 
-**Ten projekt już ma `.claudeignore`** — otwórz go i przejrzyj.
+**Co działa naprawdę:** reguły `permissions.deny` w `.claude/settings.json`:
 
-**Ćwiczenie:** Dodaj wykluczenie dla folderu z sekretami:
+```json
+{
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Read(./credentials/**)"
+    ]
+  }
+}
 ```
-# Sekrety szkoleniowe
-szkol_referencja/copilot_training_self_paced/mcp_jira_wiki/.env
-```
+
+Dodatkowo Claude Code respektuje `.gitignore` przy automatycznym wyszukiwaniu
+plików — ale to też nie jest twarda blokada odczytu.
+
+**Ten projekt ma plik `.claudeignore`** — otwórz go. To celowy przykład
+**nieskutecznego** zabezpieczenia: wygląda solidnie, wymienia `.env`,
+`secrets/`, `credentials/`, i nie robi nic.
+
+**Ćwiczenie** (odpowiada krokom z `ex_09b_exclude_files.md`):
+
+1. Utwórz testowy plik `secrets/api-keys.txt` z treścią `FAKE_KEY=abc123`.
+   Wzorzec `secrets/` **jest już** w `.claudeignore`.
+2. Poproś Claude Code: `Pokaż zawartość pliku secrets/api-keys.txt`.
+   Plik zostanie przeczytany mimo wpisu w `.claudeignore`.
+3. Dodaj `"Read(./secrets/**)"` do `permissions.deny`
+   w `.claude/settings.json`.
+4. Uruchom Claude Code ponownie i powtórz prośbę z kroku 2. Teraz odczyt
+   zostaje zablokowany.
+5. Posprzątaj: usuń `secrets/api-keys.txt`.
+
+**Wniosek:** różnica między „narzędzie tego nie zaindeksuje samo z siebie"
+a „narzędzie nie może tego przeczytać" jest różnicą między wygodą a kontrolą.
 
 ---
 
