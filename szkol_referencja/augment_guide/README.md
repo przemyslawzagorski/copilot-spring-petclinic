@@ -4,6 +4,49 @@
 > działające przykłady dla Augmenta. Ten plik jest punktem startowym dla
 > uczestników używających Auggie CLI.
 
+## Co gdzie przeczytać
+
+Ten katalog zawiera pięć dokumentów o różnym przeznaczeniu. Zacznij od tego,
+który odpowiada na Twoje pytanie:
+
+| Plik | Odpowiada na pytanie | Dla kogo |
+|---|---|---|
+| **README.md** (ten plik) | Jak zacząć, co gdzie się konfiguruje, jak to mapuje się na Copilota i Claude Code | Uczestnik szkolenia |
+| [context-economy.md](context-economy.md) | **Ile naprawdę kosztuje wywołanie i dlaczego** — dane z 226 sesji i 23 155 wywołań, benchmark 16 wariantów | Kto chce dowodów |
+| [optimizer-playbook.md](optimizer-playbook.md) | **Co konkretnie zrobić, w jakiej kolejności** — która flaga, plik lub linia frontmattera daje którą oszczędność | Kto chce procedury |
+| [cli-training-kit.md](cli-training-kit.md) | **Co wpisać na żywo przed publicznością** — scenariusz demo + tabela „która flaga wiąże w którym trybie" | Prowadzący |
+| [optymalizacja-zuzycia.md](optymalizacja-zuzycia.md) | Stawki modeli, mechanika cache, cykl życia sesji | Kto planuje budżet |
+
+**Materiał przekrojowy:** [`slajdy_ekonomia_kontekstu/`](../../slajdy_ekonomia_kontekstu/)
+— 10 modułów o ekonomii kontekstu, niezależnych od narzędzia (działają tak samo
+dla Copilota, Claude Code i Auggie). Zaczynasz od
+[przewodnika](../../slajdy_ekonomia_kontekstu/00_PRZEWODNIK.md).
+
+## Errata
+
+Dokumenty przeszły weryfikację **2026-08-11**. Znalezione i poprawione:
+
+| # | Co | Gdzie | Status |
+|---|---|---|---|
+| 1 | **Sprzeczna rada o resetowaniu sesji** — jeden dokument mówił „nigdy nie resetuj", drugi „zawsze resetuj" | `context-economy.md`, `optimizer-playbook.md`, `optymalizacja-zuzycia.md` | Rozstrzygnięte: liczy się **zawartość** sesji, nie długość. Restart z kondensatem wygrywa, restart z pełnym kontekstem przegrywa |
+| 2 | **Błąd arytmetyczny w service fee** — przykład `$28,58/$71,42` implikuje 40%, przy deklarowanych 28% | `optymalizacja-zuzycia.md` | Poprawione na `$21,88/$78,12`; tabela stawek była spójna (mnożnik 1,28 we wszystkich 16 komórkach) |
+| 3 | **Podatek językowy podany bez skali** — „+42% kosztu" dotyczy 0,5–7,1% rachunku, nie całości | `optymalizacja-zuzycia.md` | Dopisana skala; usunięte zalecenie „pisz wyłącznie po angielsku" jako nieuzasadnione rachunkiem |
+| 4 | **Rząd wielkości zawyżony ~10×** — „kilkaset tysięcy tokenów na dzień dobry" vs zmierzone 17 219 / 24 269 / ~46 152 | `optymalizacja-zuzycia.md` | Poprawione; usunięta rada o zmianie nazwy katalogu `agents` na rzecz `auggie tools remove` |
+| 5 | **6 zepsutych linków** do plików z innego repozytorium | 4 pliki | Zamienione na odnośniki do dokumentacji publicznej |
+| 6 | **README bez indeksu** nowych plików | `README.md` | Dodana tabela wyżej |
+| 7 | **Plik nieczytelny dla narzędzi** — 293 454 znaki w jednej linii (PNG w base64, 97,5% pliku) | `optymalizacja-zuzycia.md` | Obraz wyciągnięty do `img/cykl-zycia-sesji.png`; plik spadł z 294 KB do ~9 KB. Usunięto 13 pustych nagłówków i literówki |
+| 8 | **Nazwa realnego serwera MCP** w przykładzie „podpięty i nigdy nie wywołany" | 3 pliki | Zanonimizowane do `<serwer-mcp-A>` |
+
+### Czego świadomie nie poprawiono
+
+- **Liczby pochodzą z `auggie 0.32.0`.** Nowsza wersja może dawać inne wartości.
+  Materiał uczy metody pomiaru — rozjazd jest wynikiem, nie błędem dokumentu.
+- **Oceny poprawności to pojedyncze próbki** na jednym małym zadaniu. Koszty są
+  stabilne (powtarzalność 0,15%), rankingi modeli — nie.
+- **Pojedyncze wzmianki o wewnętrznej platformie audytującej** (`Workshop`,
+  `concierge/`, `localhost:8770`) zostały w kilku miejscach. Uczestnik nie ma do
+  niej dostępu; traktuj je jako opis koncepcji, nie instrukcję.
+
 ## Co działa wspólnie
 
 Augment obsługuje kilka otwartych lub kompatybilnych formatów:
