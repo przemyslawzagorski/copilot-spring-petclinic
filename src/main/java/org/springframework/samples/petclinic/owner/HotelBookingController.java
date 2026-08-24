@@ -59,6 +59,14 @@ class HotelBookingController {
 		return "pets/createOrUpdateHotelBookingForm";
 	}
 
+	int getHotelBookingCountForPet(Pet pet) {
+		return pet.getHotelBookings().size();
+	}
+
+	int getHotelBookingCountForOwner(Owner owner) {
+		return owner.getPets().stream().mapToInt(this::getHotelBookingCountForPet).sum();
+	}
+
 	@PostMapping("/owners/{ownerId}/pets/{petId}/hotel-bookings/new")
 	public String processNewHotelBookingForm(@ModelAttribute Owner owner, @PathVariable int petId,
 			@Valid HotelBooking hotelBooking, BindingResult result, RedirectAttributes redirectAttributes) {

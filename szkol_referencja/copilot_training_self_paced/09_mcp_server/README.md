@@ -78,3 +78,16 @@ W workspace są gotowe implementacje MCP do nauki i eksperymentów:
 | 🅱️ ex_24b | Bonus: dodaj nowe tool do istniejącego MCP | ~15 min |
 
 Pliki ćwiczeń: `exercises/`
+
+---
+
+## 🚀 Poziom zaawansowany: MCP w realnej pracy programisty
+
+| Materiał | Co pokazuje |
+|---|---|
+| [`../mcp_ex_api/`](../mcp_ex_api/INSTRUKCJA_UCZESTNIK.md) | Podstawy: narzędzia + zasoby + przepływy na publicznych API |
+| [`../mcp_devkit/`](../mcp_devkit/README.md) | Poziom produkcyjny: RAG (Tavily/Jina), pamięć wektorowa (Qdrant), RAG po własnym repo, delegowanie podzadań do szybkiego modelu (Groq) |
+
+`mcp_devkit` odpowiada na pytanie „po co mi własny serwer MCP, skoro agent i tak umie
+czytać pliki?” — pokazuje **ekonomię kontekstu**: ciężką robotę wykonuje tani model
+i baza wektorowa, a do głównego okna wraca sam wynik.

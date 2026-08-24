@@ -64,6 +64,15 @@ docs/               # MkDocs documentation
 - `exercise-validator` — validates training material consistency
 - `mkdocs-documentation` — generates/updates MkDocs docs
 
+**MCP servers** (in `.mcp.json`):
+- `devkit` — DevKit RAG: `web_search`/`read_page` (Tavily, Jina Reader), `deep_research`,
+  pamięć wektorowa Qdrant (`memory_*`), RAG po repo (`index_path` + `ask_repo`),
+  delegowanie podzadań do Groq (`delegate`). Zasoby: `devkit://status`,
+  `devkit://repo/profile`, `devkit://cheatsheet`. Kod: `szkol_referencja/copilot_training_self_paced/mcp_devkit/`,
+  klucze API w `mcp_devkit/.env` (nigdy w `.mcp.json`).
+- `publiczne-api` — demo: kursy NBP, Pokemon, żarty + zasoby `nbp://rates/*` i przepływy
+- `jira-wiki` — Jira & Confluence (wymaga `.env` w `mcp_jira_wiki/`)
+
 **Skills** (slash commands):
 - `/project-versions` — shows Java, Spring Boot, Maven versions
 - `/method-deep-dive` — analyzes a method's flow, dependencies, security risks

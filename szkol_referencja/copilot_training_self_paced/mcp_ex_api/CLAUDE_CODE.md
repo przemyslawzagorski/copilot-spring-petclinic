@@ -60,6 +60,36 @@ Claude Code automatycznie wywoła narzędzie `get_exchange_rate` przez MCP.
 | `get_exchange_rate` | Kurs waluty z NBP | "Kurs EUR dzisiaj?" |
 | `get_pokemon_stats` | Statystyki Pokemon | "Statystyki pikachu?" |
 | `get_random_joke` | Losowy żart | "Powiedz żart" |
+| `get_rate_history` | Historia kursu z min/max/średnią i zmianą % | "Jak zmieniał się CHF przez 30 notowań?" |
+
+## Zasoby (resources)
+
+Zasób to kontekst adresowany przez URI — wciągasz go **jawnie**, model nie ładuje go sam.
+
+| URI | Zawartość |
+|---|---|
+| `nbp://rates/table-a` | Cała tabela A NBP (wszystkie waluty w jednym odczycie) |
+| `nbp://rates/{currency_code}` | Kurs pojedynczej waluty (resource template), np. `@nbp://rates/EUR` |
+| `api://catalog` | Katalog użytych API wraz z limitami i pułapkami |
+
+## Przepływy (prompts)
+
+Widoczne w Claude Code jako slash-komendy:
+
+| Prompt | Wywołanie |
+|---|---|
+| `analiza_kursu` | `/mcp__publiczne-api__analiza_kursu` |
+| `porownaj_pokemony` | `/mcp__publiczne-api__porownaj_pokemony` |
+
+> **Trzy filary MCP:** narzędzie *robi coś* (model wywołuje je sam), zasób *jest czymś*
+> (użytkownik wciąga go świadomie), prompt *prowadzi przez przepływ* (użytkownik uruchamia
+> go jak komendę). Serwer wysokiej jakości używa wszystkich trzech.
+
+## Dalej: serwer produkcyjny
+
+`mcp_ex_api` to poziom podstawowy. Wersja produkcyjna tych samych idei — RAG, pamięć
+wektorowa, delegowanie do taniego modelu — jest w
+[`../mcp_devkit/`](../mcp_devkit/README.md).
 
 ---
 

@@ -6,6 +6,12 @@
       "args": ["szkol_referencja/copilot_training_self_paced/mcp_ex_api/api_sever.py"],
       "description": "Publiczne API: kursy walut NBP, Pokemon stats, losowe żarty"
     },
+    "devkit": {
+      "type": "stdio",
+      "command": ".venv/Scripts/python.exe",
+      "args": ["szkol_referencja/copilot_training_self_paced/mcp_devkit/devkit_server.py"],
+      "description": "DevKit RAG — web search (Tavily/Jina), czytanie stron jako Markdown, pamiec wektorowa Qdrant, RAG po repo, delegowanie do Groq. Klucze API czytane z mcp_devkit/.env, nie z tego pliku."
+    },
     "jira-wiki": {
       "type": "stdio",
       "command": "python",

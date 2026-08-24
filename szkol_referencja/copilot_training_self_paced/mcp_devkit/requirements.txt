@@ -1,0 +1,14 @@
+# DevKit MCP - zaleznosci
+
+# --- rdzen (wymagane) ---
+mcp>=1.9                 # SDK protokolu MCP (FastMCP: tools + resources + prompts)
+httpx>=0.27              # klient HTTP dla Jina / Tavily / Groq / HF
+python-dotenv>=1.0       # wczytywanie mcp_devkit/.env
+
+# --- pamiec wektorowa (wymagane dla memory_* / index_path / ask_repo) ---
+qdrant-client>=1.9       # tryb lokalny (embedded) lub Qdrant Cloud
+
+# --- embeddingi lokalne (mocno zalecane) ---
+# Bez tego serwer spadnie na hashujacy fallback: dziala, ale bez semantyki.
+# Pierwsze uruchomienie pobiera model ONNX (~130 MB) do cache HuggingFace.
+fastembed>=0.4

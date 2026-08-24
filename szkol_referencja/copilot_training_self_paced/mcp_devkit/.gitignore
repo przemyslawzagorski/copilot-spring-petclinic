@@ -1,0 +1,4 @@
+.env
+.qdrant_local/
+smoke*.log
+__pycache__/

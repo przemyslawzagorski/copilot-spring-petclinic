@@ -36,6 +36,32 @@ Kroki, które wykonaj:
 - `szkol_referencja/copilot_training_self_paced/mcp_ex_api/mcp-config.json`
 - Ten plik zostawiamy jako przykład edukacyjny, ale aktywna konfiguracja projektu jest w `.vscode/mcp.json`.
 
+## 2b) Serwer udostępnia trzy rodzaje zdolności
+
+Poza narzędziami (`get_exchange_rate`, `get_pokemon_stats`, `get_random_joke`,
+`get_rate_history`) serwer wystawia teraz także:
+
+- **zasoby** — `nbp://rates/table-a`, `nbp://rates/{currency_code}`, `api://catalog`
+- **przepływy** — `analiza_kursu`, `porownaj_pokemony`
+
+Prompt do wypróbowania (wklej 1:1):
+
+```
+Wypisz wszystko, co udostępnia serwer MCP "publiczne-api": narzędzia, zasoby i przepływy.
+Potem wciągnij zasób z kursem EUR i uruchom analizę kursu EUR z 30 notowań.
+```
+
+Zasady, które warto zapamiętać:
+
+| Rodzaj | Kto uruchamia | Efekty uboczne |
+|---|---|---|
+| tool | model, samodzielnie | tak (koszt, czas, zmiana stanu) |
+| resource | użytkownik, jawnie | nie, tylko odczyt |
+| prompt | użytkownik, jak komenda | brak — to szablon przepływu |
+
+Wersja produkcyjna tych idei (RAG, pamięć wektorowa, delegowanie do taniego modelu):
+`../mcp_devkit/`.
+
 ## 3) Uwagi praktyczne
 
 - Najprościej uruchamiać z aktywnym `.venv`, aby `python` wskazywał właściwy interpreter.
